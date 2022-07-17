@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker News Search Engine | Aman</title>
+    <link rel="stylesheet" href="../CSS/Base.css">
+    <link rel="stylesheet" href="../CSS/Navbar.css">
+    <link rel="stylesheet" href="../CSS/Index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/26b04b0eef.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="canonical" href="https://odanta.in/freeflow/" />
+    <meta name="description"
+        content="A tool to search the articles from hacker news based on various tags, queries, date, author">
+    <meta property="og:title" content="Hacker News Search Engine | Aman">
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://odanta.in/static/img/transparent-logo.png">
+    <meta property="og:url" content="https://odanta.in/freeflow/">
+    <meta name="twitter:card" content="summary">
+    <meta property="og:description" content="FreeFlow">
+    <meta property="og:site_name" content="Odanta">
+    <meta name="twitter:image:alt" content="Odanta logo">
+</head>
+
+<body>
+    <header class="navbar-container">
+        <noscript>
+            <div id="javascript-status" class="d-flex d-flex-just-cent">
+                Please enable javascript for best experience
+            </div>
+        </noscript>
+        <div id="network-status" class="d-flex d-flex-just-cent"></div>
+        <nav class="d-flex d-flex-just-space-btw">
+            <a href="/" class="company-logo-container d-flex web-links" title="Hacker News">
+                <span class="company-logo d-flex"><i class="fa-brands fa-hacker-news-square"></i></span>
+                <span class="company-name">Hacker News</span>
+            </a>
+            <div class="d-flex">
+                <label class="dark-light-mode-switch" title="Toggle dark mode">
+                    <input type="checkbox">
+                    <span class="dark-light-mode-slider"></span>
+                </label>
+                <a href="https://github.com/yup-ma/Hybr1d-Project" class="web-links d-flex" target="_blank"
+                    rel="noopener noreferrer" title="Github link to repo">
+                    <span class="link-icon"><i class="fa-brands fa-github"></i></span>
+                    <span class="link-text">Github</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="search-heading-parent-container d-flex d-flex-dir-col d-flex-just-cent">
+            <div class="search-heading-container d-flex d-flex-just-cent">
+                <h1>Search</h1>
+            </div>
+            <p>Search for <b>Hacker News</b> articles with our faster API so that you are always updated about the
+                world around you.</p>
+        </div>
+        <div class="search-input-parent-container d-flex d-flex-just-cent">
+            <div class="search-input-container d-flex d-flex-just-cent">
+                <span class="seach-icon-container">
+                    <span class="seach-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="seach-icon-text hidden-ele">Search Icon</span>
+                </span>
+                <input type="search" name="search-input" id="search-input" placeholder="Search for articles">
+                <div class="search-applied-filters-parent-container">
+                    <h3><i class="fa-solid fa-arrow-down"></i> Applied filters</h3>
+                    <div class="search-applied-filters-container d-flex">
+                        <button class="search-applied-filters-btn d-flex" data-filter-type="tag"
+                            data-filter-value="Algorithms">
+                            <span class="search-applied-filters-type">
+                                Tag
+                            </span>
+                            <span class="search-applied-filters-value">
+                                Algorithms
+                            </span>
+                            <span class="search-applied-filters-btn-close">
+                                <i class="fa-solid fa-xmark"></i>
+                                <span class="hidden-ele">Close</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="filter-search-parent-container">
+            <h3>Search based on</h3>
+            <div class="filter-search-container d-flex d-flex-just-cent">
+                <div class="filter-search-types-container filter-search-tags d-flex d-flex-dir-col"
+                    data-filter-value="tags">
+                    <button class="filter-btn">Tag</button>
+                    <div class="filter-dropdown tags-dropdown d-flex d-flex-dir-col">
+                        <button class="filter-dropdown-btn" data-option-value="Story">story</button>
+                        <button class="filter-dropdown-btn" data-option-value="Poll">poll</button>
+                        <button class="filter-dropdown-btn" data-option-value="Comment">comment</button>
+                        <div class="filter-dropdown-special-btn">
+                            <input type="text" placeholder="Other" data-option-value="">
+                            <button>Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-search-types-container filter-search-author d-flex d-flex-dir-col"
+                    data-filter-value="author">
+                    <button class="filter-btn">Author</button>
+                    <div class="filter-dropdown author-dropdown filter-dropdown-right-aligned d-flex d-flex-dir-col">
+                        <div class="filter-dropdown-special-btn">
+                            <input type="text" placeholder="Author name" data-option-value="">
+                            <button>Add</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-search-types-container filter-search-relevance d-flex d-flex-dir-col"
+                    data-filter-value="recent">
+                    <button class="filter-btn">Sort by <span>Relevance</span></button>
+                    <div class="filter-dropdown tags-dropdown d-flex d-flex-dir-col">
+                        <button class="filter-dropdown-btn" data-option-value="Relevance">Relevant Articles</button>
+                        <button class="filter-dropdown-btn" data-option-value="Recent">Recent Articles</button>
+                    </div>
+                </div>
+                <div class="filter-search-types-container filter-search-clear-filter">
+                    <button class="filter-btn filter-clear-btn">Clear filters</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../../Cotroller/JS/Index.js"></script>
+</body>
+
+</html>

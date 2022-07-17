@@ -1,0 +1,149 @@
+.navbar-container {
+    background-color: var(--cta-color);
+    position: sticky;
+    top: -1px;
+    width: 100%;
+    z-index: 99;
+    box-shadow: none;
+    padding:  5px 0;
+    transition: var(--transition05);
+}
+
+.active-stucked {
+    box-shadow: rgb(0 0 0 / 23%) 0px 4px 6px;
+    padding: 0;
+}
+#network-status, #javascript-status {
+    width: 100%;
+    height: 48px;
+    max-height: 0px;
+    text-align: center;
+    font-weight: 500;
+    font-size: large;
+    background-color: var(--error-bg-color);
+    color: var(--white-color);
+    overflow: hidden;
+    transition: var(--transition05);
+}
+#javascript-status {
+    background-color: var(--warning-bg-color);
+    color: var(--secondary-color);
+    max-height: 48px;
+}
+
+nav {
+    max-width: 1024px;
+    margin: auto;
+    padding: 5px 8px;
+    transition: var(--transition05);
+}
+
+.company-logo-container {
+    font-size: 30px;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.company-logo-container .company-logo {
+    font-size: 35px;
+    position: relative;
+}
+
+.company-logo-container .company-logo::after {
+    content: "HN";
+    position: relative;
+    font-size: 24px;
+    font-weight: 500;
+    margin-left: 10px;
+    transition: var(--transition05);
+}
+
+.company-logo-container .company-name {
+    display: none;
+}
+/* ---------------------------------------------------------------------------------------- */
+.dark-light-mode-switch {
+    position: relative;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    transition: var(--transition05);
+}
+
+.dark-light-mode-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.dark-light-mode-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--cta-light-color);
+    outline: 2px solid transparent;
+    border-radius: 27px;
+    transition: var(--transition05);
+}
+
+.dark-light-mode-slider::before {
+    position: absolute;
+    content: "\f185";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    top: 4px;
+    color: var(--secondary-color);
+    border-radius: 50%;
+    transition: var(--transition05);
+}
+
+.dark-light-mode-switch input:checked+.dark-light-mode-slider {
+    background-color: var(--cta-light-color);
+}
+
+.dark-light-mode-switch input:focus+.dark-light-mode-slider,
+.dark-light-mode-switch input:hover+.dark-light-mode-slider {
+    outline: 2px solid var(--cta-outline-color);
+}
+
+.dark-light-mode-switch input:checked+.dark-light-mode-slider::before {
+    content: "\f186";
+    transform: rotate(360deg);
+}
+
+@media only screen and (min-width: 414px) {
+    nav {
+        padding: 5px 10px;
+    }
+    .dark-light-mode-switch {
+        margin: 0 10px;
+    }
+}
+
+@media only screen and (min-width: 592px) {
+    .company-logo-container .company-logo::after {
+        content: "Hacker News";
+    }
+    .dark-light-mode-switch {
+        width: 50px;
+        height: 26px;
+        border-radius: 26px;
+    }
+    .dark-light-mode-slider::before {
+        top: 3px;
+    }
+    .dark-light-mode-switch input:checked+.dark-light-mode-slider::before {
+        transform: translateX(22px) rotate(360deg);
+    }
+}
