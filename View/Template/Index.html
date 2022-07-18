@@ -36,6 +36,18 @@
             </div>
         </noscript>
         <div id="network-status" class="d-flex d-flex-just-cent"></div>
+        <div id="user-action-status-messages">
+            <div class="user-action-status-success user-action-status-container">
+                <span class="message-icon"><i class="fa-solid fa-circle-check"></i></span>
+                <span class="message-text">Adkasjn asdklams</span>
+                <button><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="user-action-status-error user-action-status-container">
+                <span class="message-icon"><i class="fa-solid fa-circle-exclamation"></i></span>
+                <span class="message-text">Adkasjn asdklams</span>
+                <button><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
         <nav class="d-flex d-flex-just-space-btw">
             <a href="/" class="company-logo-container d-flex web-links" title="Hacker News">
                 <span class="company-logo d-flex"><i class="fa-brands fa-hacker-news-square"></i></span>
@@ -72,19 +84,6 @@
                 <div class="search-applied-filters-parent-container">
                     <h3><i class="fa-solid fa-arrow-down"></i> Applied filters</h3>
                     <div class="search-applied-filters-container d-flex">
-                        <button class="search-applied-filters-btn d-flex" data-filter-type="tag"
-                            data-filter-value="Algorithms">
-                            <span class="search-applied-filters-type">
-                                Tag
-                            </span>
-                            <span class="search-applied-filters-value">
-                                Algorithms
-                            </span>
-                            <span class="search-applied-filters-btn-close">
-                                <i class="fa-solid fa-xmark"></i>
-                                <span class="hidden-ele">Close</span>
-                            </span>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -93,34 +92,34 @@
             <h3>Search based on</h3>
             <div class="filter-search-container d-flex d-flex-just-cent">
                 <div class="filter-search-types-container filter-search-tags d-flex d-flex-dir-col"
-                    data-filter-value="tags">
+                    data-filter-type="tags">
                     <button class="filter-btn">Tag</button>
                     <div class="filter-dropdown tags-dropdown d-flex d-flex-dir-col">
-                        <button class="filter-dropdown-btn" data-option-value="Story">story</button>
-                        <button class="filter-dropdown-btn" data-option-value="Poll">poll</button>
-                        <button class="filter-dropdown-btn" data-option-value="Comment">comment</button>
-                        <div class="filter-dropdown-special-btn">
-                            <input type="text" placeholder="Other" data-option-value="">
-                            <button>Add</button>
+                        <button class="filter-dropdown-btn" data-option-value="story">story</button>
+                        <button class="filter-dropdown-btn" data-option-value="poll">poll</button>
+                        <button class="filter-dropdown-btn" data-option-value="comment">comment</button>
+                        <div class="filter-dropdown-special-btn-container" data-option-value="">
+                            <input type="text" placeholder="Other" maxlength="30">
+                            <button class="filter-dropdown-special-btn">Add</button>
                         </div>
                     </div>
                 </div>
                 <div class="filter-search-types-container filter-search-author d-flex d-flex-dir-col"
-                    data-filter-value="author">
+                    data-filter-type="author">
                     <button class="filter-btn">Author</button>
                     <div class="filter-dropdown author-dropdown filter-dropdown-right-aligned d-flex d-flex-dir-col">
-                        <div class="filter-dropdown-special-btn">
-                            <input type="text" placeholder="Author name" data-option-value="">
-                            <button>Add</button>
+                        <div class="filter-dropdown-special-btn-container" data-option-value="">
+                            <input type="text" placeholder="Author name" maxlength="30">
+                            <button class="filter-dropdown-special-btn">Add</button>
                         </div>
                     </div>
                 </div>
                 <div class="filter-search-types-container filter-search-relevance d-flex d-flex-dir-col"
-                    data-filter-value="recent">
-                    <button class="filter-btn">Sort by <span>Relevance</span></button>
+                    data-filter-type="trival">
+                    <button class="filter-btn">Sort by <span class="trival-filter-value">Popularity</span></button>
                     <div class="filter-dropdown tags-dropdown d-flex d-flex-dir-col">
-                        <button class="filter-dropdown-btn" data-option-value="Relevance">Relevant Articles</button>
-                        <button class="filter-dropdown-btn" data-option-value="Recent">Recent Articles</button>
+                        <button class="filter-dropdown-btn" data-option-value="Popularity">Relevant</button>
+                        <button class="filter-dropdown-btn" data-option-value="Date">Date (Recent)</button>
                     </div>
                 </div>
                 <div class="filter-search-types-container filter-search-clear-filter">
