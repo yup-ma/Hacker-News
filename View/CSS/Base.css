@@ -1,7 +1,9 @@
 :root {
     --primary-color: #1e1e1e;
     --secondary-color: #545454;
+    --secondary-slight-light-color: #6c6c6c;
     --secondary-light-color: #b6b3b3;
+    --secondary-light-trans-color: rgb(182 179 179 / 20%);
     --cta-color: #00ffc1;
     --cta-hover-color: #23e8b8;
     --cta-light-color: #a1ffe8;
@@ -11,6 +13,9 @@
     --success-bg-color: #47F68D;
     --warning-bg-color: #ffc107;
     --white-color: white;
+    --pink-shade-color: #F45B69;
+    --blue-shade-color: #028090;
+    --green-shade-color: #0A8754;
     --box-shadow-color: rgb(0 0 0 / 24%);
     --transition02: 0.2s;
     --transition05: 0.5s;

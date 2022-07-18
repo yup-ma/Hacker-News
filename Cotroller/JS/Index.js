@@ -206,6 +206,9 @@ function searchAppliedFiltersBtnRemoveFunc(){
     let removingFilterArrayVal = {};
     removingFilterArrayVal.type = removingFilterType;
     removingFilterArrayVal.value = removingFilterVal;
+    if (removingFilterType == "trival"){
+        document.querySelector(".trival-filter-value").innerHTML = "Popularity";
+    }
     this.remove();
 
     for (let i = 0; i < appliedFiltersArray.length; i++) {
@@ -235,19 +238,22 @@ function randomColorGenerator() {
 }
 console.log(randomColorGenerator())
 
-let suggestionStatusSendingUrl = `http://hn.algolia.com/api/v1/search?tags=story`
-// let suggestionStatusSendingUrl = `http://hn.algolia.com/api/v1/search?query=foo&tags=comment`
-// let suggestionStatusSendingUrl = `http://hn.algolia.com/api/v1/items/23779420`
+let apiUrlForArticles = `http://hn.algolia.com/api/v1/search?tags=front_page`
 
-fetch(suggestionStatusSendingUrl)
+
+fetch(apiUrlForArticles)
 .then(response => response.json())
 .then((jsonData) => {
-    jsonData.hits.forEach(ele => {
-        console.log(ele.author);
-    });;
-    // console.log(jsonData);
-
+    // jsonData.hits.forEach(ele => {
+    //     console.log(ele.author);
+    // });
+    console.log(jsonData);
+    creatingArticlesFunc(jsonData);
 })
 .catch((error) => {
     console.log(error);
 });
+
+function creatingArticlesFunc(e){
+    console.log()
+}

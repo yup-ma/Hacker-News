@@ -118,7 +118,7 @@
                     data-filter-type="trival">
                     <button class="filter-btn">Sort by <span class="trival-filter-value">Popularity</span></button>
                     <div class="filter-dropdown tags-dropdown d-flex d-flex-dir-col">
-                        <button class="filter-dropdown-btn" data-option-value="Popularity">Relevant</button>
+                        <button class="filter-dropdown-btn" data-option-value="Popularity">Popularity</button>
                         <button class="filter-dropdown-btn" data-option-value="Date">Date (Recent)</button>
                     </div>
                 </div>
@@ -126,6 +126,47 @@
                     <button class="filter-btn filter-clear-btn">Clear filters</button>
                 </div>
             </div>
+        </div>
+
+        <div class="articles-main-container">
+            <a href="#" data-article-id="123" class="articles-container d-flex d-flex-dir-col d-flex-just-cent">
+                <h3>title</h3>
+                <div class="articles-container-created-date">20/08/2022</div>
+                <div class="articles-container-info-main d-flex">
+                    <div class="articles-container-info articles-container-info-author d-flex">
+                        <span class="articles-container-info-icon"><i class="fa-solid fa-user"></i></span>
+                        <span class="articles-container-info-details d-flex d-flex-dir-col">
+                            <span>Author</span>
+                            <span>123</span>
+                        </span>
+                    </div>
+                    <div class="articles-container-info articles-container-info-points d-flex">
+                        <span class="articles-container-info-icon"><i class="fa-solid fa-coins"></i></span>
+                        <span class="articles-container-info-details d-flex d-flex-dir-col">
+                            <span>Points</span>
+                            <span>123</span>
+                        </span>
+                    </div>
+                    <div class="articles-container-info articles-container-info-comments d-flex">
+                        <span class="articles-container-info-icon"><i class="fa-solid fa-message"></i></span>
+                        <span class="articles-container-info-details d-flex d-flex-dir-col">
+                            <span>Comments</span>
+                            <span>123</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="articles-container-tags-main">Tag
+                    <div class="articles-container-tags-main-container d-flex">
+                        <button>Story</button>
+                        <button>1234</button>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="articles-main-container-pagination">
+            <button class="active-pagination">1</button>
+            <button>2</button>
+            <button>3</button>
         </div>
     </main>
     <script src="../../Cotroller/JS/Index.js"></script>
