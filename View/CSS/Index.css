@@ -23,9 +23,9 @@
 .search-heading-parent-container p{
     font-size: 24px;
     font-weight: 500;
-    text-align: right;
+    text-align: center;
     max-width: 600px;
-    margin-left: auto;
+    margin: auto;
     margin-top: -34px;
     padding: 20px;
 }
@@ -276,15 +276,62 @@
     display: none;
 }
 /* -----------------------------------------------------------------------   */
+.articles-main-container-heading{
+    text-align: center;
+    max-width: 1024px;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    font-size: 38px;
+    position: relative;
+}
+.articles-main-container-heading::after{
+    content: "";
+    width: 100%;
+    max-width: 200px;
+    height: 4px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--secondary-slight-light-color);
+    border-radius: 50px;
+}
+.articles-main-container-heading::before{
+    content: "";
+    width: 30px;
+    height: 15px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--secondary-slight-light-color);
+    border-radius: 0 0 50px 50px;
+}
+.articles-main-container{
+    flex-wrap: wrap;
+    padding: 20px;
+}
 .articles-container{
+    --article-color: var(--secondary-color);
     max-width: 400px;
+    width: 100%;
     text-decoration: none;
     padding: 15px;
     margin: 20px;
-    background: var(--secondary-light-trans-color);
-    color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
+    background: rgb(182 179 179 / 10%);
+    color: var(--article-color);
+    border: 2px solid var(--article-color);
+    outline: 2px solid transparent;
+    outline-offset: 4px;
     border-radius: 20px;
+    transition: var(--transition05);
+}
+.articles-container:hover,.articles-container:focus{
+    outline: 2px solid var(--article-color);
+}
+.articles-container:active{
+    transform: scale(0.97);
 }
 .articles-container h3{
     width: 100%;
@@ -296,11 +343,23 @@
     width: 100%;
     font-size: 14px;
     text-align: right;
-    color: var(--secondary-slight-light-color);
-    margin: 20px 0;
+    margin: 10px 0 20px;
+    opacity: 0.8;
+}
+.articles-container-info-main{
+    width: 100%;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 .articles-container-info{
-    margin: 0 20px;
+    margin: 0 10px;
+    flex-direction: column;
+}
+.articles-container-info:first-child{
+    margin: 0 10px 0 0;
+}
+.articles-container-info:last-child{
+    margin: 0 0 0 10px;
 }
 .articles-container-info-author{
     color: var(--pink-shade-color);
@@ -314,16 +373,52 @@
 .articles-container-info-icon{
     font-size: 25px;
     margin-bottom: auto;
-    margin-right: 12px;
 }
 .articles-container-info-details span{
     width: 100%;
     text-align: left;
 }
+.articles-container-info-details span:first-child{
+    display: none;
+}
 .articles-container-info-details span:last-child{
     font-weight: 500;
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
+.articles-container-tags-main{
+    width: 100%;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+.articles-container-tags-main-container{
+    margin-left: 10px;
+    padding: 2px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.articles-container-tags-main-container::-webkit-scrollbar {
+    display: none;
+}
+.articles-container-tags-main-container button{
+    cursor: pointer;
+    font-size: 14px;
+    margin: 0 5px;
+    padding: 2px 11px;
+    color: inherit;
+    background-color: var(--white-color);
+    border: 1px solid var(--article-color);
+    border-radius: 20px;
+    text-transform: capitalize;
+    transition: var(--transition05);
+}
+.articles-container-tags-main-container button:hover,.articles-container-tags-main-container button:focus{
+    background-color: white;
+    outline: 1px solid var(--article-color);
+    filter: brightness(0.9);
+}
 /* -----------------------------------------------------------------------   */
 
 @media only screen and (min-width: 414px) {
@@ -334,6 +429,18 @@
         left: -1px;
         right: auto;
         transform-origin: top left;
+    }
+    .articles-container-info-details span:first-child{
+        display: block;
+    }
+    .articles-container-info-main{
+        justify-content: space-around;
+    }
+    .articles-container-info{
+        flex-direction: row;
+    }
+    .articles-container-info-icon{
+        margin-right: 12px;
     }
 }
 @media only screen and (min-width: 592px) {
@@ -347,6 +454,15 @@
     .articles-container h3{
         width: 100%;
         font-size: 20px;
+    }
+    .articles-container-info {
+        margin: 0 20px;
+    }
+    .articles-container-info:first-child{
+        margin: 0 20px 0 0;
+    }
+    .articles-container-info:last-child{
+        margin: 0 0 0 20px;
     }
 }
 

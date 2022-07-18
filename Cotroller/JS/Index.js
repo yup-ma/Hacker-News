@@ -106,10 +106,12 @@ function filterDropdownSpecialInputAddTagFunc(){
         }
     }
     if (document.querySelector('[data-filter-added-type="author"]')) {
-        actionStatus = "error";
-        document.querySelector(".message-text").innerHTML = "You can only filter through one author";
-        showActionMessageFunc();
-        return
+        if (addingFilterType == "author") {
+            actionStatus = "error";
+            document.querySelector(".message-text").innerHTML = "You can only filter through one author";
+            showActionMessageFunc();
+            return
+        }
     }
     filterArrayVal.type = addingFilterType;
     filterArrayVal.value = addingFilterValue;
@@ -239,7 +241,9 @@ function randomColorGenerator() {
 console.log(randomColorGenerator())
 
 let apiUrlForArticles = `http://hn.algolia.com/api/v1/search?tags=front_page`
-
+// let apiUrlForArticles = `http://hn.algolia.com/api/v1/search?query=foo&tags=comment`
+// let apiUrlForArticles = `http://hn.algolia.com/api/v1/items/23779420`
+// let apiUrlForArticles = `http://hn.algolia.com/api/v1/search?tags=story,author_PG`
 
 fetch(apiUrlForArticles)
 .then(response => response.json())

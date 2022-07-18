@@ -128,7 +128,8 @@
             </div>
         </div>
 
-        <div class="articles-main-container">
+        <h3 class="articles-main-container-heading">Recent articles</h3>
+        <div class="articles-main-container d-flex d-flex-just-cent">
             <a href="#" data-article-id="123" class="articles-container d-flex d-flex-dir-col d-flex-just-cent">
                 <h3>title</h3>
                 <div class="articles-container-created-date">20/08/2022</div>
@@ -137,27 +138,31 @@
                         <span class="articles-container-info-icon"><i class="fa-solid fa-user"></i></span>
                         <span class="articles-container-info-details d-flex d-flex-dir-col">
                             <span>Author</span>
-                            <span>123</span>
+                            <span title="123">123</span>
                         </span>
                     </div>
                     <div class="articles-container-info articles-container-info-points d-flex">
                         <span class="articles-container-info-icon"><i class="fa-solid fa-coins"></i></span>
                         <span class="articles-container-info-details d-flex d-flex-dir-col">
-                            <span>Points</span>
-                            <span>123</span>
+                            <span>Point</span>
+                            <span title="123">123</span>
                         </span>
                     </div>
                     <div class="articles-container-info articles-container-info-comments d-flex">
                         <span class="articles-container-info-icon"><i class="fa-solid fa-message"></i></span>
                         <span class="articles-container-info-details d-flex d-flex-dir-col">
-                            <span>Comments</span>
-                            <span>123</span>
+                            <span>Comment</span>
+                            <span title="123">123</span>
                         </span>
                     </div>
                 </div>
-                <div class="articles-container-tags-main">Tag
+                <div class="articles-container-tags-main d-flex">Tag:
                     <div class="articles-container-tags-main-container d-flex">
-                        <button>Story</button>
+                        <button data-filter-article-type="tags" data-filter-added-value="Story">Story</button>
+                        <button>1234</button>
+                        <button>1234</button>
+                        <button>1234</button>
+                        <button>1234</button>
                         <button>1234</button>
                     </div>
                 </div>
@@ -167,6 +172,8 @@
             <button class="active-pagination">1</button>
             <button>2</button>
             <button>3</button>
+            <button>4</button>
+            <button>5</button>
         </div>
     </main>
     <script src="../../Cotroller/JS/Index.js"></script>
