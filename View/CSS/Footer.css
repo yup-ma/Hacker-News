@@ -1,21 +1,28 @@
-footer{
+footer {
     background-color: var(--skin-shade-color);
     padding: 30px 20px;
     font-size: 16px;
     margin-top: 80px;
+    position: sticky;
+    top: 100vh;
 }
-footer h5{
+
+footer h5 {
     font-size: 25px;
     font-weight: 500;
 }
-footer a{
+
+footer a {
     text-decoration: none;
     color: var(--primary-color);
     margin: 5px 0;
 }
-.mail-link{
+
+.mail-link {
     margin-top: 20px;
 }
-footer a:hover, footer a:focus{
+
+footer a:hover,
+footer a:focus {
     text-decoration: underline;
 }

@@ -1,11 +1,9 @@
-
-
 document.querySelectorAll(".filter-btn:not(.filter-clear-btn)").forEach(ele => {
     ele.addEventListener('click', filterSearchDropwDownOpeningFunc)
 });
 
 //Opening dropdowns for filters
-function filterSearchDropwDownOpeningFunc(){
+function filterSearchDropwDownOpeningFunc() {
     if (document.querySelector(".active-filter-dropdown")) {
         document.querySelector(".active-filter-dropdown").classList.remove("active-filter-dropdown");
     }
@@ -15,7 +13,7 @@ function filterSearchDropwDownOpeningFunc(){
 
 
 function filterSearchDropwDownClosingFunc(e) {
-let currentTarget = document.querySelector(".active-filter-dropdown").contains(e.target);
+    let currentTarget = document.querySelector(".active-filter-dropdown").contains(e.target);
     if (!currentTarget) { //clikced outside of box
         document.querySelector(".active-filter-dropdown").classList.remove("active-filter-dropdown");
         document.body.removeEventListener('click', filterSearchDropwDownClosingFunc)
@@ -26,12 +24,13 @@ let currentTarget = document.querySelector(".active-filter-dropdown").contains(e
 document.querySelectorAll(".filter-dropdown-special-btn-container input").forEach(ele => {
     ele.addEventListener('input', filterDropdownInputFunc)
 });
-function filterDropdownInputFunc(){
+
+function filterDropdownInputFunc() {
     this.value = this.value.replace(/\s+/g, '');
     this.parentElement.dataset.optionValue = this.value
     if (this.value !== "") {
         this.parentElement.querySelector("button").style.display = "block";
-    } else{
+    } else {
         this.parentElement.querySelector("button").style.display = "none";
     }
 }
@@ -39,7 +38,8 @@ function filterDropdownInputFunc(){
 document.querySelectorAll(".filter-dropdown-special-btn").forEach(ele => {
     ele.addEventListener('click', filterDropdownSpecialInputAddTagFunc)
 });
-function filterDropdownSpecialInputAddTagFunc(){
+
+function filterDropdownSpecialInputAddTagFunc() {
     let filterArrayVal = {};
     let addingFilterType = this.parentElement.parentElement.parentElement.dataset.filterType;
     let addingFilterValue = this.parentElement.dataset.optionValue;
@@ -48,7 +48,7 @@ function filterDropdownSpecialInputAddTagFunc(){
     document.body.removeEventListener('click', filterSearchDropwDownClosingFunc)
     for (let i = 0; i < appliedFiltersArray.length; i++) {
         //Checking if value is already present
-        if (appliedFiltersArray[i].type == addingFilterType && appliedFiltersArray[i].value == addingFilterValue){
+        if (appliedFiltersArray[i].type == addingFilterType && appliedFiltersArray[i].value == addingFilterValue) {
             actionStatus = "error";
             actionMessage = "Same filter is already present";
             showActionMessageFunc();
@@ -79,7 +79,8 @@ function filterDropdownSpecialInputAddTagFunc(){
 document.querySelectorAll(".filter-dropdown-btn").forEach(ele => {
     ele.addEventListener('click', filterDropdownBtnClickFunc)
 });
-function filterDropdownBtnClickFunc(){
+
+function filterDropdownBtnClickFunc() {
     let filterArrayVal = {};
     let addingFilterType = this.parentElement.parentElement.dataset.filterType;
     let addingFilterValue = this.dataset.optionValue;
@@ -87,7 +88,7 @@ function filterDropdownBtnClickFunc(){
     document.body.removeEventListener('click', filterSearchDropwDownClosingFunc)
     for (let i = 0; i < appliedFiltersArray.length; i++) {
         //Checking if value is already present
-        if (appliedFiltersArray[i].type == addingFilterType && appliedFiltersArray[i].value == addingFilterValue){
+        if (appliedFiltersArray[i].type == addingFilterType && appliedFiltersArray[i].value == addingFilterValue) {
             actionStatus = "error";
             actionMessage = "Same filter is already present";
             showActionMessageFunc();
@@ -99,7 +100,7 @@ function filterDropdownBtnClickFunc(){
         if (document.querySelector('[data-filter-added-type="trival"]')) {
             document.querySelector('[data-filter-added-type="trival"]').click();
             if (addingFilterValue == "Popularity") {
-                return  
+                return
             }
         }
     }
@@ -109,13 +110,13 @@ function filterDropdownBtnClickFunc(){
     creatingAppliedFilterBtnsFunc(filterArrayVal);
 }
 
-function updatingTextForFilterQuantityStateFunc(){
+function updatingTextForFilterQuantityStateFunc() {
     if (appliedFiltersArray.length == 0) {
         document.querySelector(".search-applied-filters-parent-container h3").innerHTML = "No filters applied";
         document.querySelector(".search-applied-filters-parent-container h3").style.textAlign = "center";
         document.querySelector(".filter-search-clear-filter").style.display = "none";
 
-    } else{
+    } else {
         document.querySelector(".search-applied-filters-parent-container h3").innerHTML = `<i class="fa-solid fa-arrow-down"></i> Applied filters`;
         document.querySelector(".search-applied-filters-parent-container h3").style.textAlign = "left";
         document.querySelector(".filter-search-clear-filter").style.display = "block";
@@ -123,12 +124,14 @@ function updatingTextForFilterQuantityStateFunc(){
 }
 
 document.querySelector(".filter-search-clear-filter").addEventListener('click', filterClearFunc)
-function filterClearFunc(){
+
+function filterClearFunc() {
     document.querySelectorAll(".search-applied-filters-btn").forEach(ele => {
         ele.click();
     });
 }
-function creatingAppliedFilterBtnsFunc(e){
+
+function creatingAppliedFilterBtnsFunc(e) {
     const newButton = document.createElement("button");
     newButton.className = "search-applied-filters-btn d-flex";
     newButton.dataset.filterAddedType = e.type;
@@ -153,19 +156,19 @@ function creatingAppliedFilterBtnsFunc(e){
     localStorage.setItem("applied-filters-array", JSON.stringify(appliedFiltersArray));
 }
 
-function searchAppliedFiltersBtnRemoveFunc(){
+function searchAppliedFiltersBtnRemoveFunc() {
     let removingFilterType = this.dataset.filterAddedType;
     let removingFilterVal = this.dataset.filterAddedValue;
     let removingFilterArrayVal = {};
     removingFilterArrayVal.type = removingFilterType;
     removingFilterArrayVal.value = removingFilterVal;
-    if (removingFilterType == "trival"){
+    if (removingFilterType == "trival") {
         document.querySelector(".trival-filter-value").innerHTML = "Popularity";
     }
     this.remove();
 
     for (let i = 0; i < appliedFiltersArray.length; i++) {
-        if (appliedFiltersArray[i].type == removingFilterType && appliedFiltersArray[i].value == removingFilterVal){
+        if (appliedFiltersArray[i].type == removingFilterType && appliedFiltersArray[i].value == removingFilterVal) {
             appliedFiltersArray.splice(i, 1)
         }
     }
@@ -178,7 +181,7 @@ function searchAppliedFiltersBtnRemoveFunc(){
 }
 
 
-document.querySelector("#search-input").addEventListener('input', function(){
+document.querySelector("#search-input").addEventListener('input', function () {
     clearTimeout(debounceInputTimer);
     debounceInputTimer = setTimeout(() => {
         updatingURLForAPIFunc();
@@ -198,7 +201,7 @@ document.querySelector("#search-input").addEventListener('input', function(){
     }, 300);
 })
 
-function updatingURLForAPIFunc(){
+function updatingURLForAPIFunc() {
     searchedThroughInput = true;
     document.querySelector(".articles-main-container-heading").innerHTML = "Articles";
     let baseAPIUrlForArticles = `http://hn.algolia.com/api/v1/search`
@@ -206,12 +209,12 @@ function updatingURLForAPIFunc(){
     let tagsAllVal = "";
     let authorAllVal = "";
     let filterByDate = false;
-    
+
     if (searchedThroughInput == false) {
         apiUrlForArticles = `http://hn.algolia.com/api/v1/search?tags=front_page`;
     } else {
         for (array in appliedFiltersArray) {
-            if (appliedFiltersArray[array].type == "trival"){
+            if (appliedFiltersArray[array].type == "trival") {
                 filterByDate = true;
             } else {
                 filterByDate = false;
@@ -223,42 +226,47 @@ function updatingURLForAPIFunc(){
                 authorAllVal = "author_" + appliedFiltersArray[array].value.toLowerCase();
             }
         }
-        if (authorAllVal !== "") {
-            if (tagsAllVal == "") {
-                tagsAllVal = "story,"
-            }
+        if (tagsAllVal == "") {
+            tagsAllVal = "story,"
         }
         if (filterByDate == true) {
             baseAPIUrlForArticles = `${baseAPIUrlForArticles}_by_date?query=${articleSearchInputVal}&page=${pageNumber}&tags=(${tagsAllVal}),${authorAllVal}`
-        } else{
+        } else {
             baseAPIUrlForArticles = `${baseAPIUrlForArticles}?query=${articleSearchInputVal}&page=${pageNumber}&tags=(${tagsAllVal}),${authorAllVal}`
         }
-        console.log(baseAPIUrlForArticles)
         apiRunningFun(baseAPIUrlForArticles)
     }
 }
 
 apiRunningFun(apiUrlForArticles)
-function apiRunningFun(e){
+
+function apiRunningFun(e) {
     fetch(e)
-    .then(response => response.json())
-    .then((jsonData) => {
-        console.log(jsonData);
-        creatingArticlesFunc(jsonData.hits, jsonData.page, jsonData.nbPages, jsonData.nbHits, jsonData.processingTimeMS);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+        .then(response => response.json())
+        .then((jsonData) => {
+            console.log(jsonData);
+            creatingArticlesFunc(jsonData.hits, jsonData.page, jsonData.nbPages, jsonData.nbHits, jsonData.processingTimeMS);
+        })
+        .catch((error) => {
+            document.querySelector(".articles-main-container-pagination").innerHTML = "";
+            document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
+            document.querySelector(".articles-main-container").innerHTML = "";
+            document.querySelector(".articles-main-container-sub-heading").style.display = "none";
+            document.querySelector(".articles-main-container").innerHTML = `<img src="../Images/error-occured-image.svg">
+        <p>Opps faced error, we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page<p>`
+        });
 }
 
-function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesAmount, processingTime){
+function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesAmount, processingTime) {
+    document.querySelector(".articles-main-container-pagination").innerHTML = "";
+    document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
+    document.querySelector(".articles-main-container").innerHTML = "";
     if (articlesAmount !== 0) {
         document.querySelector(".articles-main-container-sub-heading").style.display = "block";
         if (searchedThroughInput == true) {
             if (numberOfPages > 5) {
                 numberOfPages = 5;
             }
-            document.querySelector(".articles-main-container-pagination").innerHTML = "";
             document.querySelector(".articles-main-container-pagination").style.display = "flex";
             for (let i = 0; i < numberOfPages; i++) {
                 const newButton = document.createElement("button");
@@ -276,7 +284,6 @@ function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesA
         } else {
             document.querySelector(".articles-main-container-sub-heading").innerHTML = `Showing <b>${articles.length}</b> result(s) in ${processingTime/1000}s`;
         }
-        document.querySelector(".articles-main-container").innerHTML = "";
         articles.forEach(ele => {
             const newAnchor = document.createElement("a");
             newAnchor.className = "articles-container d-flex d-flex-dir-col d-flex-just-cent";
@@ -293,7 +300,7 @@ function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesA
             if (articleTitle == null) {
                 if (ele.comment_text == null) {
                     articleTitle = "Poll: " + ele.story_text;
-                } else if(ele.story_text == null){
+                } else if (ele.story_text == null) {
                     articleTitle = "Comment: " + ele.comment_text;
                 } else {
                     articleTitle = "Couldn't find title"
@@ -329,11 +336,11 @@ function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesA
                 </div>
             </div>`;
             document.querySelector(".articles-main-container").appendChild(newAnchor);
-            // newAnchor.addEventListener('click', searchAppliedFiltersBtnRemoveFunc)
+            newAnchor.addEventListener('click', articleClickedFunc)
             let randomArticleColor = randomColorGenerator();
             newAnchor.style.setProperty("--article-color", `rgb(${randomArticleColor})`);
             newAnchor.style.backgroundColor = `rgba(${randomArticleColor}, 0.15)`;
-            
+
             ele._tags.forEach(e => {
                 const newButton = document.createElement("button");
                 if (e.match("author_")) {
@@ -341,7 +348,7 @@ function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesA
                     newButton.dataset.filterArticleType = "author";
                     newButton.dataset.filterArticleValue = e.replace("author_", '');
                     newButton.innerHTML = e.replace("author_", '');
-                } else if(e.match("story_")){
+                } else if (e.match("story_")) {
                     newButton.title = "Tag: " + e.replace("story_", '');
                     newButton.dataset.filterArticleType = "tags";
                     newButton.dataset.filterArticleValue = e.replace("story_", '');
@@ -349,7 +356,7 @@ function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesA
                     if (e.replace("story_", '').match(/^[0-9]+$/)) {
                         return
                     }
-                } else{
+                } else {
                     newButton.title = "Tag: " + e;
                     newButton.dataset.filterArticleType = "tags";
                     newButton.dataset.filterArticleValue = e;
@@ -359,23 +366,25 @@ function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesA
                 newAnchor.querySelector(".articles-container-tags-main-container").appendChild(newButton);
             });
         });
+
         function minArticleHeadingHeight() {
             let articleHeading = document.querySelectorAll(".articles-container-heading")
             let lengths = Array.from(articleHeading).map(e => e.offsetHeight);
             let maxHeight = Math.max(...lengths);
             for (let i = 0; i < articleHeading.length; i++) {
-              articleHeading[i].style.minHeight = maxHeight + "px"
+                articleHeading[i].style.minHeight = maxHeight + "px"
             }
-            
+
         }
         minArticleHeadingHeight()
-    } else{
-        document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
+    } else {
         document.querySelector(".articles-main-container-sub-heading").style.display = "none";
+        document.querySelector(".articles-main-container").innerHTML = `<img src="../Images/empty-list-image.svg">
+        <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="../Template/Index.html#search-input-parent-container">filters</a> and <a href="../Template/Index.html#search-input-parent-container">search query</a>`;
     }
 }
 
-function articleFilterAddingFunc(){
+function articleFilterAddingFunc() {
     let filterArrayVal = {};
     let articleAddingFilterType = this.dataset.filterArticleType;
     let articleAddingFilterValue = this.dataset.filterArticleValue;
@@ -389,7 +398,7 @@ function articleFilterAddingFunc(){
     }
     for (let i = 0; i < appliedFiltersArray.length; i++) {
         //Checking if value is already present
-        if (appliedFiltersArray[i].type == articleAddingFilterType && appliedFiltersArray[i].value == articleAddingFilterValue){
+        if (appliedFiltersArray[i].type == articleAddingFilterType && appliedFiltersArray[i].value == articleAddingFilterValue) {
             actionStatus = "error";
             actionMessage = "Same filter is already present";
             showActionMessageFunc();
@@ -402,7 +411,7 @@ function articleFilterAddingFunc(){
     creatingAppliedFilterBtnsFunc(filterArrayVal);
 }
 
-function articleDateConverterFunc(e){
+function articleDateConverterFunc(e) {
     const date = new Date(e)
     let monthsName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     let currentMonth = monthsName[date.getMonth()]
@@ -410,14 +419,23 @@ function articleDateConverterFunc(e){
 }
 
 function randomColorGenerator() {
-    let r = Math.floor(Math.random()*(181));
-    let g = Math.floor(Math.random()*(181));
-    let b = Math.floor(Math.random()*(181));
+    let r = Math.floor(Math.random() * (181));
+    let g = Math.floor(Math.random() * (181));
+    let b = Math.floor(Math.random() * (181));
     console.log()
     return `${r}, ${g}, ${b}`;
 }
 
-function articlePaginationClickFunc(){
+function articlePaginationClickFunc() {
     pageNumber = this.dataset.paginationValue;
     updatingURLForAPIFunc()
+}
+
+function articleClickedFunc() {
+    localStorage.setItem("searched-article-id", this.dataset.articleId);
+    apiUrlForArticles = `http://hn.algolia.com/api/v1/items/${this.dataset.articleId}`;
+    window.location.replace('../Template/Details.html');
+    // apiRunningFun(apiUrlForArticles)
+    // articleDetailsContent.style.setProperty("--focus-reading-black-percent-1", `${ele}px`);
+
 }

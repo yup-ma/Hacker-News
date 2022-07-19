@@ -1,15 +1,16 @@
 const navbarContainer = document.querySelector(".navbar-container")
 const navbarTop = document.querySelector(".navbar-top")
-const observer = new IntersectionObserver( 
+const observer = new IntersectionObserver(
     ([e]) => {
-        navbarContainer.classList.toggle("active-stucked", e.intersectionRatio < 1);//The second parameter can be used to determine whether the class is included or not. This example would include the class only if the element is sticked at top
-    }, 
-    {threshold: [1]}
+        navbarContainer.classList.toggle("active-stucked", e.intersectionRatio < 1); //The second parameter can be used to determine whether the class is included or not. This example would include the class only if the element is sticked at top
+    }, {
+        threshold: [1]
+    }
 );
 
 observer.observe(navbarTop);
 
-function showActionMessageFunc(){
+function showActionMessageFunc() {
     const newDiv = document.createElement("div");
     if (actionStatus == "error") {
         newDiv.className = "user-action-status-error user-action-status-container";
@@ -23,13 +24,12 @@ function showActionMessageFunc(){
         <button><i class="fa-solid fa-xmark"></i></button>`;
     }
     document.querySelector("#user-action-status-messages").appendChild(newDiv);
-    newDiv.querySelector("button").addEventListener('click',closingActionMessageFunc);
+    newDiv.querySelector("button").addEventListener('click', closingActionMessageFunc);
     setTimeout(() => {
         newDiv.remove()
     }, 4000);
 }
 
-function closingActionMessageFunc(){
+function closingActionMessageFunc() {
     this.parentElement.remove();
 }
-

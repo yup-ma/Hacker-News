@@ -1,9 +1,11 @@
-main{
+main {
     margin-top: 75px;
 }
-.navbar-top{
+
+.navbar-top {
     height: 1px;
 }
+
 .navbar-container {
     background-color: var(--cta-color);
     position: fixed;
@@ -11,7 +13,7 @@ main{
     width: 100%;
     z-index: 99;
     box-shadow: none;
-    padding:  5px 0;
+    padding: 5px 0;
     transition: var(--transition05);
 }
 
@@ -45,12 +47,17 @@ nav {
     font-size: 24px;
     font-weight: 500;
     margin-left: 10px;
+    max-width: 30vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: var(--transition05);
 }
 
 .company-logo-container .company-name {
     display: none;
 }
+
 /* ---------------------------------------------------------------------------------------- */
 .dark-light-mode-switch {
     position: relative;
@@ -116,6 +123,7 @@ nav {
     nav {
         padding: 5px 10px;
     }
+
     .dark-light-mode-switch {
         margin: 0 10px;
     }
@@ -125,14 +133,17 @@ nav {
     .company-logo-container {
         --company-text: "Hacker News";
     }
+
     .dark-light-mode-switch {
         width: 50px;
         height: 26px;
         border-radius: 26px;
     }
+
     .dark-light-mode-slider::before {
         top: 3px;
     }
+
     .dark-light-mode-switch input:checked+.dark-light-mode-slider::before {
         transform: translateX(22px) rotate(360deg);
     }

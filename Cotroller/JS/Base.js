@@ -29,13 +29,13 @@ window.addEventListener("load", () => {
             localStorageAppliedFiltersArray.forEach(ele => {
                 creatingAppliedFilterBtnsFunc(ele)
             });
-            
+
             for (let i = 0; i < localStorageAppliedFiltersArray.length; i++) {
-                if (appliedFiltersArray[i].type == "trival"){
+                if (appliedFiltersArray[i].type == "trival") {
                     document.querySelector(".trival-filter-value").innerHTML = appliedFiltersArray[i].value;
                 }
             }
-        } 
+        }
     }
     updatingTextForFilterQuantityStateFunc();
 })

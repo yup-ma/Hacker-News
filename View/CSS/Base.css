@@ -72,6 +72,7 @@ h6 {
     display: flex;
     align-items: center;
 }
+
 .d-flex-dir-col {
     flex-direction: column;
 }
@@ -113,14 +114,17 @@ h6 {
     display: none;
     margin-left: 5px;
 }
-.hidden-ele{
+
+.hidden-ele {
     display: none;
     visibility: none;
     opacity: 0;
     width: 0;
     height: 0;
 }
-#network-status, #javascript-status {
+
+#network-status,
+#javascript-status {
     width: 100%;
     height: 48px;
     max-height: 0px;
@@ -132,19 +136,20 @@ h6 {
     overflow: hidden;
     transition: var(--transition05);
 }
+
 #javascript-status {
     background-color: var(--warning-bg-color);
     color: var(--secondary-color);
     max-height: 48px;
 }
 
-#user-action-status-messages{
+#user-action-status-messages {
     position: fixed;
     bottom: 5px;
     margin: 0 10px;
 }
 
-.user-action-status-container{
+.user-action-status-container {
     position: relative;
     display: flex;
     align-items: center;
@@ -156,23 +161,28 @@ h6 {
     border-radius: 5px;
     animation: statusMessageAnime var(--transition02) linear forwards;
 }
+
 @keyframes statusMessageAnime {
-    0%{
+    0% {
         left: -100%;
     }
-    100%{
+
+    100% {
         left: 0;
     }
 }
-.user-action-status-container .message-icon{
+
+.user-action-status-container .message-icon {
     margin-right: 8px;
     font-size: 22px;
     flex-shrink: 0;
 }
-.user-action-status-container .message-text{
+
+.user-action-status-container .message-text {
     margin-right: 23px;
 }
-.user-action-status-container button{
+
+.user-action-status-container button {
     cursor: pointer;
     width: 30px;
     height: 30px;
@@ -184,11 +194,13 @@ h6 {
     filter: brightness(0.9);
     flex-shrink: 0;
 }
-.user-action-status-error{
+
+.user-action-status-error {
     background-color: var(--error-bg-color);
     color: var(--white-color);
 }
-.user-action-status-success{
+
+.user-action-status-success {
     background-color: var(--success-bg-color);
     color: var(--secondary-color);
 }
@@ -276,6 +288,7 @@ h6 {
         top: 6.94em
     }
 }
+
 @media only screen and (min-width: 592px) {
     .web-links .link-text {
         display: inline-block;
