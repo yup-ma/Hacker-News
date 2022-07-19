@@ -15,6 +15,7 @@
     --pink-shade-color: #F45B69;
     --blue-shade-color: #028090;
     --green-shade-color: #0A8754;
+    --skin-shade-color: #FFAC81;
     --box-shadow-color: rgb(0 0 0 / 24%);
     --transition02: 0.2s;
     --transition05: 0.5s;
@@ -33,7 +34,6 @@
 html,
 body {
     height: 100%;
-    min-height: 200vh;
 }
 
 body {
@@ -154,7 +154,7 @@ h6 {
     min-width: 180px;
     left: -100%;
     border-radius: 5px;
-    animation: statusMessageAnime var(--transition05) linear forwards;
+    animation: statusMessageAnime var(--transition02) linear forwards;
 }
 @keyframes statusMessageAnime {
     0%{
@@ -191,6 +191,90 @@ h6 {
 .user-action-status-success{
     background-color: var(--success-bg-color);
     color: var(--secondary-color);
+}
+
+.loader-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 140px;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--cta-outline-color);
+    border-radius: 5px;
+    margin-top: -38px;
+}
+
+.loader {
+    position: relative;
+    top: 0.63em;
+    display: inline-block;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: rotateX(-90deg);
+}
+
+.loader1 {
+    animation: drop 1.2s ease-in-out infinite;
+    animation-delay: 1.2s;
+}
+
+.loader2 {
+    animation: drop 1.2s ease-in-out infinite;
+    animation-delay: 1.3s;
+}
+
+.loader3 {
+    animation: drop 1.2s ease-in-out infinite;
+    animation-delay: 1.4s;
+}
+
+.loader4 {
+    animation: drop 1.2s ease-in-out infinite;
+    animation-delay: 1.5s;
+
+}
+
+.loader5 {
+    animation: drop 1.2s ease-in-out infinite;
+    animation-delay: 1.6s;
+}
+
+.loader6 {
+    animation: drop 1.2s ease-in-out infinite;
+    animation-delay: 1.7s;
+}
+
+.loader7 {
+    animation: drop 1.2s ease-in-out infinite;
+    animation-delay: 1.8s;
+}
+
+@keyframes drop {
+    10% {
+        opacity: 0.5;
+    }
+
+    20% {
+        opacity: 1;
+        top: 3.78em;
+        transform: rotateX(-360deg);
+    }
+
+    80% {
+        opacity: 1;
+        top: 3.78em;
+        transform: rotateX(-360deg);
+    }
+
+    90% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 0;
+        top: 6.94em
+    }
 }
 @media only screen and (min-width: 592px) {
     .web-links .link-text {

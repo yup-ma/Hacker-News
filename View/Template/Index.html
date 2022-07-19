@@ -9,19 +9,20 @@
     <link rel="stylesheet" href="../CSS/Base.css">
     <link rel="stylesheet" href="../CSS/Navbar.css">
     <link rel="stylesheet" href="../CSS/Index.css">
+    <link rel="stylesheet" href="../CSS/Footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/26b04b0eef.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="canonical" href="https://odanta.in/freeflow/" />
+    <link rel="canonical" href="https://hn.in/" />
     <meta name="description"
         content="A tool to search the articles from hacker news based on various tags, queries, date, author">
     <meta property="og:title" content="Hacker News Search Engine | Aman">
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://odanta.in/static/img/transparent-logo.png">
-    <meta property="og:url" content="https://odanta.in/freeflow/">
+    <meta property="og:image" content="https://hn.in/">
+    <meta property="og:url" content="https://hn.in/">
     <meta name="twitter:card" content="summary">
     <meta property="og:description" content="FreeFlow">
     <meta property="og:site_name" content="Odanta">
@@ -29,6 +30,7 @@
 </head>
 
 <body>
+    <div class="navbar-top"></div>
     <header class="navbar-container">
         <noscript>
             <div id="javascript-status" class="d-flex d-flex-just-cent">
@@ -37,16 +39,6 @@
         </noscript>
         <div id="network-status" class="d-flex d-flex-just-cent"></div>
         <div id="user-action-status-messages">
-            <div class="user-action-status-success user-action-status-container">
-                <span class="message-icon"><i class="fa-solid fa-circle-check"></i></span>
-                <span class="message-text">Adkasjn asdklams</span>
-                <button><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="user-action-status-error user-action-status-container">
-                <span class="message-icon"><i class="fa-solid fa-circle-exclamation"></i></span>
-                <span class="message-text">Adkasjn asdklams</span>
-                <button><i class="fa-solid fa-xmark"></i></button>
-            </div>
         </div>
         <nav class="d-flex d-flex-just-space-btw">
             <a href="/" class="company-logo-container d-flex web-links" title="Hacker News">
@@ -54,15 +46,20 @@
                 <span class="company-name">Hacker News</span>
             </a>
             <div class="d-flex">
-                <label class="dark-light-mode-switch" title="Toggle dark mode">
-                    <input type="checkbox">
-                    <span class="dark-light-mode-slider"></span>
-                </label>
+                <a href="../Template/Index.html#search-input-parent-container" class="web-links d-flex"
+                    title="Search for articles">
+                    <span class="link-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="link-text">Search</span>
+                </a>
                 <a href="https://github.com/yup-ma/Hybr1d-Project" class="web-links d-flex" target="_blank"
                     rel="noopener noreferrer" title="Github link to repo">
                     <span class="link-icon"><i class="fa-brands fa-github"></i></span>
                     <span class="link-text">Github</span>
                 </a>
+                <label class="dark-light-mode-switch" title="Toggle dark mode">
+                    <input type="checkbox">
+                    <span class="dark-light-mode-slider"></span>
+                </label>
             </div>
         </nav>
     </header>
@@ -74,7 +71,7 @@
             <p>Search for <b>Hacker News</b> articles with our faster API so that you are always updated about the
                 world around you.</p>
         </div>
-        <div class="search-input-parent-container d-flex d-flex-just-cent">
+        <div class="search-input-parent-container d-flex d-flex-just-cent" id="search-input-parent-container">
             <div class="search-input-container d-flex d-flex-just-cent">
                 <span class="seach-icon-container">
                     <span class="seach-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
@@ -97,7 +94,6 @@
                     <div class="filter-dropdown tags-dropdown d-flex d-flex-dir-col">
                         <button class="filter-dropdown-btn" data-option-value="story">story</button>
                         <button class="filter-dropdown-btn" data-option-value="poll">poll</button>
-                        <button class="filter-dropdown-btn" data-option-value="comment">comment</button>
                         <div class="filter-dropdown-special-btn-container" data-option-value="">
                             <input type="text" placeholder="Other" maxlength="30">
                             <button class="filter-dropdown-special-btn">Add</button>
@@ -129,53 +125,37 @@
         </div>
 
         <h3 class="articles-main-container-heading">Recent articles</h3>
+        <h5 class="articles-main-container-sub-heading">Showing results for "<b>absc</b>" in 0.001s</h5>
         <div class="articles-main-container d-flex d-flex-just-cent">
-            <a href="#" data-article-id="123" class="articles-container d-flex d-flex-dir-col d-flex-just-cent">
-                <h3>title</h3>
-                <div class="articles-container-created-date">20/08/2022</div>
-                <div class="articles-container-info-main d-flex">
-                    <div class="articles-container-info articles-container-info-author d-flex">
-                        <span class="articles-container-info-icon"><i class="fa-solid fa-user"></i></span>
-                        <span class="articles-container-info-details d-flex d-flex-dir-col">
-                            <span>Author</span>
-                            <span title="123">123</span>
-                        </span>
-                    </div>
-                    <div class="articles-container-info articles-container-info-points d-flex">
-                        <span class="articles-container-info-icon"><i class="fa-solid fa-coins"></i></span>
-                        <span class="articles-container-info-details d-flex d-flex-dir-col">
-                            <span>Point</span>
-                            <span title="123">123</span>
-                        </span>
-                    </div>
-                    <div class="articles-container-info articles-container-info-comments d-flex">
-                        <span class="articles-container-info-icon"><i class="fa-solid fa-message"></i></span>
-                        <span class="articles-container-info-details d-flex d-flex-dir-col">
-                            <span>Comment</span>
-                            <span title="123">123</span>
-                        </span>
-                    </div>
+            <div class="loader-container">
+                <div>
+                    <span class="loader loader1">l</span>
+                    <span class="loader loader2">o</span>
+                    <span class="loader loader3">a</span>
+                    <span class="loader loader4">d</span>
+                    <span class="loader loader5">i</span>
+                    <span class="loader loader6">n</span>
+                    <span class="loader loader7">g</span>
                 </div>
-                <div class="articles-container-tags-main d-flex">Tag:
-                    <div class="articles-container-tags-main-container d-flex">
-                        <button data-filter-article-type="tags" data-filter-added-value="Story">Story</button>
-                        <button>1234</button>
-                        <button>1234</button>
-                        <button>1234</button>
-                        <button>1234</button>
-                        <button>1234</button>
-                    </div>
-                </div>
-            </a>
+            </div>
         </div>
-        <div class="articles-main-container-pagination">
-            <button class="active-pagination">1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
+        <div class="articles-main-container-pagination d-flex d-flex-just-cent">
         </div>
     </main>
+    <footer class="d-flex d-flex-just-cent d-flex-dir-col">
+        <h5>
+            Created by <b>Aman</b>
+        </h5>
+        <div>with ❤️ from India</div>
+        <a href="mailto:johndoe@gmail.com?subject=Feedback%20for%20Hacer%20News%20Search%Engine" class="mail-link"><i
+                class="fa-solid fa-envelope"></i> johndoe@gmail.com</a>
+        <a href="tel:9999999999" class="mobile-link"><i class="fa-solid fa-phone"></i> 99999-9999</a>
+        <div>
+
+        </div>
+    </footer>
+    <script src="../../Cotroller/JS/Base.js"></script>
+    <script src="../../Cotroller/JS/Navbar.js"></script>
     <script src="../../Cotroller/JS/Index.js"></script>
 </body>
 

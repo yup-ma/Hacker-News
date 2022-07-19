@@ -1,54 +1,4 @@
-const networkStatusBar = document.getElementById("network-status");
-let actionStatus = "";
-window.addEventListener("online", () => {
-    networkStatusBar.style.backgroundColor = "var(--success-bg-color)";
-    networkStatusBar.style.color = "var(--primary-color)";
-    networkStatusBar.innerText = "Back online";
-    setTimeout(() => {
-        networkStatusBar.style.maxHeight = "0";
-    }, 2000)
-})
 
-window.addEventListener("offline", () => {
-    networkStatusBar.style.backgroundColor = "var(--error-bg-color)";
-    networkStatusBar.style.color = "var(--white-color)";
-     networkStatusBar.style.maxHeight = "48px";
-    networkStatusBar.innerText = "Network connection lost";
-})
-window.addEventListener("load", () => {
-
-    localStorageAppliedFiltersArray = JSON.parse(localStorage.getItem("applied-filters-array"));
-    if (localStorageAppliedFiltersArray.length !== 0) {
-        appliedFiltersArray = localStorageAppliedFiltersArray;
-        localStorageAppliedFiltersArray.forEach(ele => {
-            creatingAppliedFilterBtnsFunc(ele)
-        });
-        
-        for (let i = 0; i < localStorageAppliedFiltersArray.length; i++) {
-            if (appliedFiltersArray[i].type == "trival"){
-                document.querySelector(".trival-filter-value").innerHTML = appliedFiltersArray[i].value;
-            }
-        }
-    } 
-    updatingTextForFilterQuantityStateFunc();
-})
-
-function showActionMessageFunc(){
-    if (actionStatus == "error") {
-        
-    } else {
-        
-    }
-}
-
-//Adding bottom shadow to nav on scroll from initial pos
-const navbarContainer = document.querySelector(".navbar-container")
-const observer = new IntersectionObserver( 
-    ([e]) => e.target.classList.toggle("active-stucked", e.intersectionRatio < 1),
-    { threshold: [1] }
-  );
-
-observer.observe(navbarContainer);
 
 document.querySelectorAll(".filter-btn:not(.filter-clear-btn)").forEach(ele => {
     ele.addEventListener('click', filterSearchDropwDownOpeningFunc)
@@ -100,7 +50,7 @@ function filterDropdownSpecialInputAddTagFunc(){
         //Checking if value is already present
         if (appliedFiltersArray[i].type == addingFilterType && appliedFiltersArray[i].value == addingFilterValue){
             actionStatus = "error";
-            document.querySelector(".message-text").innerHTML = "Same filter is already present";
+            actionMessage = "Same filter is already present";
             showActionMessageFunc();
             return
         }
@@ -108,23 +58,24 @@ function filterDropdownSpecialInputAddTagFunc(){
     if (document.querySelector('[data-filter-added-type="author"]')) {
         if (addingFilterType == "author") {
             actionStatus = "error";
-            document.querySelector(".message-text").innerHTML = "You can only filter through one author";
+            actionMessage = "You can only filter through one author";
             showActionMessageFunc();
             return
         }
+    }
+    if (addingFilterValue.toLowerCase() == "comment") {
+        actionStatus = "error";
+        actionMessage = "We are adding more filters, for now comment is not available";
+        showActionMessageFunc();
+        return
     }
     filterArrayVal.type = addingFilterType;
     filterArrayVal.value = addingFilterValue;
     appliedFiltersArray.push(filterArrayVal);
     creatingAppliedFilterBtnsFunc(filterArrayVal);
 
-    actionStatus = "success";
-    document.querySelector(".message-text").innerHTML = "Filter added successfully";
-    showActionMessageFunc();
-    localStorage.setItem("applied-filters-array", JSON.stringify(appliedFiltersArray));
 }
 //Applying filters starts
-let appliedFiltersArray = [];
 document.querySelectorAll(".filter-dropdown-btn").forEach(ele => {
     ele.addEventListener('click', filterDropdownBtnClickFunc)
 });
@@ -138,7 +89,7 @@ function filterDropdownBtnClickFunc(){
         //Checking if value is already present
         if (appliedFiltersArray[i].type == addingFilterType && appliedFiltersArray[i].value == addingFilterValue){
             actionStatus = "error";
-            document.querySelector(".message-text").innerHTML = "Same filter is already present";
+            actionMessage = "Same filter is already present";
             showActionMessageFunc();
             return
         }
@@ -156,11 +107,6 @@ function filterDropdownBtnClickFunc(){
     filterArrayVal.value = addingFilterValue;
     appliedFiltersArray.push(filterArrayVal);
     creatingAppliedFilterBtnsFunc(filterArrayVal);
-
-    actionStatus = "success";
-    document.querySelector(".message-text").innerHTML = "Filter added successfully";
-    showActionMessageFunc();
-    localStorage.setItem("applied-filters-array", JSON.stringify(appliedFiltersArray));
 }
 
 function updatingTextForFilterQuantityStateFunc(){
@@ -200,6 +146,11 @@ function creatingAppliedFilterBtnsFunc(e){
     document.querySelector(".search-applied-filters-container").appendChild(newButton);
     newButton.addEventListener('click', searchAppliedFiltersBtnRemoveFunc)
     updatingTextForFilterQuantityStateFunc();
+
+    actionStatus = "success";
+    actionMessage = "Filter added successfully";
+    showActionMessageFunc();
+    localStorage.setItem("applied-filters-array", JSON.stringify(appliedFiltersArray));
 }
 
 function searchAppliedFiltersBtnRemoveFunc(){
@@ -221,43 +172,231 @@ function searchAppliedFiltersBtnRemoveFunc(){
     updatingTextForFilterQuantityStateFunc();
 
     actionStatus = "success";
-    document.querySelector(".message-text").innerHTML = "Filter removed successfully";
+    actionMessage = "Filter removed successfully";
     showActionMessageFunc();
     localStorage.setItem("applied-filters-array", JSON.stringify(appliedFiltersArray))
 }
 
+
+document.querySelector("#search-input").addEventListener('input', function(){
+    clearTimeout(debounceInputTimer);
+    debounceInputTimer = setTimeout(() => {
+        updatingURLForAPIFunc();
+        document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
+        document.querySelector(".articles-main-container-pagination").style.display = "none";
+        document.querySelector(".articles-main-container").innerHTML = `<div class="loader-container">
+    <div>
+        <span class="loader loader1">l</span>  
+        <span class="loader loader2">o</span>  
+        <span class="loader loader3">a</span>  
+        <span class="loader loader4">d</span>  
+        <span class="loader loader5">i</span>  
+        <span class="loader loader6">n</span>  
+        <span class="loader loader7">g</span>  
+    </div>
+</div>`;
+    }, 300);
+})
+
 function updatingURLForAPIFunc(){
+    searchedThroughInput = true;
+    document.querySelector(".articles-main-container-heading").innerHTML = "Articles";
+    let baseAPIUrlForArticles = `http://hn.algolia.com/api/v1/search`
+    let articleSearchInputVal = document.querySelector("#search-input").value.replace(/\s+/g, '_');
+    let tagsAllVal = "";
+    let authorAllVal = "";
+    let filterByDate = false;
     
+    if (searchedThroughInput == false) {
+        apiUrlForArticles = `http://hn.algolia.com/api/v1/search?tags=front_page`;
+    } else {
+        for (array in appliedFiltersArray) {
+            if (appliedFiltersArray[array].type == "trival"){
+                filterByDate = true;
+            } else {
+                filterByDate = false;
+            }
+            if (appliedFiltersArray[array].type == "tags") {
+                tagsAllVal += appliedFiltersArray[array].value.toLowerCase() + ","
+            }
+            if (appliedFiltersArray[array].type == "author") {
+                authorAllVal = "author_" + appliedFiltersArray[array].value.toLowerCase();
+            }
+        }
+        if (authorAllVal !== "") {
+            if (tagsAllVal == "") {
+                tagsAllVal = "story,"
+            }
+        }
+        if (filterByDate == true) {
+            baseAPIUrlForArticles = `${baseAPIUrlForArticles}_by_date?query=${articleSearchInputVal}&page=${pageNumber}&tags=(${tagsAllVal}),${authorAllVal}`
+        } else{
+            baseAPIUrlForArticles = `${baseAPIUrlForArticles}?query=${articleSearchInputVal}&page=${pageNumber}&tags=(${tagsAllVal}),${authorAllVal}`
+        }
+        console.log(baseAPIUrlForArticles)
+        apiRunningFun(baseAPIUrlForArticles)
+    }
 }
 
+apiRunningFun(apiUrlForArticles)
+function apiRunningFun(e){
+    fetch(e)
+    .then(response => response.json())
+    .then((jsonData) => {
+        console.log(jsonData);
+        creatingArticlesFunc(jsonData.hits, jsonData.page, jsonData.nbPages, jsonData.nbHits, jsonData.processingTimeMS);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+}
+
+function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesAmount, processingTime){
+    if (articlesAmount !== 0) {
+        document.querySelector(".articles-main-container-sub-heading").style.display = "block";
+        if (searchedThroughInput == true) {
+            if (numberOfPages > 5) {
+                numberOfPages = 5;
+            }
+            document.querySelector(".articles-main-container-pagination").innerHTML = "";
+            document.querySelector(".articles-main-container-pagination").style.display = "flex";
+            for (let i = 0; i < numberOfPages; i++) {
+                const newButton = document.createElement("button");
+                newButton.dataset.paginationValue = i;
+                newButton.innerHTML = i + 1;
+                document.querySelector(".articles-main-container-pagination").appendChild(newButton);
+            }
+            document.querySelectorAll(".articles-main-container-pagination button:not(.active-pagination)").forEach(ele => {
+                ele.addEventListener('click', articlePaginationClickFunc)
+            });
+            document.querySelector(`[data-pagination-value="${currentPageNum}"]`).classList.add("active-pagination")
+        }
+        if (document.querySelector("#search-input").value !== "") {
+            document.querySelector(".articles-main-container-sub-heading").innerHTML = `Showing <b>${articles.length}</b> result(s) for <b>"${document.querySelector("#search-input").value}"</b> in ${processingTime/1000}s`;
+        } else {
+            document.querySelector(".articles-main-container-sub-heading").innerHTML = `Showing <b>${articles.length}</b> result(s) in ${processingTime/1000}s`;
+        }
+        document.querySelector(".articles-main-container").innerHTML = "";
+        articles.forEach(ele => {
+            const newAnchor = document.createElement("a");
+            newAnchor.className = "articles-container d-flex d-flex-dir-col d-flex-just-cent";
+            newAnchor.dataset.articleId = ele.objectID;
+            newAnchor.innerHTML = `<h3 class="articles-container-heading">${ele.title}</h3>
+            <div class="articles-container-created-date">${articleDateConverterFunc(ele.created_at)}</div>
+            <div class="articles-container-info-main d-flex">
+                <div class="articles-container-info articles-container-info-author d-flex" title="Author: ${ele.author}">
+                    <span class="articles-container-info-icon"><i class="fa-solid fa-user"></i></span>
+                    <span class="articles-container-info-details d-flex d-flex-dir-col">
+                        <span>Author</span>
+                        <span>${ele.author}</span>
+                    </span>
+                </div>
+                <div class="articles-container-info articles-container-info-points d-flex" title="Points: ${ele.points}">
+                    <span class="articles-container-info-icon"><i class="fa-solid fa-coins"></i></span>
+                    <span class="articles-container-info-details d-flex d-flex-dir-col">
+                        <span>Point</span>
+                        <span>${ele.points}</span>
+                    </span>
+                </div>
+                <div class="articles-container-info articles-container-info-comments d-flex" title="Comments: ${ele.num_comments}">
+                    <span class="articles-container-info-icon"><i class="fa-solid fa-message"></i></span>
+                    <span class="articles-container-info-details d-flex d-flex-dir-col">
+                        <span>Comment</span>
+                        <span>${ele.num_comments}</span>
+                    </span>
+                </div>
+            </div>
+            <div class="articles-container-tags-main d-flex">Tag:
+                <div class="articles-container-tags-main-container d-flex">
+                </div>
+            </div>`;
+            document.querySelector(".articles-main-container").appendChild(newAnchor);
+            // newAnchor.addEventListener('click', searchAppliedFiltersBtnRemoveFunc)
+            let randomArticleColor = randomColorGenerator();
+            newAnchor.style.setProperty("--article-color", `rgb(${randomArticleColor})`);
+            newAnchor.style.backgroundColor = `rgba(${randomArticleColor}, 0.15)`;
+            
+            ele._tags.forEach(e => {
+                const newButton = document.createElement("button");
+                if (e.match("author_")) {
+                    newButton.dataset.filterArticleType = "author";
+                    newButton.dataset.filterArticleValue = e.replace("author_", '');
+                    newButton.innerHTML = e.replace("author_", '');
+                } else if(e.match("story_")){
+                    newButton.dataset.filterArticleType = "tags";
+                    newButton.dataset.filterArticleValue = e.replace("story_", '');
+                    newButton.innerHTML = e.replace("story_", '');
+                    if (e.replace("story_", '').match(/^[0-9]+$/)) {
+                        return
+                    }
+                } else{
+                    newButton.dataset.filterArticleType = "tags";
+                    newButton.dataset.filterArticleValue = e;
+                    newButton.innerHTML = e;
+                }
+                newButton.addEventListener('click', articleFilterAddingFunc)
+                newAnchor.querySelector(".articles-container-tags-main-container").appendChild(newButton);
+            });
+        });
+        function minArticleHeadingHeight() {
+            let articleHeading = document.querySelectorAll(".articles-container-heading")
+            let lengths = Array.from(articleHeading).map(e => e.offsetHeight);
+            let maxHeight = Math.max(...lengths);
+            for (let i = 0; i < articleHeading.length; i++) {
+              articleHeading[i].style.minHeight = maxHeight + "px"
+            }
+            
+        }
+        minArticleHeadingHeight()
+    } else{
+        document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
+        document.querySelector(".articles-main-container-sub-heading").style.display = "none";
+    }
+}
+
+function articleFilterAddingFunc(){
+    let filterArrayVal = {};
+    let articleAddingFilterType = this.dataset.filterArticleType;
+    let articleAddingFilterValue = this.dataset.filterArticleValue;
+    if (document.querySelector('[data-filter-added-type="author"]')) {
+        if (articleAddingFilterType == "author") {
+            actionStatus = "error";
+            actionMessage = "You can only filter through one author";
+            showActionMessageFunc();
+            return
+        }
+    }
+    for (let i = 0; i < appliedFiltersArray.length; i++) {
+        //Checking if value is already present
+        if (appliedFiltersArray[i].type == articleAddingFilterType && appliedFiltersArray[i].value == articleAddingFilterValue){
+            actionStatus = "error";
+            actionMessage = "Same filter is already present";
+            showActionMessageFunc();
+            return
+        }
+    }
+    filterArrayVal.type = articleAddingFilterType;
+    filterArrayVal.value = articleAddingFilterValue;
+    appliedFiltersArray.push(filterArrayVal);
+    creatingAppliedFilterBtnsFunc(filterArrayVal);
+}
+
+function articleDateConverterFunc(e){
+    const date = new Date(e)
+    let monthsName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    let currentMonth = monthsName[date.getMonth()]
+    return `${currentMonth} ${date.getDate()}, ${date.getFullYear()}`
+}
 
 function randomColorGenerator() {
-    let r = Math.floor(Math.random()*(266));
-    let g = Math.floor(Math.random()*(266));
-    let b = Math.floor(Math.random()*(266));
+    let r = Math.floor(Math.random()*(181));
+    let g = Math.floor(Math.random()*(181));
+    let b = Math.floor(Math.random()*(181));
     console.log()
-    return r + ", " + g + ", " + b;
+    return `${r}, ${g}, ${b}`;
 }
-console.log(randomColorGenerator())
 
-let apiUrlForArticles = `http://hn.algolia.com/api/v1/search?tags=front_page`
-// let apiUrlForArticles = `http://hn.algolia.com/api/v1/search?query=foo&tags=comment`
-// let apiUrlForArticles = `http://hn.algolia.com/api/v1/items/23779420`
-// let apiUrlForArticles = `http://hn.algolia.com/api/v1/search?tags=story,author_PG`
-
-fetch(apiUrlForArticles)
-.then(response => response.json())
-.then((jsonData) => {
-    // jsonData.hits.forEach(ele => {
-    //     console.log(ele.author);
-    // });
-    console.log(jsonData);
-    creatingArticlesFunc(jsonData);
-})
-.catch((error) => {
-    console.log(error);
-});
-
-function creatingArticlesFunc(e){
-    console.log()
+function articlePaginationClickFunc(){
+    pageNumber = this.dataset.paginationValue;
+    updatingURLForAPIFunc()
 }

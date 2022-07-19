@@ -1,7 +1,13 @@
+main{
+    margin-top: 75px;
+}
+.navbar-top{
+    height: 1px;
+}
 .navbar-container {
     background-color: var(--cta-color);
-    position: sticky;
-    top: -1px;
+    position: fixed;
+    top: 0;
     width: 100%;
     z-index: 99;
     box-shadow: none;
