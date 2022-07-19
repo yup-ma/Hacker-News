@@ -281,7 +281,25 @@ function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesA
             const newAnchor = document.createElement("a");
             newAnchor.className = "articles-container d-flex d-flex-dir-col d-flex-just-cent";
             newAnchor.dataset.articleId = ele.objectID;
-            newAnchor.innerHTML = `<h3 class="articles-container-heading">${ele.title}</h3>
+            let pointsAmount = ele.points;
+            if (pointsAmount == null) {
+                pointsAmount = 0;
+            }
+            let commentsAmount = ele.num_comments;
+            if (commentsAmount == null) {
+                commentsAmount = 0;
+            }
+            let articleTitle = ele.title;
+            if (articleTitle == null) {
+                if (ele.comment_text == null) {
+                    articleTitle = "Poll: " + ele.story_text;
+                } else if(ele.story_text == null){
+                    articleTitle = "Comment: " + ele.comment_text;
+                } else {
+                    articleTitle = "Couldn't find title"
+                }
+            }
+            newAnchor.innerHTML = `<h3 class="articles-container-heading" title="${articleTitle}">${articleTitle}</h3>
             <div class="articles-container-created-date">${articleDateConverterFunc(ele.created_at)}</div>
             <div class="articles-container-info-main d-flex">
                 <div class="articles-container-info articles-container-info-author d-flex" title="Author: ${ele.author}">
@@ -291,18 +309,18 @@ function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesA
                         <span>${ele.author}</span>
                     </span>
                 </div>
-                <div class="articles-container-info articles-container-info-points d-flex" title="Points: ${ele.points}">
+                <div class="articles-container-info articles-container-info-points d-flex" title="Points: ${pointsAmount}">
                     <span class="articles-container-info-icon"><i class="fa-solid fa-coins"></i></span>
                     <span class="articles-container-info-details d-flex d-flex-dir-col">
                         <span>Point</span>
-                        <span>${ele.points}</span>
+                        <span>${pointsAmount}</span>
                     </span>
                 </div>
-                <div class="articles-container-info articles-container-info-comments d-flex" title="Comments: ${ele.num_comments}">
+                <div class="articles-container-info articles-container-info-comments d-flex" title="Comments: ${commentsAmount}">
                     <span class="articles-container-info-icon"><i class="fa-solid fa-message"></i></span>
                     <span class="articles-container-info-details d-flex d-flex-dir-col">
                         <span>Comment</span>
-                        <span>${ele.num_comments}</span>
+                        <span>${commentsAmount}</span>
                     </span>
                 </div>
             </div>
@@ -319,10 +337,12 @@ function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesA
             ele._tags.forEach(e => {
                 const newButton = document.createElement("button");
                 if (e.match("author_")) {
+                    newButton.title = "Author: " + e.replace("author_", '');
                     newButton.dataset.filterArticleType = "author";
                     newButton.dataset.filterArticleValue = e.replace("author_", '');
                     newButton.innerHTML = e.replace("author_", '');
                 } else if(e.match("story_")){
+                    newButton.title = "Tag: " + e.replace("story_", '');
                     newButton.dataset.filterArticleType = "tags";
                     newButton.dataset.filterArticleValue = e.replace("story_", '');
                     newButton.innerHTML = e.replace("story_", '');
@@ -330,6 +350,7 @@ function creatingArticlesFunc(articles, currentPageNum ,numberOfPages, articlesA
                         return
                     }
                 } else{
+                    newButton.title = "Tag: " + e;
                     newButton.dataset.filterArticleType = "tags";
                     newButton.dataset.filterArticleValue = e;
                     newButton.innerHTML = e;

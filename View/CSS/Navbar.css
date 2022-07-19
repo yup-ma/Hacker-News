@@ -28,6 +28,7 @@ nav {
 }
 
 .company-logo-container {
+    --company-text: "HN";
     font-size: 30px;
     color: var(--primary-color);
     margin: 0;
@@ -38,8 +39,8 @@ nav {
     position: relative;
 }
 
-.company-logo-container .company-logo::after {
-    content: "HN";
+.company-logo-container::after {
+    content: var(--company-text);
     position: relative;
     font-size: 24px;
     font-weight: 500;
@@ -121,8 +122,8 @@ nav {
 }
 
 @media only screen and (min-width: 592px) {
-    .company-logo-container .company-logo::after {
-        content: "Hacker News";
+    .company-logo-container {
+        --company-text: "Hacker News";
     }
     .dark-light-mode-switch {
         width: 50px;
