@@ -31,6 +31,7 @@
     min-width: 75px;
     font-weight: 500;
     text-align: center;
+    text-transform: capitalize;
 }
 .article-title-container{
     font-size: 34px;
@@ -178,6 +179,17 @@
     padding: 5px 0;
     margin: 5px 0;
     color: var(--secondary-color);
+    font-size: 15px;
+    position: relative;
+    animation: commentAnime var(--transition05) linear;
+}
+@keyframes commentAnime {
+    0%{
+        top: 20px;
+    }
+    100%{
+        top: 0px;
+    }
 }
 .article-coments-main-container ul li .comment-info {
     color: var(--secondary-slight-light-color);
@@ -201,6 +213,9 @@
 }
 .article-coments-main-container ul li .comment-info span:nth-child(2){
     color: var(--green-shade-color);
+}
+.article-coments-main-container ul li .comment-info span:nth-child(2) b{
+    font-weight: 500;
 }
 .article-coments-main-container ul li .comment-info span:last-child{
     padding: 0 0 0 7px;

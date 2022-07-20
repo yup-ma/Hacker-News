@@ -51,7 +51,7 @@ document.querySelectorAll(".filter-dropdown-special-btn-container input").forEac
 });
 
 function filterDropdownInputFunc() {
-    this.value = this.value.replace(/\s+/g, '');
+    this.value = this.value.replace(/\s+/g, '_');
     this.parentElement.dataset.optionValue = this.value
     if (this.value !== "") {
         this.parentElement.querySelector("button").style.display = "block";
@@ -333,7 +333,7 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
             if (articleTitle == null) {
                 if (ele.comment_text !== null) {
                     articleTitle = "Comment: " + ele.comment_text;
-                } else if (ele.story_text == null) {
+                } else if (ele.story_text !== null) {
                     articleTitle = "Poll: " + ele.story_text;
                 } else {
                     articleTitle = "Couldn't find title"

@@ -193,6 +193,11 @@ h6 {
     color: var(--cta-outline-color);
     transition: var(--transition05);
 }
+.fetch-api-error-container>p>button:hover,.fetch-api-error-container>p>button:focus,
+.fetch-api-error-container>p>a:hover,.fetch-api-error-container>p>a:focus {
+    color: var(--cta-hover-color);
+    text-decoration: underline;
+}
 @keyframes statusMessageAnime {
     0% {
         left: -100%;

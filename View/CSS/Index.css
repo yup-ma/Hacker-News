@@ -354,8 +354,7 @@
     background: rgb(182 179 179 / 10%);
     color: var(--article-color);
     border: 2px solid var(--article-color);
-    outline: 2px solid transparent;
-    outline-offset: 4px;
+    outline: 3px solid transparent;
     border-radius: 20px;
     transition: var(--transition05);
     animation: articleTransformAnime var(--transition02) linear;
@@ -375,7 +374,7 @@
 
 .articles-container:hover,
 .articles-container:focus {
-    outline: 2px solid var(--article-color);
+    outline: 3px solid var(--article-color);
 }
 
 .articles-container:active {
