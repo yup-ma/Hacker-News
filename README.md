@@ -1,4 +1,4 @@
-# Hacker News Search Engine Project
+# Search Engine for Hacker News
 
 A pure CSS and Javascript project based on HN Search API(Hacker News).
 
