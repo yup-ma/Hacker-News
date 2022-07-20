@@ -1,3 +1,28 @@
+let appliedFiltersArray = [];
+let apiUrlForArticles = `http://hn.algolia.com/api/v1/search?tags=front_page`;
+let debounceInputTimer;
+let searchedThroughInput = false;
+let pageNumber = 0;
+
+window.addEventListener("load", () => {
+    if (localStorage.getItem("applied-filters-array")) {
+        let localStorageAppliedFiltersArray = JSON.parse(localStorage.getItem("applied-filters-array"));
+        if (localStorageAppliedFiltersArray.length !== 0) {
+            appliedFiltersArray = localStorageAppliedFiltersArray;
+            localStorageAppliedFiltersArray.forEach(ele => {
+                creatingAppliedFilterBtnsFunc(ele)
+            });
+
+            for (let i = 0; i < localStorageAppliedFiltersArray.length; i++) {
+                if (appliedFiltersArray[i].type == "trival") {
+                    document.querySelector(".trival-filter-value").innerHTML = appliedFiltersArray[i].value;
+                }
+            }
+        }
+    }
+    updatingTextForFilterQuantityStateFunc();
+})
+
 document.querySelectorAll(".filter-btn:not(.filter-clear-btn)").forEach(ele => {
     ele.addEventListener('click', filterSearchDropwDownOpeningFunc)
 });
@@ -66,6 +91,12 @@ function filterDropdownSpecialInputAddTagFunc() {
     if (addingFilterValue.toLowerCase() == "comment") {
         actionStatus = "error";
         actionMessage = "We are adding more filters, for now comment is not available";
+        showActionMessageFunc();
+        return
+    }
+    if (addingFilterValue.toLowerCase() == "pollopt") {
+        actionStatus = "error";
+        actionMessage = "We are adding more filters, for now pollopt is not available";
         showActionMessageFunc();
         return
     }
@@ -252,9 +283,11 @@ function apiRunningFun(e) {
             document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
             document.querySelector(".articles-main-container").innerHTML = "";
             document.querySelector(".articles-main-container-sub-heading").style.display = "none";
-            document.querySelector(".articles-main-container").innerHTML = `<img src="../Images/error-occured-image.svg">
-        <p>Opps faced error, we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page<p>`
-        });
+            document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
+                <img src="../Images/error-occured-image.svg">
+                <p>Opps faced error, we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page</p>
+            </div>`
+    });
 }
 
 function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesAmount, processingTime) {
@@ -298,10 +331,10 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
             }
             let articleTitle = ele.title;
             if (articleTitle == null) {
-                if (ele.comment_text == null) {
-                    articleTitle = "Poll: " + ele.story_text;
-                } else if (ele.story_text == null) {
+                if (ele.comment_text !== null) {
                     articleTitle = "Comment: " + ele.comment_text;
+                } else if (ele.story_text == null) {
+                    articleTitle = "Poll: " + ele.story_text;
                 } else {
                     articleTitle = "Couldn't find title"
                 }
@@ -379,12 +412,15 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
         minArticleHeadingHeight()
     } else {
         document.querySelector(".articles-main-container-sub-heading").style.display = "none";
-        document.querySelector(".articles-main-container").innerHTML = `<img src="../Images/empty-list-image.svg">
-        <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="../Template/Index.html#search-input-parent-container">filters</a> and <a href="../Template/Index.html#search-input-parent-container">search query</a>`;
+        document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
+            <img src="../Images/empty-list-image.svg">
+            <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="../Template/Index.html#search-input-parent-container">filters</a> and <a href="../Template/Index.html#search-input-parent-container">search query</a>
+        </div>`;
     }
 }
 
 function articleFilterAddingFunc() {
+    event.stopPropagation()
     let filterArrayVal = {};
     let articleAddingFilterType = this.dataset.filterArticleType;
     let articleAddingFilterValue = this.dataset.filterArticleValue;
@@ -434,7 +470,7 @@ function articlePaginationClickFunc() {
 function articleClickedFunc() {
     localStorage.setItem("searched-article-id", this.dataset.articleId);
     apiUrlForArticles = `http://hn.algolia.com/api/v1/items/${this.dataset.articleId}`;
-    window.location.replace('../Template/Details.html');
+    window.location.replace(`../Template/Details.html?object_id=${this.dataset.articleId}`);
     // apiRunningFun(apiUrlForArticles)
     // articleDetailsContent.style.setProperty("--focus-reading-black-percent-1", `${ele}px`);
 

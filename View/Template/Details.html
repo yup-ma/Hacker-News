@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hacker News Search Engine | Aman</title>
+    <link rel="icon" type="image/x-icon" href="../Images/Icons/hacker-news-logo.svg">
     <link rel="stylesheet" href="../CSS/Base.css">
     <link rel="stylesheet" href="../CSS/Navbar.css">
-    <link rel="stylesheet" href="../CSS/Index.css">
     <link rel="stylesheet" href="../CSS/Footer.css">
+    <link rel="stylesheet" href="../CSS/Details.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/26b04b0eef.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +20,7 @@
     <link rel="canonical" href="https://hn.in/" />
     <meta name="description"
         content="A tool to search the articles from hacker news based on various tags, queries, date, author">
-    <meta property="og:title" content="Hacker News Search Engine | Aman">
+    <meta property="og:title" content="Article | Aman">
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://hn.in/">
     <meta property="og:url" content="https://hn.in/">
@@ -48,7 +49,7 @@
             <div class="d-flex">
                 <a href="../Template/Index.html#search-input-parent-container" class="web-links d-flex"
                     title="Search for articles">
-                    <span class="link-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="link-icon link-search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                     <span class="link-text">Search</span>
                 </a>
                 <a href="https://github.com/yup-ma/Hybr1d-Project" class="web-links d-flex" target="_blank"
@@ -63,6 +64,107 @@
             </div>
         </nav>
     </header>
+    <main>
+        <div class="article-main-container d-flex d-flex-dir-col">
+            <div class="article-main-container-top-section d-flex d-flex-dir-col">
+                <span class="article-type-container">Poll</span>
+                <h1 class="article-title-container">TitleTitleTitle TitleTitle Title TitleTitle</h1>
+                <h3 class="d-flex">
+                    <span class="article-creating-date-container">Jul 8, 2022</span>
+                    <span class="dot"><i class="fa-solid fa-circle"></i></span>
+                    <span class="article-author-container">AuthorAuthor AuthorAuthor</span>
+                </h3>
+                <div class="article-main-container-top-section-extra-info d-flex">
+                    <div class="articles-container-info articles-container-info-points d-flex" title="Points: 278">
+                        <span class="articles-container-info-icon"><i class="fa-solid fa-coins"></i></span>
+                        <span class="articles-container-info-details d-flex d-flex-dir-col">
+                            <span>Point</span>
+                            <span>278</span>
+                        </span>
+                    </div>
+                    <div class="articles-container-info articles-container-info-comments d-flex" title="Comments: 229">
+                        <span class="articles-container-info-icon"><i class="fa-solid fa-message"></i></span>
+                        <span class="articles-container-info-details d-flex d-flex-dir-col">
+                            <span>Comment</span>
+                            <span>229</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="article-extra-details-container">
+                    <a href="#" target="_blank">Read article <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <div class="option-container d-flex d-flex-dir-col">
+                        Option(s)
+                        <div class="d-flex">
+                            <button>Auaf</button><button>Adadas</button>
+                            <button>Auaf</button><button>Adadas</button>
+                            <button>Auaf</button><button>Adadas</button>
+                            <button>Auaf</button><button>Adadas</button>
+                            <button>Auaf</button><button>Adadas</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="article-main-container-comment-section">
+                <h3 class="articles-main-container-heading">Comments</h3>
+                <div class="article-coments-main-container">
+                    <ul>
+                        <li>
+                            <div class="comment-info"><span>Author</span><span>Pts: <b>125</b></span><span>1 year
+                                    ago</span>
+                            </div>
+                            <p class="comment-paragraph">This is a commentThis is a commentThis is a commentThis is a
+                                commentThis is a commentThis is a commentThis is a commentThis is a comment</p>
+                            <button><i class="fa-solid fa-reply"></i> Replies</button>
+                            <div class="sub-level-comment">
+                                <ul>
+                                    <li>
+                                        <div class="comment-info"><span>Author</span><span>Pts: <b>125</b></span><span>1
+                                                year
+                                                ago</span>
+                                        </div>
+                                        <p class="comment-paragraph">This is a commentThis is a commentThis is a
+                                            commentThis is a
+                                            commentThis is a commentThis is a commentThis is a commentThis is a comment
+                                        </p>
+                                        <button><i class="fa-solid fa-reply"></i> Replies</button>
+                                        <div class="sub-level-comment">
+                                            <ul>
+                                                <li>
+                                                    <div class="comment-info">
+                                                        <span>AuthorAuthorAuthorAuthorAuthorAuthor</span><span>Pts:
+                                                            <b>125</b></span><span>1
+                                                            year
+                                                            ago</span>
+                                                    </div>
+                                                    <p class="comment-paragraph">This is a commentThis is a commentThis
+                                                        is a
+                                                        commentThis is a
+                                                        commentThis is a commentThis is a commentThis is a commentThis
+                                                        is a comment
+                                                    </p>
+                                                    <button><i class="fa-solid fa-reply"></i> Replies</button>
+                                                    <div class="sub-level-comment">
+                                                        <ul>
+                                                            <li></li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <button>Show more</button>
+        </div>
+
+        </div>
+    </main>
     <footer class="d-flex d-flex-just-cent d-flex-dir-col">
         <h5>
             Created by <b>Aman</b>
@@ -75,7 +177,6 @@
 
         </div>
     </footer>
-    <script src="../../Cotroller/JS/Base.js"></script>
     <script src="../../Cotroller/JS/Navbar.js"></script>
     <script src="../../Cotroller/JS/Details.js"></script>
 </body>

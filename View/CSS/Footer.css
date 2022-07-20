@@ -1,6 +1,6 @@
 footer {
-    background-color: var(--skin-shade-color);
-    padding: 30px 20px;
+    background-color: var(--cta-light-color);
+    padding: 70px 28px;
     font-size: 16px;
     margin-top: 80px;
     position: sticky;
@@ -25,4 +25,10 @@ footer a {
 footer a:hover,
 footer a:focus {
     text-decoration: underline;
+}
+
+@media only screen and (min-width: 670px) {
+    footer {
+        padding: 80px;
+    }
 }

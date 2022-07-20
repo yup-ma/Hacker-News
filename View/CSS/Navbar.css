@@ -1,5 +1,5 @@
 main {
-    margin-top: 75px;
+    margin-top: 65px;
 }
 
 .navbar-top {
@@ -13,7 +13,6 @@ main {
     width: 100%;
     z-index: 99;
     box-shadow: none;
-    padding: 5px 0;
     transition: var(--transition05);
 }
 
@@ -146,5 +145,20 @@ nav {
 
     .dark-light-mode-switch input:checked+.dark-light-mode-slider::before {
         transform: translateX(22px) rotate(360deg);
+    }
+}
+
+@media only screen and (min-width: 670px) {
+
+}
+@media only screen and (min-width: 900px) {
+    .company-logo-container::after {
+        max-width: 500px;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .company-logo-container::after {
+        max-width: 600px;
     }
 }
