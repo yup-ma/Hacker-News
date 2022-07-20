@@ -1,4 +1,4 @@
-# Hybr1d-Project
+# Hacker News Search Engine Project
 
 A pure CSS and Javascript project based on HN Search API(Hacker News).
 
