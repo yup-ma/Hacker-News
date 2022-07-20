@@ -174,7 +174,8 @@
 }
 .article-coments-main-container{
     margin-top: 50px;
-    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 .article-coments-main-container::-webkit-scrollbar {
     width: 5px;
@@ -197,8 +198,10 @@
     color: var(--secondary-color);
     font-size: 15px;
     position: relative;
-    animation: commentAnime var(--transition05) linear;
-    overflow: auto;
+    animation: commentAnime var(--transition03) linear;
+    overflow-y: hidden;
+    overflow-x: auto;
+    min-width: 100px;
 }
 .article-coments-main-container ul li::-webkit-scrollbar {
     width: 5px;
@@ -214,8 +217,8 @@
 }
 @keyframes commentAnime {
     0%{
-        top: 30px;
-        opacity: 0.7;
+        top: 15px;
+        opacity: 0.6;
     }
     100%{
         top: 0px;
@@ -257,11 +260,19 @@
     position: relative;
     color: var(--secondary-slight-light-color);
 }
-.article-coments-main-container ul li .comment-paragraph *{
-    word-break: break-all;
+.article-coments-main-container ul li .comment-paragraph a{
+    color: var(--green-shade-color);
+    transition: 0.5s;
+}
+.article-coments-main-container ul li .comment-paragraph a:hover,.article-coments-main-container ul li .comment-paragraph a:focus{
+    color: var(--cta-hover-color);
 }
 .article-coments-main-container ul li .comment-paragraph pre{
-    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+    background-color: var(--cta-mostlight-color);
+    border-radius: 5px;
+    padding: 3px 5px 6px;
 }
 .article-coments-main-container ul li .comment-paragraph pre::-webkit-scrollbar {
     width: 5px;
@@ -283,6 +294,10 @@
     border: 2px solid transparent;
     transition: var(--transition05);
     margin-top: 3px;
+    white-space: nowrap;
+}
+.article-coments-main-container ul li button.active{
+    color: var(--primary-color);
 }
 .article-coments-main-container ul li button:hover,.article-coments-main-container ul li button:focus{
     background-color: var(--cta-light-color);
@@ -299,6 +314,7 @@
     border-radius: 5px;
     position: relative;
     padding-left: 16px;
+    display: none;
 }
 .sub-level-comment::after{
     content: "";
@@ -311,7 +327,7 @@
     border-radius: 5px;
     transition: var(--transition05);
 }
-.sub-level-comment:hover:after{
+.sub-level-comment:hover::after{
     width: 4px;
     background-color: var(--cta-color);
 }

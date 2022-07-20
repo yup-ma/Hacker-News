@@ -17,6 +17,7 @@
     --green-shade-color: #0A8754;
     --box-shadow-color: rgb(0 0 0 / 24%);
     --transition02: 0.2s;
+    --transition03: 0.3s;
     --transition05: 0.5s;
 }
 
@@ -382,6 +383,7 @@ h6 {
 @media (prefers-reduced-motion) {
     :root {
         --transition02s: 0s;
+        --transition03s: 0s;
         --transition05s: 0s;
     }
 }

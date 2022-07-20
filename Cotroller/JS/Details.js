@@ -24,11 +24,9 @@ function apiRunningFunc(e) {
     fetch(e)
         .then(response => response.json())
         .then((jsonData) => {
-            console.log(jsonData)
             articleCreatorFunc(jsonData);
         })
         .catch((error) => {
-            console.log(error)
             document.querySelector("main").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
             <img src="../Images/error-occured-image.svg">
             <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page<br><br><a href="../Template/Index.html">Go to home page</a></p>
@@ -38,13 +36,15 @@ function apiRunningFunc(e) {
 
 function articleCreatorFunc(jsonData) {
     let articleTitle = jsonData.title;
+    let articleCommentTitle ="";
     let pointsAmount = jsonData.points;
     if (articleTitle == null) {
         if (jsonData.text !== null) {
             if (jsonData.type == "comment") {
-                articleTitle = "Comment:" + removingParagraphTag(jsonData.text);
+                articleTitle = "Comment: " + removingParagraphTag(jsonData.text).substring(0, 50).trim() + "...";
+                articleCommentTitle = jsonData.text;
             } else {
-                articleTitle = "Poll option:" + removingParagraphTag(jsonData.text);
+                articleTitle = "Poll option: " + removingParagraphTag(jsonData.text);
             }
         } else {
             articleTitle = "Couldn't find title";
@@ -53,11 +53,10 @@ function articleCreatorFunc(jsonData) {
     if (pointsAmount == null) {
         pointsAmount = 0;
     }
-
     document.querySelector("main").innerHTML = `<div class="article-main-container d-flex d-flex-dir-col">
         <div class="article-main-container-top-section d-flex d-flex-dir-col">
             <span class="article-type-container">${jsonData.type}</span>
-            <h1 class="article-title-container">${articleTitle}</h1>
+            <h1 class="article-title-container" title="${articleCommentTitle}">${articleTitle}</h1>
             <h3 class="d-flex">
                 <span class="article-creating-date-container">${articleDateConverterFunc(jsonData.created_at)}</span>
                 <span class="dot"><i class="fa-solid fa-circle"></i></span>
@@ -146,7 +145,7 @@ function addingCommentsToArticleFunc(container, commentsArray){
         const newButton = document.createElement("button");
         const newDiv2 = document.createElement("div");
         newDiv1.className = "comment-info";
-        newDiv1.innerHTML = `<span>${ele.author}</span><span>Pts: <b>${commentPointsAmt}</b></span><span>${ele.created_at} year ago</span>`;
+        newDiv1.innerHTML = `<span>${ele.author}</span><span title="Points: ${commentPointsAmt}">Pts: <b>${commentPointsAmt}</b></span><span>${ele.created_at} year ago</span>`;
         newP.className = "comment-paragraph";
         newP.innerHTML = ele.text;
         newLi.appendChild(newDiv1);
@@ -154,10 +153,23 @@ function addingCommentsToArticleFunc(container, commentsArray){
         if (ele.children.length > 0) {
             newButton.innerHTML = `<i class="fa-solid fa-reply"></i> Replies`;
             newDiv2.className = "sub-level-comment";
+            newButton.addEventListener('click', showMoreRepliesBtnFunc)
             newLi.appendChild(newButton);
             newLi.appendChild(newDiv2);
-            addingCommentsToArticleFunc(newDiv2, ele.children)
+            addingCommentsToArticleFunc(newDiv2, ele.children);
         }
         container.appendChild(newLi);
     });
+}
+
+function showMoreRepliesBtnFunc(){
+    if (this.classList.contains("active")) {
+        this.classList.remove("active");
+        this.parentElement.querySelector(".sub-level-comment").style.display = "none";
+        this.innerHTML = `<i class="fa-solid fa-reply"></i> Replies`;
+    }else{
+        this.classList.add("active");
+        this.parentElement.querySelector(".sub-level-comment").style.display = "block";
+        this.innerHTML = `<i class="fa-solid fa-reply"></i> Collapse`;
+    }
 }
