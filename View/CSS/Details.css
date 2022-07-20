@@ -49,7 +49,7 @@
 }
 .article-main-container-top-section h3 .dot{
     font-size: 4px;
-    color: var(--cta-mostlight-color);
+    color: var(--secondary-light-color);
     margin: 0 10px;
 }
 .article-main-container-top-section h3 .article-author-container{
@@ -155,6 +155,7 @@
     border: 1px solid var(--cta-outline-color);
     border-radius: 20px;
     text-transform: capitalize;
+    white-space: nowrap;
 }
 .article-extra-details-container .option-container div button:first-child {
     margin: 0 5px 0 0;

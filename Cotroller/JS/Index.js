@@ -447,21 +447,6 @@ function articleFilterAddingFunc() {
     creatingAppliedFilterBtnsFunc(filterArrayVal);
 }
 
-function articleDateConverterFunc(e) {
-    const date = new Date(e)
-    let monthsName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    let currentMonth = monthsName[date.getMonth()]
-    return `${currentMonth} ${date.getDate()}, ${date.getFullYear()}`
-}
-
-function randomColorGenerator() {
-    let r = Math.floor(Math.random() * (181));
-    let g = Math.floor(Math.random() * (181));
-    let b = Math.floor(Math.random() * (181));
-    console.log()
-    return `${r}, ${g}, ${b}`;
-}
-
 function articlePaginationClickFunc() {
     pageNumber = this.dataset.paginationValue;
     updatingURLForAPIFunc()
