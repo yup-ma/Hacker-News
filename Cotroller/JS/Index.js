@@ -285,7 +285,7 @@ function apiRunningFun(e) {
             document.querySelector(".articles-main-container-sub-heading").style.display = "none";
             document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
                 <img src="../Images/error-occured-image.svg">
-                <p>Opps faced error, we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page</p>
+                <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page</p>
             </div>`
     });
 }
