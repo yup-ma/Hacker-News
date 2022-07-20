@@ -265,13 +265,13 @@ function updatingURLForAPIFunc() {
         } else {
             baseAPIUrlForArticles = `${baseAPIUrlForArticles}?query=${articleSearchInputVal}&page=${pageNumber}&tags=(${tagsAllVal}),${authorAllVal}`
         }
-        apiRunningFun(baseAPIUrlForArticles)
+        apiRunningFunc(baseAPIUrlForArticles)
     }
 }
 
-apiRunningFun(apiUrlForArticles)
+apiRunningFunc(apiUrlForArticles)
 
-function apiRunningFun(e) {
+function apiRunningFunc(e) {
     fetch(e)
         .then(response => response.json())
         .then((jsonData) => {
@@ -456,7 +456,5 @@ function articleClickedFunc() {
     localStorage.setItem("searched-article-id", this.dataset.articleId);
     apiUrlForArticles = `http://hn.algolia.com/api/v1/items/${this.dataset.articleId}`;
     window.location.replace(`../Template/Details.html?object_id=${this.dataset.articleId}`);
-    // apiRunningFun(apiUrlForArticles)
     // articleDetailsContent.style.setProperty("--focus-reading-black-percent-1", `${ele}px`);
-
 }
