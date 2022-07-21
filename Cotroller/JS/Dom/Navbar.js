@@ -11,7 +11,7 @@ const navbarTemplate = document.createElement('template');
     </div>
     </div>
     <nav class="d-flex d-flex-just-space-btw">
-        <a href="../Template/Index.html" class="company-logo-container d-flex web-links" title="Hacker News" data-nav-title="Hacker News">
+        <a href="../Template/Index.html" class="company-logo-container d-flex web-links" title="Hacker News">
             <span class="company-logo d-flex"><i class="fa-brands fa-hacker-news-square"></i></span>
             <span class="company-name">Hacker News</span>
         </a>
@@ -21,7 +21,7 @@ const navbarTemplate = document.createElement('template');
                 <span class="link-icon link-search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                 <span class="link-text">Search</span>
             </a>
-            <button class="web-links web-btns d-flex d-flex-just-cent"
+            <button class="updates-modal-btn web-links web-btns d-flex d-flex-just-cent"
                 title="Updates" data-nav-title="Updates">
                 <span class="link-icon link-pro-icon d-flex">
                 <svg id="Icon_File" data-name="Icon/File" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -34,11 +34,11 @@ const navbarTemplate = document.createElement('template');
                 </span>
                 <span class="link-text">Updates</span>
             </button>
-            <a href="https://github.com/yup-ma/Hybr1d-Project" class="web-links d-flex d-flex-just-cent" target="_blank" title="Github link to repo"  data-nav-title="Github link to repo">
+            <a href="https://github.com/yup-ma/Hacker-News" class="web-links d-flex d-flex-just-cent" target="_blank" title="Github link to repo"  data-nav-title="Github link to repo">
                 <span class="link-icon"><i class="fa-brands fa-github"></i></span>
                 <span class="link-text">Github</span>
             </a>
-            <label class="dark-light-mode-switch" title="Toggle dark mode" data-nav-title="Toggle dark mode">
+            <label class="dark-light-mode-switch" title="Comming soon" data-nav-title="Comming soon">
                 <input type="checkbox">
                 <span class="dark-light-mode-slider"></span>
             </label>
@@ -59,4 +59,10 @@ class Navbar extends HTMLElement {
 }
 
 customElements.define('navbar-component', Navbar);
+
+
+const observer_1 = new IntersectionObserver( 
+  ([e]) => document.querySelector(".updates-parent-main-section h3").classList.toggle("active-state", e.intersectionRatio < 1),
+  { threshold: [1] }
+);
 

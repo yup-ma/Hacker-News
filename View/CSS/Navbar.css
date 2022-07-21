@@ -12,13 +12,13 @@ main {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 99;
+    z-index: 10;
     box-shadow: none;
     transition: var(--transition05);
 }
 
 .active-stucked {
-    box-shadow: rgb(0 0 0 / 23%) 0px 4px 6px;
+    box-shadow: var(--box-shadow-color) 0px 4px 6px;
     padding: 0;
 }
 

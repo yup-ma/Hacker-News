@@ -283,7 +283,7 @@ function apiRunningFunc(e) {
             document.querySelector(".articles-main-container").innerHTML = "";
             document.querySelector(".articles-main-container-sub-heading").style.display = "none";
             document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
-                <img src="../Images/error-occured-image.svg">
+                <img src="../Images/error-occured-image.svg" alt="Faced an error">
                 <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page</p>
             </div>`
     });
@@ -413,7 +413,7 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
     } else {
         document.querySelector(".articles-main-container-sub-heading").style.display = "none";
         document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
-            <img src="../Images/empty-list-image.svg">
+            <img src="../Images/empty-list-image.svg" alt="Couldn't find any results">
             <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="../Template/Index.html#search-input-parent-container">filters</a> and <a href="../Template/Index.html#search-input-parent-container">search query</a>
         </div>`;
     }

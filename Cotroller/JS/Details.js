@@ -36,7 +36,7 @@ function apiRunningFunc(e) {
         })
         .catch((error) => {
             document.querySelector("main").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
-            <img src="../Images/error-occured-image.svg">
+            <img src="../Images/error-occured-image.svg" alt="Faced an error">
             <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page<br><br><a href="../Template/Index.html">Go to home page</a></p>
         </div>`
         });
@@ -126,7 +126,7 @@ function articleCreatorFunc(jsonData) {
         addingCommentsToArticleFunc(document.querySelector(".article-coments-main-container ul"), jsonData.children)
     } else {
         document.querySelector(".article-coments-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
-        <img src="../Images/no-comments-found.svg">
+        <img src="../Images/no-comments-found.svg" alt="No comments found">
         <p>Opps, Couldn't find any comment</a>
     </div>`;
     }

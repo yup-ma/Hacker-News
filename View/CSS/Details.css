@@ -187,6 +187,7 @@
 .article-coments-main-container::-webkit-scrollbar-thumb {
     background-color: var(--secondary-color);
     border-radius: 150px;
+    border: 5px solid var(--white-color);
 }
 
 .article-coments-main-container::-webkit-scrollbar-track {
@@ -194,6 +195,7 @@
 }
 .article-coments-main-container ul{
     padding: 0;
+    list-style: none;
 }
 .article-coments-main-container ul li{
     padding: 5px 0;
@@ -213,6 +215,7 @@
 .article-coments-main-container ul li::-webkit-scrollbar-thumb {
     background-color: var(--secondary-color);
     border-radius: 150px;
+    border: 5px solid var(--white-color);
 }
 
 .article-coments-main-container ul li::-webkit-scrollbar-track {
@@ -284,6 +287,7 @@
 .article-coments-main-container ul li .comment-paragraph pre::-webkit-scrollbar-thumb {
     background-color: var(--secondary-color);
     border-radius: 150px;
+    border: 5px solid var(--cta-mostlight-color);
 }
 
 .article-coments-main-container ul li .comment-paragraph pre::-webkit-scrollbar-track {

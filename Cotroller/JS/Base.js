@@ -101,3 +101,15 @@ function randomColorGenerator() {
     let b = Math.floor(Math.random() * (181));
     return `${r}, ${g}, ${b}`;
 }
+
+document.querySelector(".updates-modal-btn").addEventListener('click', updatesInfoModalOpenFunc)
+document.querySelector(".dark-light-mode-switch").addEventListener('click', updatesInfoModalOpenFunc)
+function updatesInfoModalOpenFunc() {
+    document.querySelector(".updates-fixed-section").style.display = "flex";
+    observer_1.observe(document.querySelector(".updates-main-section p"));
+}
+
+document.querySelector(".modal-close-btn").addEventListener('click', function() {
+    document.querySelector(".updates-fixed-section").style.display = "none";
+    observer_1.unobserve(document.querySelector(".updates-main-section p"));
+})
