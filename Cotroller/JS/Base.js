@@ -62,7 +62,7 @@ let windowWidth = window.innerWidth
 window.addEventListener('resize', windowWidthCalcFunc)
 function windowWidthCalcFunc(){
     windowWidth = window.innerWidth;
-    if (windowWidth > 591) {
+    if (windowWidth > 669) {
         document.querySelector(".company-logo-container").style.setProperty("--company-text", `"Hacker News"`);
     } else {
         document.querySelector(".company-logo-container").style.setProperty("--company-text", `"HN"`);
@@ -72,7 +72,7 @@ function windowWidthCalcFunc(){
 let navScrollingAllowed = true;
 window.addEventListener('scroll', observeHeadingFunc)
 function observeHeadingFunc(){
-    if (windowWidth >899) {
+    if (windowWidth > 899) {
         if (navScrollingAllowed == true) {
             navScrollingAllowed = false;
             const articlesMainContainerHeading = document.querySelector(".articles-main-container-heading");

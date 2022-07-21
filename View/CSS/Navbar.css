@@ -26,6 +26,7 @@ nav {
     max-width: 1024px;
     margin: auto;
     padding: 5px 8px;
+    height: 66px;
     transition: var(--transition05);
 }
 
@@ -64,6 +65,7 @@ nav {
     display: inline-block;
     width: 28px;
     height: 28px;
+    margin: 5px;
     border-radius: 28px;
     transition: var(--transition05);
 }
@@ -130,10 +132,6 @@ nav {
 }
 
 @media only screen and (min-width: 592px) {
-    .company-logo-container {
-        --company-text: "Hacker News";
-    }
-
     .dark-light-mode-switch {
         width: 50px;
         height: 26px;
@@ -150,7 +148,9 @@ nav {
 }
 
 @media only screen and (min-width: 670px) {
-
+    .company-logo-container {
+        --company-text: "Hacker News";
+    }
 }
 @media only screen and (min-width: 900px) {
     .company-logo-container::after {

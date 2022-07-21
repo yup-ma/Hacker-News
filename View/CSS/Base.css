@@ -88,11 +88,14 @@ h6 {
 }
 
 .web-links {
-    color: var(--secondary-color);
-    text-decoration: none;
-    font-size: 18px;
+    position: relative;
+    height: 40px;
+    min-width: 40px;
     margin: 5px;
     padding: 5px 8px;
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--secondary-color);
     border-radius: 5px;
     outline: 2px solid transparent;
     transition: var(--transition05);
@@ -114,12 +117,57 @@ h6 {
 .web-links .link-search-icon {
     font-size: 18px;
 }
+.web-btns{
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+.web-btns .link-icon{
+    width: 24px;
+    height: 24px;
+}
 
 .web-links .link-text {
     display: none;
     margin-left: 5px;
 }
 
+nav [data-nav-title]::before, nav [data-nav-title]::after{
+    cursor: default;
+    position: absolute;
+    opacity: 0;
+    z-index: 99999;
+    visibility: hidden;
+}
+nav [data-nav-title]::before {
+    content: '';
+    top: calc(100% - 7px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    vertical-align: middle;
+    border-bottom-color: var(--secondary-color);
+}
+
+nav [data-nav-title]::after {
+    content: attr(data-nav-title);
+    right: 0;
+    top: calc(100% + 7px);
+    padding: 4px 4px 4px 8px;
+    font-size: 14px;
+    color: var(--white-color);
+    white-space: nowrap;
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+}
+nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [data-nav-title]:hover::after, nav [data-nav-title]:focus::after {
+    opacity: 1;
+    transition: 0.5s;
+    visibility: visible;
+}
 .hidden-ele {
     display: none;
     visibility: none;
@@ -368,6 +416,9 @@ h6 {
 @media only screen and (min-width: 592px) {
     .web-links .link-text {
         display: inline-block;
+    }
+    nav [data-nav-title]::before, nav [data-nav-title]::after{
+        display: none;
     }
 }
 
