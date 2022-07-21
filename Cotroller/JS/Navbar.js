@@ -75,10 +75,8 @@ function observeHeadingFunc(){
                 const articlesMainContainerHeading = document.querySelector(".articles-main-container-heading");
                 if (window.scrollY >= articlesMainContainerHeading.offsetTop + articlesMainContainerHeading.offsetHeight) {
                     document.querySelector(".company-logo-container").style.setProperty("--company-text", `"${articlesMainContainerHeading.innerHTML}: Hacker News"`);
-                    document.querySelector(".company-logo-container").title =`${articlesMainContainerHeading.innerHTML}`;
                 } else{
                     document.querySelector(".company-logo-container").style.setProperty("--company-text", `"Hacker News"`);
-                    document.querySelector(".company-logo-container").title =`Hacker News`;
                 }
                 setTimeout(() => {
                     navScrollingAllowed = true;
@@ -91,14 +89,13 @@ function observeHeadingFunc(){
 function articleDateConverterFunc(e) {
     const date = new Date(e)
     let monthsName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    let currentMonth = monthsName[date.getMonth()]
-    return `${currentMonth} ${date.getDate()}, ${date.getFullYear()}`
+    let articleMonth = monthsName[date.getMonth()]
+    return `${articleMonth} ${date.getUTCDate()}, ${date.getUTCFullYear()}`
 }
 
 function randomColorGenerator() {
     let r = Math.floor(Math.random() * (181));
     let g = Math.floor(Math.random() * (181));
     let b = Math.floor(Math.random() * (181));
-    console.log()
     return `${r}, ${g}, ${b}`;
 }

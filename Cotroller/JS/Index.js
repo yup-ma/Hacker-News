@@ -254,7 +254,7 @@ function updatingURLForAPIFunc() {
                 tagsAllVal += appliedFiltersArray[array].value.toLowerCase() + ","
             }
             if (appliedFiltersArray[array].type == "author") {
-                authorAllVal = "author_" + appliedFiltersArray[array].value.toLowerCase();
+                authorAllVal = "author_" + appliedFiltersArray[array].value;
             }
         }
         if (tagsAllVal == "") {
@@ -306,10 +306,10 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
                 newButton.innerHTML = i + 1;
                 document.querySelector(".articles-main-container-pagination").appendChild(newButton);
             }
-            document.querySelectorAll(".articles-main-container-pagination button:not(.active-pagination)").forEach(ele => {
+            document.querySelectorAll(".articles-main-container-pagination button").forEach(ele => {
                 ele.addEventListener('click', articlePaginationClickFunc)
             });
-            document.querySelector(`[data-pagination-value="${currentPageNum}"]`).classList.add("active-pagination")
+            document.querySelector(`[data-pagination-value="${currentPageNum}"]`).classList.add("active-pagination");
         }
         if (document.querySelector("#search-input").value !== "") {
             document.querySelector(".articles-main-container-sub-heading").innerHTML = `Showing <b>${articles.length}</b> result(s) for <b>"${document.querySelector("#search-input").value}"</b> in ${processingTime/1000}s`;
@@ -318,6 +318,7 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
         }
         articles.forEach(ele => {
             const newAnchor = document.createElement("a");
+            newAnchor.href = `../Template/Details.html?object_id=${ele.objectID}`;
             newAnchor.className = "articles-container d-flex d-flex-dir-col d-flex-just-cent";
             newAnchor.dataset.articleId = ele.objectID;
             let pointsAmount = ele.points;
@@ -419,7 +420,8 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
 }
 
 function articleFilterAddingFunc() {
-    event.stopPropagation()
+    event.preventDefault();
+
     let filterArrayVal = {};
     let articleAddingFilterType = this.dataset.filterArticleType;
     let articleAddingFilterValue = this.dataset.filterArticleValue;
@@ -453,7 +455,4 @@ function articlePaginationClickFunc() {
 
 function articleClickedFunc() {
     localStorage.setItem("searched-article-id", this.dataset.articleId);
-    apiUrlForArticles = `http://hn.algolia.com/api/v1/items/${this.dataset.articleId}`;
-    window.location.replace(`../Template/Details.html?object_id=${this.dataset.articleId}`);
-    // articleDetailsContent.style.setProperty("--focus-reading-black-percent-1", `${ele}px`);
 }

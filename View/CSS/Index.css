@@ -155,15 +155,20 @@
     padding: 4px 10px;
     background-color: var(--cta-mostlight-color);
     color: var(--secondary-color);
+    outline: 2px solid transparent;
     border: 1px solid var(--cta-hover-color);
     border-radius: 20px;
     text-transform: capitalize;
+    transition: var(--transition05);
 }
 
 .search-applied-filters-btn:hover,
 .search-applied-filters-btn:focus {
     color: var(--primary-color);
     outline: 2px solid var(--cta-outline-color);
+}
+.search-applied-filters-btn:active{
+   transform: scale(0.95);
 }
 
 .search-applied-filters-btn:hover .search-applied-filters-btn-close,

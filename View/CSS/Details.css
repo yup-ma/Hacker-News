@@ -177,6 +177,9 @@
     overflow-y: hidden;
     overflow-x: auto;
 }
+.article-coments-main-container .fetch-api-error-container{
+    margin-top: 0;
+}
 .article-coments-main-container::-webkit-scrollbar {
     width: 5px;
 }

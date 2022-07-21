@@ -1,4 +1,12 @@
 let searchedObjectId = "";
+let timeMSUnitsObject = {
+    min: 60 * 1000,
+    hour: 60 * 60 * 1000,
+    day: 24 * 60 * 60 * 1000,
+    month: 24 * 60 * 60 * 1000 * 365 / 12,
+    year: 24 * 60 * 60 * 1000 * 365
+}
+let currentTimeStampVar;
 let apiUrlForArticles = `http://hn.algolia.com/api/v1/items/${searchedObjectId}`;
 
 window.addEventListener("load", () => {
@@ -36,7 +44,7 @@ function apiRunningFunc(e) {
 
 function articleCreatorFunc(jsonData) {
     let articleTitle = jsonData.title;
-    let articleCommentTitle ="";
+    let articleCommentTitle = "";
     let pointsAmount = jsonData.points;
     if (articleTitle == null) {
         if (jsonData.text !== null) {
@@ -112,23 +120,25 @@ function articleCreatorFunc(jsonData) {
         document.querySelector(".article-extra-details-container").style.display = "none";
     }
 
+    currentTimeStampVar = new Date().getTime()
     if (jsonData.children.length > 0) {
-        document.querySelector(".article-coments-main-container ul") 
+        document.querySelector(".article-coments-main-container ul")
         addingCommentsToArticleFunc(document.querySelector(".article-coments-main-container ul"), jsonData.children)
     } else {
         document.querySelector(".article-coments-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
-        <img src="../Images/empty-list-image.svg">
+        <img src="../Images/no-comments-found.svg">
         <p>Opps, Couldn't find any comment</a>
     </div>`;
     }
     document.querySelector(".comment-amount").innerHTML = document.querySelectorAll("li").length
+    // document.querySelector(".comment-amount").innerHTML = document.querySelectorAll(".comment-info").length
 }
 
 function removingParagraphTag(e) {
     return e.replace("<p>", "").replace("</p>", "")
 }
 
-function addingCommentsToArticleFunc(container, commentsArray){
+function addingCommentsToArticleFunc(container, commentsArray) {
     commentsArray.forEach(ele => {
         let commentPointsAmt = ele.points;
         if (ele.author == null) {
@@ -145,7 +155,7 @@ function addingCommentsToArticleFunc(container, commentsArray){
         const newButton = document.createElement("button");
         const newDiv2 = document.createElement("div");
         newDiv1.className = "comment-info";
-        newDiv1.innerHTML = `<span>${ele.author}</span><span title="Points: ${commentPointsAmt}">Pts: <b>${commentPointsAmt}</b></span><span>${ele.created_at} year ago</span>`;
+        newDiv1.innerHTML = `<span>${ele.author}</span><span title="Points: ${commentPointsAmt}">Pts: <b>${commentPointsAmt}</b></span><span>${commentTimestampCreatorFunc(ele.created_at_i)} ago</span>`;
         newP.className = "comment-paragraph";
         newP.innerHTML = ele.text;
         newLi.appendChild(newDiv1);
@@ -162,14 +172,47 @@ function addingCommentsToArticleFunc(container, commentsArray){
     });
 }
 
-function showMoreRepliesBtnFunc(){
+function showMoreRepliesBtnFunc() {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
         this.parentElement.querySelector(".sub-level-comment").style.display = "none";
         this.innerHTML = `<i class="fa-solid fa-reply"></i> Replies`;
-    }else{
+    } else {
         this.classList.add("active");
         this.parentElement.querySelector(".sub-level-comment").style.display = "block";
         this.innerHTML = `<i class="fa-solid fa-reply"></i> Collapse`;
+    }
+}
+
+function commentTimestampCreatorFunc(commentTimeStampVar) {
+    let timePassedSinceComment = currentTimeStampVar - commentTimeStampVar * 1000;
+    if (timePassedSinceComment < timeMSUnitsObject.min) {
+        return Math.floor(timePassedSinceComment / 1000) + ' sec';
+    } else if (timePassedSinceComment < timeMSUnitsObject.hour) {
+        return Math.floor(timePassedSinceComment / timeMSUnitsObject.min) + ' min';
+    } else if (timePassedSinceComment < timeMSUnitsObject.day) {
+        if (Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) > 1) {
+        return Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) + ' hours';
+        } else {
+        return Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) + ' hour';
+        }
+    } else if (timePassedSinceComment < timeMSUnitsObject.month) {
+        if (Math.floor(timePassedSinceComment / timeMSUnitsObject.day) > 1) {
+            return Math.floor(timePassedSinceComment / timeMSUnitsObject.day) + ' days';
+        } else {
+            return Math.floor(timePassedSinceComment / timeMSUnitsObject.day) + ' day';
+        }
+    } else if (timePassedSinceComment < timeMSUnitsObject.year) {
+        if (Math.floor(timePassedSinceComment / timeMSUnitsObject.month) > 1) {
+            return Math.floor(timePassedSinceComment / timeMSUnitsObject.month) + ' months';
+        } else {
+            return Math.floor(timePassedSinceComment / timeMSUnitsObject.month) + ' month';
+        }
+    } else {
+        if (Math.floor(timePassedSinceComment / timeMSUnitsObject.year) > 1) {
+            return Math.floor(timePassedSinceComment / timeMSUnitsObject.year) + ' years';
+        } else {
+            return Math.floor(timePassedSinceComment / timeMSUnitsObject.year) + ' year';
+        }
     }
 }
