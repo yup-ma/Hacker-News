@@ -1,5 +1,6 @@
 main {
     margin-top: 65px;
+    transition: var(--transition05);
 }
 
 .navbar-top {

@@ -6,8 +6,11 @@ window.addEventListener("online", () => {
     networkStatusBar.style.backgroundColor = "var(--success-bg-color)";
     networkStatusBar.style.color = "var(--primary-color)";
     networkStatusBar.innerText = "Back online";
+    networkStatusBar.style.maxHeight = "48px";
+    document.querySelector("main").style.marginTop = "113px";
     setTimeout(() => {
         networkStatusBar.style.maxHeight = "0";
+        document.querySelector("main").style.marginTop = "65px";
     }, 2000)
 })
 
@@ -16,6 +19,7 @@ window.addEventListener("offline", () => {
     networkStatusBar.style.color = "var(--white-color)";
     networkStatusBar.style.maxHeight = "48px";
     networkStatusBar.innerText = "Network connection lost";
+    document.querySelector("main").style.marginTop = "113px";
 })
 
 const navbarContainer = document.querySelector(".navbar-container")

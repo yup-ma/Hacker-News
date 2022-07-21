@@ -1,5 +1,6 @@
 const navbarTemplate = document.createElement('template');
-    navbarTemplate.innerHTML = `<header class="navbar-container">
+    navbarTemplate.innerHTML = `<div class="navbar-top"></div>
+    <header class="navbar-container">
     <noscript>
         <div id="javascript-status" class="d-flex d-flex-just-cent">
             Please enable javascript for best experience
