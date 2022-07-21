@@ -382,8 +382,8 @@ h6 {
 
 @media (prefers-reduced-motion) {
     :root {
-        --transition02s: 0s;
-        --transition03s: 0s;
-        --transition05s: 0s;
+        --transition02: 0;
+        --transition03: 0;
+        --transition05: 0;
     }
 }

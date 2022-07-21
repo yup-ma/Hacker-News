@@ -32,39 +32,8 @@
 
 <body>
     <div class="navbar-top"></div>
-    <header class="navbar-container">
-        <noscript>
-            <div id="javascript-status" class="d-flex d-flex-just-cent">
-                Please enable javascript for best experience
-            </div>
-        </noscript>
-        <div id="network-status" class="d-flex d-flex-just-cent"></div>
-        <div id="user-action-status-messages">
-        </div>
-        </div>
-        <nav class="d-flex d-flex-just-space-btw">
-            <a href="../Template/Index.html" class="company-logo-container d-flex web-links" title="Hacker News">
-                <span class="company-logo d-flex"><i class="fa-brands fa-hacker-news-square"></i></span>
-                <span class="company-name">Hacker News</span>
-            </a>
-            <div class="d-flex">
-                <a href="../Template/Index.html#search-input-parent-container" class="web-links d-flex"
-                    title="Search for articles">
-                    <span class="link-icon link-search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <span class="link-text">Search</span>
-                </a>
-                <a href="https://github.com/yup-ma/Hybr1d-Project" class="web-links d-flex" target="_blank"
-                    rel="noopener noreferrer" title="Github link to repo">
-                    <span class="link-icon"><i class="fa-brands fa-github"></i></span>
-                    <span class="link-text">Github</span>
-                </a>
-                <label class="dark-light-mode-switch web-links" title="Toggle dark mode">
-                    <input type="checkbox">
-                    <span class="dark-light-mode-slider"></span>
-                </label>
-            </div>
-        </nav>
-    </header>
+    <navbar-component></navbar-component>
+
     <main>
         <div class="search-heading-parent-container d-flex d-flex-dir-col d-flex-just-cent">
             <div class="search-heading-container d-flex d-flex-just-cent">
@@ -145,19 +114,10 @@
         <div class="articles-main-container-pagination d-flex d-flex-just-cent">
         </div>
     </main>
-    <footer class="d-flex d-flex-just-cent d-flex-dir-col">
-        <h5>
-            Created by <b>Aman</b>
-        </h5>
-        <div>with ❤️ from India</div>
-        <a href="mailto:aman080420@gmail.com?subject=Feedback%20for%20Hacer%20News%20Search%Engine" class="mail-link"><i
-                class="fa-solid fa-envelope"></i> aman080420@gmail.com</a>
-        <a href="tel:7419058464" class="mobile-link"><i class="fa-solid fa-phone"></i>+91 74190-58464</a>
-        <div>
-
-        </div>
-    </footer>
-    <script src="../../Cotroller/JS/Navbar.js"></script>
+    <footer-component></footer-component>
+    <script src="../../Cotroller/JS/Dom/Navbar.js"></script>
+    <script src="../../Cotroller/JS/Dom/Footer.js"></script>
+    <script src="../../Cotroller/JS/Base.js"></script>
     <script src="../../Cotroller/JS/Index.js"></script>
 </body>
 

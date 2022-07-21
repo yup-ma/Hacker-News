@@ -131,7 +131,6 @@ function articleCreatorFunc(jsonData) {
     </div>`;
     }
     document.querySelector(".comment-amount").innerHTML = document.querySelectorAll("li").length
-    // document.querySelector(".comment-amount").innerHTML = document.querySelectorAll(".comment-info").length
 }
 
 function removingParagraphTag(e) {

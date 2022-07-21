@@ -68,20 +68,18 @@ function windowWidthCalcFunc(){
 let navScrollingAllowed = true;
 window.addEventListener('scroll', observeHeadingFunc)
 function observeHeadingFunc(){
-    if (document.querySelector(".articles-main-container-heading")) {
-        if (windowWidth >899) {
-            if (navScrollingAllowed == true) {
-                navScrollingAllowed = false;
-                const articlesMainContainerHeading = document.querySelector(".articles-main-container-heading");
-                if (window.scrollY >= articlesMainContainerHeading.offsetTop + articlesMainContainerHeading.offsetHeight) {
-                    document.querySelector(".company-logo-container").style.setProperty("--company-text", `"${articlesMainContainerHeading.innerHTML}: Hacker News"`);
-                } else{
-                    document.querySelector(".company-logo-container").style.setProperty("--company-text", `"Hacker News"`);
-                }
-                setTimeout(() => {
-                    navScrollingAllowed = true;
-                }, 500);
+    if (windowWidth >899) {
+        if (navScrollingAllowed == true) {
+            navScrollingAllowed = false;
+            const articlesMainContainerHeading = document.querySelector(".articles-main-container-heading");
+            if (window.scrollY >= articlesMainContainerHeading.offsetTop + articlesMainContainerHeading.offsetHeight) {
+                document.querySelector(".company-logo-container").style.setProperty("--company-text", `"${articlesMainContainerHeading.innerHTML}: Hacker News"`);
+            } else{
+                document.querySelector(".company-logo-container").style.setProperty("--company-text", `"Hacker News"`);
             }
+            setTimeout(() => {
+                navScrollingAllowed = true;
+            }, 500);
         }
     }
 }
