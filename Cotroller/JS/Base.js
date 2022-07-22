@@ -119,17 +119,47 @@ const observer_1 = new IntersectionObserver(
     }
 );
 
-//Func to open update section
 document.querySelector(".updates-modal-btn").addEventListener('click', updatesInfoModalOpenFunc)
 document.querySelector(".dark-light-mode-switch").addEventListener('click', updatesInfoModalOpenFunc)
 
+//Func to open update section
 function updatesInfoModalOpenFunc() {
     document.querySelector(".updates-fixed-section").style.display = "flex";
+    document.querySelector(".modal-close-btn").focus();
     observer_1.observe(document.querySelector(".updates-main-section p"));
+    window.addEventListener('keydown', trapFocus);
 }
+
 
 //Func to close update section
 document.querySelector(".modal-close-btn").addEventListener('click', function () {
     document.querySelector(".updates-fixed-section").style.display = "none";
     observer_1.unobserve(document.querySelector(".updates-main-section p"));
+    window.removeEventListener('keydown', trapFocus);
 })
+
+//Traping focus to modal when it is opened
+function trapFocus(e) {
+    let focusableEle = document.querySelector(".updates-fixed-section").querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])')
+    let firstFocusableEle = focusableEle[0];
+    let lastFocusableEle = focusableEle[focusableEle.length - 1];
+    if (focusableEle.length < 2) {// only useful when no action modal is open like info modal
+        if (e.code === "Tab") {
+            e.preventDefault();
+        }
+    } else {
+        if (e.code === "Tab") {
+            if (e.shiftKey) {
+                if (document.activeElement === firstFocusableEle) {
+                    lastFocusableEle.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastFocusableEle) {
+                    firstFocusableEle.focus();
+                    e.preventDefault();
+                }
+            }
+        }
+    }
+}
