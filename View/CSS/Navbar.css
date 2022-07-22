@@ -152,6 +152,7 @@ nav {
         --company-text: "Hacker News";
     }
 }
+
 @media only screen and (min-width: 900px) {
     .company-logo-container::after {
         max-width: 500px;

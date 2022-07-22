@@ -1,5 +1,6 @@
+//Creating shadow commponent for navbar so that with a tag only we can render navbar
 const navbarTemplate = document.createElement('template');
-    navbarTemplate.innerHTML = `<div class="navbar-top"></div>
+navbarTemplate.innerHTML = `<div class="navbar-top"></div>
     <header class="navbar-container">
     <noscript>
         <div id="javascript-status" class="d-flex d-flex-just-cent">
@@ -59,10 +60,3 @@ class Navbar extends HTMLElement {
 }
 
 customElements.define('navbar-component', Navbar);
-
-
-const observer_1 = new IntersectionObserver( 
-  ([e]) => document.querySelector(".updates-parent-main-section h3").classList.toggle("active-state", e.intersectionRatio < 1),
-  { threshold: [1] }
-);
-

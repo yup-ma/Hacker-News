@@ -1,5 +1,6 @@
+//Creating shadow commponent for updates section so that with a tag only we can render updates section
 const updatesTemplate = document.createElement('template');
-    updatesTemplate.innerHTML = `<div class="updates-fixed-section">
+updatesTemplate.innerHTML = `<div class="updates-fixed-section">
     <div class="updates-parent-main-section d-flex-dir-col">
         <h3>
             Updates
@@ -92,4 +93,3 @@ class Updates extends HTMLElement {
 }
 
 customElements.define('updates-component', Updates);
-

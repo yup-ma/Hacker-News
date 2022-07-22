@@ -1,5 +1,6 @@
+//Creating shadow commponent for footer so that with a tag only we can render footer
 const footerTemplate = document.createElement('template');
-    footerTemplate.innerHTML = `<footer class="d-flex d-flex-just-cent d-flex-dir-col">
+footerTemplate.innerHTML = `<footer class="d-flex d-flex-just-cent d-flex-dir-col">
     <h5>
         Created by <b>Aman</b>
     </h5>
@@ -23,4 +24,3 @@ class Footer extends HTMLElement {
 }
 
 customElements.define('footer-component', Footer);
-

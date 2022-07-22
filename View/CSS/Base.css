@@ -37,6 +37,7 @@ html,
 body {
     height: 100%;
 }
+
 html {
     scroll-behavior: smooth;
 }
@@ -89,6 +90,7 @@ h6 {
 .d-flex-just-space-btw {
     justify-content: space-between;
 }
+
 .hidden-ele {
     display: none;
     visibility: none;
@@ -124,15 +126,18 @@ h6 {
 .web-links .link-icon {
     font-size: 24px;
 }
+
 .web-links .link-search-icon {
     font-size: 18px;
 }
-.web-btns{
+
+.web-btns {
     cursor: pointer;
     border: none;
     background-color: transparent;
 }
-.web-btns .link-icon{
+
+.web-btns .link-icon {
     width: 24px;
     height: 24px;
 }
@@ -142,13 +147,15 @@ h6 {
     margin-left: 5px;
 }
 
-nav [data-nav-title]::before, nav [data-nav-title]::after{
+nav [data-nav-title]::before,
+nav [data-nav-title]::after {
     cursor: default;
     position: absolute;
     opacity: 0;
     z-index: 99999;
     visibility: hidden;
 }
+
 nav [data-nav-title]::before {
     content: '';
     top: calc(100% - 7px);
@@ -173,11 +180,16 @@ nav [data-nav-title]::after {
     border-radius: 5px;
     background-color: var(--secondary-color);
 }
-nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [data-nav-title]:hover::after, nav [data-nav-title]:focus::after {
+
+nav [data-nav-title]:hover::before,
+nav [data-nav-title]:focus::before,
+nav [data-nav-title]:hover::after,
+nav [data-nav-title]:focus::after {
     opacity: 1;
     transition: 0.5s;
     visibility: visible;
 }
+
 #network-status,
 #javascript-status {
     width: 100%;
@@ -217,9 +229,11 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     border-radius: 5px;
     animation: statusMessageAnime var(--transition02) linear forwards;
 }
+
 .fetch-api-error-container {
     flex-wrap: wrap;
 }
+
 .fetch-api-error-container>img {
     max-width: 350px;
     width: 100%;
@@ -244,11 +258,15 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     color: var(--cta-outline-color);
     transition: var(--transition05);
 }
-.fetch-api-error-container>p>button:hover,.fetch-api-error-container>p>button:focus,
-.fetch-api-error-container>p>a:hover,.fetch-api-error-container>p>a:focus {
+
+.fetch-api-error-container>p>button:hover,
+.fetch-api-error-container>p>button:focus,
+.fetch-api-error-container>p>a:hover,
+.fetch-api-error-container>p>a:focus {
     color: var(--cta-hover-color);
     text-decoration: underline;
 }
+
 @keyframes statusMessageAnime {
     0% {
         left: -100%;
@@ -375,6 +393,7 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
         top: 6.94em
     }
 }
+
 .articles-main-container-heading {
     text-align: center;
     max-width: 1024px;
@@ -410,7 +429,7 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     border-radius: 2px;
 }
 
-.updates-fixed-section{
+.updates-fixed-section {
     position: fixed;
     top: 0;
     left: 0;
@@ -422,7 +441,8 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     /* display: flex; */
     display: none;
 }
-.updates-parent-main-section{
+
+.updates-parent-main-section {
     display: flex;
     width: 100%;
     max-width: 700px;
@@ -434,7 +454,7 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     animation: articleTransformAnime var(--transition02) linear;
 }
 
-.updates-parent-main-section h3{
+.updates-parent-main-section h3 {
     position: relative;
     text-align: left;
     font-size: 32px;
@@ -442,7 +462,8 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     border-bottom: 1px solid transparent;
     transition: var(--transition05);
 }
-.updates-parent-main-section h3.active-state{
+
+.updates-parent-main-section h3.active-state {
     text-align: left;
     font-size: 24px;
     padding: 15px 40px 15px 20px;
@@ -450,7 +471,8 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     border-bottom: 1px solid var(--cta-outline-color);
     transition: var(--transition05);
 }
-.updates-parent-main-section button{
+
+.updates-parent-main-section button {
     cursor: pointer;
     position: absolute;
     top: 15px;
@@ -465,32 +487,39 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     border-radius: 50%;
     transition: var(--transition05);
 }
-.updates-parent-main-section button:hover, .updates-parent-main-section button:focus{
+
+.updates-parent-main-section button:hover,
+.updates-parent-main-section button:focus {
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
     outline: 2px solid var(--primary-color);
 }
-.updates-parent-main-section button:active{
+
+.updates-parent-main-section button:active {
     transform: scale(0.95);
 }
-.updates-main-section{
+
+.updates-main-section {
     overflow: auto;
-    padding-bottom:10px;
+    padding-bottom: 10px;
     color: var(--secondary-color);
 }
 
 .updates-main-section::-webkit-scrollbar {
     width: 15px;
 }
+
 .updates-main-section::-webkit-scrollbar-thumb {
     background-color: var(--secondary-color);
     border: 4px solid var(--white-color);
     border-radius: 150px;
 }
+
 .updates-main-section::-webkit-scrollbar-track {
     background-color: transparent;
 }
-.updates-main-section p{
+
+.updates-main-section p {
     font-size: 18px;
     text-align: center;
     max-width: 350px;
@@ -499,7 +528,7 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     margin-bottom: 60px;
 }
 
-.updates-section h5{
+.updates-section h5 {
     position: sticky;
     top: -1px;
     text-align: left;
@@ -508,26 +537,32 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     background-color: var(--white-color);
     transition: var(--transition05);
 }
-.updates-recent-releases-section h5{
+
+.updates-recent-releases-section h5 {
     border-bottom: 1px solid var(--green-shade-color);
     color: var(--green-shade-color);
 }
-.updates-beta-releases-section h5{
+
+.updates-beta-releases-section h5 {
     border-bottom: 1px solid var(--orange-shade-color);
     color: var(--orange-shade-color);
 }
-.updates-upcomming-releases-section h5{
+
+.updates-upcomming-releases-section h5 {
     border-bottom: 1px solid var(--blue-shade-color);
     color: var(--blue-shade-color);
 }
-.updates-future-releases-section h5{
+
+.updates-future-releases-section h5 {
     border-bottom: 1px solid var(--pink-shade-color);
     color: var(--pink-shade-color);
 }
-.catched-up-with-section h5{
+
+.catched-up-with-section h5 {
     border-bottom: 1px solid var(--purple-shade-color);
     color: var(--purple-shade-color);
 }
+
 .catched-up-with-section a {
     cursor: pointer;
     background-color: transparent;
@@ -538,47 +573,59 @@ nav [data-nav-title]:hover::before, nav [data-nav-title]:focus::before, nav [dat
     color: var(--cta-outline-color);
     transition: var(--transition05);
 }
-.catched-up-with-section a:hover,.catched-up-with-section a:focus {
+
+.catched-up-with-section a:hover,
+.catched-up-with-section a:focus {
     color: var(--cta-hover-color);
     text-decoration: underline;
 }
-.updates-section-details{
+
+.updates-section-details {
     padding: 10px 20px 60px;
 }
-.update-release-time{
+
+.update-release-time {
     display: block;
     text-align: left;
     padding-left: 5px;
     margin-bottom: 10px;
 }
-.catched-up-with-section img{
+
+.catched-up-with-section img {
     margin-top: 40px;
 }
-.catched-up-with-section>p{
+
+.catched-up-with-section>p {
     max-width: 100%;
     padding: 20px;
 }
+
 @media only screen and (min-width: 414px) {
     .articles-main-container-heading {
         font-size: 36px;
     }
 }
+
 @media only screen and (min-width: 592px) {
     .web-links .link-text {
         display: inline-block;
     }
-    nav [data-nav-title]::before, nav [data-nav-title]::after{
+
+    nav [data-nav-title]::before,
+    nav [data-nav-title]::after {
         display: none;
     }
-    .updates-parent-main-section h3{
+
+    .updates-parent-main-section h3 {
         text-align: center;
     }
 }
 
 @media only screen and (min-width: 900px) {
-    .fetch-api-error-container{
+    .fetch-api-error-container {
         flex-wrap: nowrap;
     }
+
     .fetch-api-error-container>p {
         margin-left: 40px;
     }

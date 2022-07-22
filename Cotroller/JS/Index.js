@@ -4,6 +4,7 @@ let debounceInputTimer;
 let searchedThroughInput = false;
 let pageNumber = 0;
 
+//Updating filters from local storage if any, on load of browser
 window.addEventListener("load", () => {
     if (localStorage.getItem("applied-filters-array")) {
         let localStorageAppliedFiltersArray = JSON.parse(localStorage.getItem("applied-filters-array"));
@@ -36,7 +37,7 @@ function filterSearchDropwDownOpeningFunc() {
     document.body.addEventListener('click', filterSearchDropwDownClosingFunc)
 }
 
-
+//Closing dropdowns for filters
 function filterSearchDropwDownClosingFunc(e) {
     let currentTarget = document.querySelector(".active-filter-dropdown").contains(e.target);
     if (!currentTarget) { //clikced outside of box
@@ -45,11 +46,12 @@ function filterSearchDropwDownClosingFunc(e) {
     }
 }
 
-//Others and author option
+//Others and author option for filters as they are input so separated
 document.querySelectorAll(".filter-dropdown-special-btn-container input").forEach(ele => {
     ele.addEventListener('input', filterDropdownInputFunc)
 });
 
+//Replacing any spaces in inputs of filter
 function filterDropdownInputFunc() {
     this.value = this.value.replace(/\s+/g, '_');
     this.parentElement.dataset.optionValue = this.value
@@ -64,6 +66,7 @@ document.querySelectorAll(".filter-dropdown-special-btn").forEach(ele => {
     ele.addEventListener('click', filterDropdownSpecialInputAddTagFunc)
 });
 
+//Adding filters by taking value from input
 function filterDropdownSpecialInputAddTagFunc() {
     let filterArrayVal = {};
     let addingFilterType = this.parentElement.parentElement.parentElement.dataset.filterType;
@@ -72,14 +75,16 @@ function filterDropdownSpecialInputAddTagFunc() {
     this.parentElement.querySelector("input").value = "";
     document.body.removeEventListener('click', filterSearchDropwDownClosingFunc)
     for (let i = 0; i < appliedFiltersArray.length; i++) {
-        //Checking if value is already present
+        //Checking if filter is already present
         if (appliedFiltersArray[i].type == addingFilterType && appliedFiltersArray[i].value == addingFilterValue) {
             actionStatus = "error";
             actionMessage = "Same filter is already present";
+            //Showing error or success based on actionStatus
             showActionMessageFunc();
             return
         }
     }
+    //Checking if author is already present
     if (document.querySelector('[data-filter-added-type="author"]')) {
         if (addingFilterType == "author") {
             actionStatus = "error";
@@ -88,6 +93,7 @@ function filterDropdownSpecialInputAddTagFunc() {
             return
         }
     }
+    //Comment and pollopt tags not allowed
     if (addingFilterValue.toLowerCase() == "comment") {
         actionStatus = "error";
         actionMessage = "We are adding more filters, for now comment is not available";
@@ -111,6 +117,7 @@ document.querySelectorAll(".filter-dropdown-btn").forEach(ele => {
     ele.addEventListener('click', filterDropdownBtnClickFunc)
 });
 
+//Adding filters when dropdown btn clicked
 function filterDropdownBtnClickFunc() {
     let filterArrayVal = {};
     let addingFilterType = this.parentElement.parentElement.dataset.filterType;
@@ -126,6 +133,7 @@ function filterDropdownBtnClickFunc() {
             return
         }
     }
+    //Toggling fiters popularity and recent
     if (addingFilterType == "trival") {
         document.querySelector(".trival-filter-value").innerHTML = addingFilterValue;
         if (document.querySelector('[data-filter-added-type="trival"]')) {
@@ -141,6 +149,7 @@ function filterDropdownBtnClickFunc() {
     creatingAppliedFilterBtnsFunc(filterArrayVal);
 }
 
+//Updating filter quantity state like no filter applied,... 
 function updatingTextForFilterQuantityStateFunc() {
     if (appliedFiltersArray.length == 0) {
         document.querySelector(".search-applied-filters-parent-container h3").innerHTML = "No filters applied";
@@ -154,14 +163,15 @@ function updatingTextForFilterQuantityStateFunc() {
     }
 }
 
+//Clear filter btn to clear all filters
 document.querySelector(".filter-search-clear-filter").addEventListener('click', filterClearFunc)
-
 function filterClearFunc() {
     document.querySelectorAll(".search-applied-filters-btn").forEach(ele => {
         ele.click();
     });
 }
 
+//Creating applied filter btns so that user has a clue of applied filters and can remove them from there
 function creatingAppliedFilterBtnsFunc(e) {
     const newButton = document.createElement("button");
     newButton.className = "search-applied-filters-btn d-flex";
@@ -187,6 +197,7 @@ function creatingAppliedFilterBtnsFunc(e) {
     localStorage.setItem("applied-filters-array", JSON.stringify(appliedFiltersArray));
 }
 
+//Removing function for applied filters
 function searchAppliedFiltersBtnRemoveFunc() {
     let removingFilterType = this.dataset.filterAddedType;
     let removingFilterVal = this.dataset.filterAddedValue;
@@ -211,7 +222,7 @@ function searchAppliedFiltersBtnRemoveFunc() {
     localStorage.setItem("applied-filters-array", JSON.stringify(appliedFiltersArray))
 }
 
-
+//Preventing reunning of api on consecutive presses so deboucing it
 document.querySelector("#search-input").addEventListener('input', function () {
     clearTimeout(debounceInputTimer);
     debounceInputTimer = setTimeout(() => {
@@ -232,6 +243,7 @@ document.querySelector("#search-input").addEventListener('input', function () {
     }, 300);
 })
 
+//Updating url based on query and filters
 function updatingURLForAPIFunc() {
     searchedThroughInput = true;
     document.querySelector(".articles-main-container-heading").innerHTML = "Articles";
@@ -270,13 +282,14 @@ function updatingURLForAPIFunc() {
 }
 
 apiRunningFunc(apiUrlForArticles)
-
+//Running the api with the url provided as argument
 function apiRunningFunc(e) {
     fetch(e)
         .then(response => response.json())
         .then((jsonData) => {
             creatingArticlesFunc(jsonData.hits, jsonData.page, jsonData.nbPages, jsonData.nbHits, jsonData.processingTimeMS);
         })
+        //Handling errors
         .catch((error) => {
             document.querySelector(".articles-main-container-pagination").innerHTML = "";
             document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
@@ -286,9 +299,10 @@ function apiRunningFunc(e) {
                 <img src="../Images/error-occured-image.svg" alt="Faced an error">
                 <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page</p>
             </div>`
-    });
+        });
 }
 
+//Creating search results based on data from api
 function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesAmount, processingTime) {
     document.querySelector(".articles-main-container-pagination").innerHTML = "";
     document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
@@ -419,12 +433,14 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
     }
 }
 
+//We can add filtes from search results by clicking tags
 function articleFilterAddingFunc() {
     event.preventDefault();
 
     let filterArrayVal = {};
     let articleAddingFilterType = this.dataset.filterArticleType;
     let articleAddingFilterValue = this.dataset.filterArticleValue;
+    //Will check if that tags already exits or there is already one author filter
     if (document.querySelector('[data-filter-added-type="author"]')) {
         if (articleAddingFilterType == "author") {
             actionStatus = "error";
@@ -448,11 +464,13 @@ function articleFilterAddingFunc() {
     creatingAppliedFilterBtnsFunc(filterArrayVal);
 }
 
+//Function that runs when pagination btns clicked, this will run api again with updated page
 function articlePaginationClickFunc() {
     pageNumber = this.dataset.paginationValue;
     updatingURLForAPIFunc()
 }
 
+//Set local storage for the object id of clicked article as a fallback
 function articleClickedFunc() {
     localStorage.setItem("searched-article-id", this.dataset.articleId);
 }

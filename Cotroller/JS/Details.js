@@ -9,12 +9,15 @@ let timeMSUnitsObject = {
 let currentTimeStampVar;
 let apiUrlForArticles = `http://hn.algolia.com/api/v1/items/${searchedObjectId}`;
 
+//Running a test search on load of page
 window.addEventListener("load", () => {
+    //Taking object id param
     if (window.location.href.split('?').length > 1) {
         if (window.location.href.split('?')[1].split('object_id=').length > 1) {
             searchedObjectId = window.location.href.split('?')[1].split('object_id=')[1];
         }
     }
+    //If param comes out null then we go to local storage
     if (searchedObjectId == "" || searchedObjectId == null) {
         if (localStorage.getItem("searched-article-id")) {
             searchedObjectId = localStorage.getItem("searched-article-id");
@@ -23,17 +26,19 @@ window.addEventListener("load", () => {
         }
         window.location.replace(`../Template/Details.html?object_id=${searchedObjectId}`);
     }
+    //Updating url with param
     apiUrlForArticles = `http://hn.algolia.com/api/v1/items/${searchedObjectId}`;
     apiRunningFunc(apiUrlForArticles)
 })
 
-
+//Running api to ecth data
 function apiRunningFunc(e) {
     fetch(e)
         .then(response => response.json())
         .then((jsonData) => {
             articleCreatorFunc(jsonData);
         })
+        //Catching any erros if api fails
         .catch((error) => {
             document.querySelector("main").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
             <img src="../Images/error-occured-image.svg" alt="Faced an error">
@@ -42,10 +47,12 @@ function apiRunningFunc(e) {
         });
 }
 
+//Displaying article info based on fetched data
 function articleCreatorFunc(jsonData) {
     let articleTitle = jsonData.title;
     let articleCommentTitle = "";
     let pointsAmount = jsonData.points;
+    //Checking null stats of data
     if (articleTitle == null) {
         if (jsonData.text !== null) {
             if (jsonData.type == "comment") {
@@ -61,6 +68,7 @@ function articleCreatorFunc(jsonData) {
     if (pointsAmount == null) {
         pointsAmount = 0;
     }
+    //Adding html for the data
     document.querySelector("main").innerHTML = `<div class="article-main-container d-flex d-flex-dir-col">
         <div class="article-main-container-top-section d-flex d-flex-dir-col">
             <span class="article-type-container">${jsonData.type}</span>
@@ -99,6 +107,7 @@ function articleCreatorFunc(jsonData) {
         </div>
     </div>`
 
+    //Updating a extra section based on tags like story, poll
     if (jsonData.type == "story") {
         if (jsonData.url !== null) {
             document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank">Read article <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
@@ -120,7 +129,9 @@ function articleCreatorFunc(jsonData) {
         document.querySelector(".article-extra-details-container").style.display = "none";
     }
 
+    //Current time while running this func
     currentTimeStampVar = new Date().getTime()
+    //Checking if there are any comments
     if (jsonData.children.length > 0) {
         document.querySelector(".article-coments-main-container ul")
         addingCommentsToArticleFunc(document.querySelector(".article-coments-main-container ul"), jsonData.children)
@@ -130,13 +141,16 @@ function articleCreatorFunc(jsonData) {
         <p>Opps, Couldn't find any comment</a>
     </div>`;
     }
+    //Entering comments amount based on all stats after removing comments with no auth or text
     document.querySelector(".comment-amount").innerHTML = document.querySelectorAll("li").length
 }
 
+//Removing paragraph tag for texts if required
 function removingParagraphTag(e) {
     return e.replace("<p>", "").replace("</p>", "")
 }
 
+//Looping through all comments
 function addingCommentsToArticleFunc(container, commentsArray) {
     commentsArray.forEach(ele => {
         let commentPointsAmt = ele.points;
@@ -148,6 +162,7 @@ function addingCommentsToArticleFunc(container, commentsArray) {
         if (ele.points == null) {
             commentPointsAmt = 0;
         }
+        //Adding auth, points, stamp, comment
         const newLi = document.createElement("li");
         const newDiv1 = document.createElement("div");
         const newP = document.createElement("p");
@@ -165,12 +180,14 @@ function addingCommentsToArticleFunc(container, commentsArray) {
             newButton.addEventListener('click', showMoreRepliesBtnFunc)
             newLi.appendChild(newButton);
             newLi.appendChild(newDiv2);
+            //Running function again if comment have sub comments, it will be like loop until sub comments are completes
             addingCommentsToArticleFunc(newDiv2, ele.children);
         }
         container.appendChild(newLi);
     });
 }
 
+//Adding a toggle state to show more replies
 function showMoreRepliesBtnFunc() {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
@@ -183,6 +200,7 @@ function showMoreRepliesBtnFunc() {
     }
 }
 
+//Creating a timestamp like 1 min ago, 1year ago, based on comment time and current time
 function commentTimestampCreatorFunc(commentTimeStampVar) {
     let timePassedSinceComment = currentTimeStampVar - commentTimeStampVar * 1000;
     if (timePassedSinceComment < timeMSUnitsObject.min) {
@@ -191,9 +209,9 @@ function commentTimestampCreatorFunc(commentTimeStampVar) {
         return Math.floor(timePassedSinceComment / timeMSUnitsObject.min) + ' min';
     } else if (timePassedSinceComment < timeMSUnitsObject.day) {
         if (Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) > 1) {
-        return Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) + ' hours';
+            return Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) + ' hours';
         } else {
-        return Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) + ' hour';
+            return Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) + ' hour';
         }
     } else if (timePassedSinceComment < timeMSUnitsObject.month) {
         if (Math.floor(timePassedSinceComment / timeMSUnitsObject.day) > 1) {

@@ -2,10 +2,11 @@
     margin-top: 130px;
 }
 
-.article-main-container{
+.article-main-container {
     padding: 40px 20px;
     position: relative;
 }
+
 .article-main-container::after {
     content: "";
     width: 100%;
@@ -18,12 +19,15 @@
     background-color: var(--cta-color);
     z-index: -1;
 }
-.article-main-container-top-section,.article-comments-parent-container{
+
+.article-main-container-top-section,
+.article-comments-parent-container {
     max-width: 1024px;
     width: 100%;
     margin: auto;
 }
-.article-type-container{
+
+.article-type-container {
     padding: 5px 10px;
     background-color: var(--cta-mostlight-color);
     color: var(--secondary-color);
@@ -33,29 +37,35 @@
     text-align: center;
     text-transform: capitalize;
 }
-.article-title-container{
+
+.article-title-container {
     font-size: 34px;
     text-align: center;
     margin-top: 20px;
 }
+
 .article-main-container-top-section h3 {
     font-size: 16px;
     color: var(--secondary-color);
     font-weight: 400;
     margin-top: 5px;
 }
-.article-main-container-top-section h3 .article-creating-date-container{
+
+.article-main-container-top-section h3 .article-creating-date-container {
     white-space: nowrap;
 }
-.article-main-container-top-section h3 .dot{
+
+.article-main-container-top-section h3 .dot {
     font-size: 4px;
     color: var(--primary-color);
     margin: 0 10px;
 }
-.article-main-container-top-section h3 .article-author-container{
+
+.article-main-container-top-section h3 .article-author-container {
     font-weight: 500;
     word-break: break-word;
 }
+
 .article-main-container-top-section-extra-info {
     width: 100%;
     justify-content: space-around;
@@ -63,16 +73,18 @@
     max-width: 300px;
 }
 
-.articles-container-info{
+.articles-container-info {
     margin: 20px;
 }
 
 .articles-container-info-points {
     color: var(--green-shade-color);
 }
+
 .articles-container-info-comments {
     color: var(--blue-shade-color);
 }
+
 .articles-container-info-icon {
     font-size: 25px;
     margin-right: 12px;
@@ -98,7 +110,8 @@
     width: 100%;
     color: var(--secondary-color);
 }
-.article-extra-details-container a{
+
+.article-extra-details-container a {
     display: block;
     margin: auto;
     width: fit-content;
@@ -110,24 +123,30 @@
     border-radius: 5px;
     transition: var(--transition05);
 }
-.article-extra-details-container a i{
+
+.article-extra-details-container a i {
     margin-left: 5px;
 }
-.article-extra-details-container a:hover, .article-extra-details-container a:focus{
+
+.article-extra-details-container a:hover,
+.article-extra-details-container a:focus {
     color: var(--primary-color);
     background-color: var(--cta-light-color);
     border: 2px solid var(--primary-color);
     outline: 1px solid var(--primary-color);
 }
-.article-extra-details-container a:active{
+
+.article-extra-details-container a:active {
     transform: scale(0.95);
 }
+
 .article-extra-details-container .option-container {
     width: fit-content;
     margin: auto;
     max-width: 100%;
 }
-.article-extra-details-container .option-container div{
+
+.article-extra-details-container .option-container div {
     margin-top: 10px;
     padding-bottom: 6px;
     padding-top: 2px;
@@ -136,6 +155,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
 .article-extra-details-container .option-container div::-webkit-scrollbar {
     width: 5px;
 }
@@ -148,6 +168,7 @@
 .article-extra-details-container .option-container div::-webkit-scrollbar-track {
     background-color: transparent;
 }
+
 .article-extra-details-container .option-container div button {
     font-size: 14px;
     margin: 0 5px;
@@ -159,27 +180,32 @@
     text-transform: capitalize;
     white-space: nowrap;
 }
+
 .article-extra-details-container .option-container div button:first-child {
     margin: 0 5px 0 0;
 }
+
 .article-extra-details-container .option-container div button:last-child {
     margin: 0 0 0 5px;
 }
 
 /* --------------------------------------------------------------------------------------------- */
-.article-main-container-comment-section{
+.article-main-container-comment-section {
     max-width: 1024px;
     margin: auto;
     width: 100%;
 }
-.article-coments-main-container{
+
+.article-coments-main-container {
     margin-top: 50px;
     overflow-y: hidden;
     overflow-x: auto;
 }
-.article-coments-main-container .fetch-api-error-container{
+
+.article-coments-main-container .fetch-api-error-container {
     margin-top: 0;
 }
+
 .article-coments-main-container::-webkit-scrollbar {
     width: 5px;
 }
@@ -193,11 +219,13 @@
 .article-coments-main-container::-webkit-scrollbar-track {
     background-color: transparent;
 }
-.article-coments-main-container ul{
+
+.article-coments-main-container ul {
     padding: 0;
     list-style: none;
 }
-.article-coments-main-container ul li{
+
+.article-coments-main-container ul li {
     padding: 5px 0;
     margin: 5px 0;
     color: var(--secondary-color);
@@ -208,6 +236,7 @@
     overflow-x: auto;
     min-width: 100px;
 }
+
 .article-coments-main-container ul li::-webkit-scrollbar {
     width: 5px;
 }
@@ -221,65 +250,79 @@
 .article-coments-main-container ul li::-webkit-scrollbar-track {
     background-color: transparent;
 }
+
 @keyframes commentAnime {
-    0%{
+    0% {
         top: 15px;
         opacity: 0.6;
     }
-    100%{
+
+    100% {
         top: 0px;
         opacity: 1;
     }
 }
+
 .article-coments-main-container ul li .comment-info {
     color: var(--secondary-slight-light-color);
     width: 100%;
     overflow: auto;
 }
+
 .article-coments-main-container ul li .comment-info::-webkit-scrollbar {
     display: none;
 }
 
-.article-coments-main-container ul li .comment-info span{
+.article-coments-main-container ul li .comment-info span {
     position: relative;
     padding: 0 10px;
     border-right: 2px solid var(--secondary-light-color);
     white-space: nowrap;
 }
-.article-coments-main-container ul li .comment-info span:first-child{
+
+.article-coments-main-container ul li .comment-info span:first-child {
     padding: 0 10px 0 0;
     color: var(--primary-color);
     font-weight: 500;
 }
-.article-coments-main-container ul li .comment-info span:nth-child(2){
+
+.article-coments-main-container ul li .comment-info span:nth-child(2) {
     color: var(--green-shade-color);
 }
-.article-coments-main-container ul li .comment-info span:nth-child(2) b{
+
+.article-coments-main-container ul li .comment-info span:nth-child(2) b {
     font-weight: 500;
 }
-.article-coments-main-container ul li .comment-info span:last-child{
+
+.article-coments-main-container ul li .comment-info span:last-child {
     padding: 0 0 0 10px;
     border-right: none;
 }
-.article-coments-main-container ul li .comment-paragraph{
+
+.article-coments-main-container ul li .comment-paragraph {
     margin-top: 4px;
     position: relative;
     color: var(--secondary-slight-light-color);
 }
-.article-coments-main-container ul li .comment-paragraph a{
+
+.article-coments-main-container ul li .comment-paragraph a {
     color: var(--green-shade-color);
     transition: 0.5s;
 }
-.article-coments-main-container ul li .comment-paragraph a:hover,.article-coments-main-container ul li .comment-paragraph a:focus{
+
+.article-coments-main-container ul li .comment-paragraph a:hover,
+.article-coments-main-container ul li .comment-paragraph a:focus {
     color: var(--cta-hover-color);
 }
-.article-coments-main-container ul li .comment-paragraph pre{
+
+.article-coments-main-container ul li .comment-paragraph pre {
     overflow-y: hidden;
     overflow-x: auto;
     background-color: var(--cta-mostlight-color);
     border-radius: 5px;
     padding: 3px 5px 6px;
 }
+
 .article-coments-main-container ul li .comment-paragraph pre::-webkit-scrollbar {
     width: 5px;
 }
@@ -293,7 +336,8 @@
 .article-coments-main-container ul li .comment-paragraph pre::-webkit-scrollbar-track {
     background-color: transparent;
 }
-.article-coments-main-container ul li button{
+
+.article-coments-main-container ul li button {
     cursor: pointer;
     background-color: transparent;
     border-radius: 5px;
@@ -303,27 +347,34 @@
     margin-top: 3px;
     white-space: nowrap;
 }
-.article-coments-main-container ul li button.active{
+
+.article-coments-main-container ul li button.active {
     color: var(--primary-color);
 }
-.article-coments-main-container ul li button:hover,.article-coments-main-container ul li button:focus{
+
+.article-coments-main-container ul li button:hover,
+.article-coments-main-container ul li button:focus {
     background-color: var(--cta-light-color);
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
 }
-.article-coments-main-container ul li button:active{
+
+.article-coments-main-container ul li button:active {
     transform: scale(0.95);
 }
-.article-coments-main-container ul li button i{
+
+.article-coments-main-container ul li button i {
     transform: rotate(180deg);
 }
-.sub-level-comment{
+
+.sub-level-comment {
     border-radius: 5px;
     position: relative;
     padding-left: 16px;
     display: none;
 }
-.sub-level-comment::after{
+
+.sub-level-comment::after {
     content: "";
     width: 3px;
     height: 100%;
@@ -334,35 +385,36 @@
     border-radius: 5px;
     transition: var(--transition05);
 }
-.sub-level-comment:hover::after{
+
+.sub-level-comment:hover::after {
     width: 4px;
     background-color: var(--cta-color);
 }
+
 /* --------------------------------------------------------------------------------------------- */
-@media only screen and (min-width: 414px) {
-}
+@media only screen and (min-width: 414px) {}
 
 @media only screen and (min-width: 592px) {
     .article-main-container-top-section h3 {
         font-size: 18px;
     }
-    .article-coments-main-container ul li{
+
+    .article-coments-main-container ul li {
         position: relative;
         padding: 10px 0;
     }
 }
 
 @media only screen and (min-width: 670px) {
-    .article-title-container{
+    .article-title-container {
         font-size: 38px;
     }
-    .article-main-container{
+
+    .article-main-container {
         padding: 60px 40px;
     }
 }
 
-@media only screen and (min-width: 900px) {
-
-}
+@media only screen and (min-width: 900px) {}
 
 @media only screen and (min-width: 1080px) {}
