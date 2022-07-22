@@ -13,3 +13,4 @@ Just download the project and you are good to go to run in a browser.
 
 
 Any suggestion, feedbacks are most welcomed
+You can provide that through issues
