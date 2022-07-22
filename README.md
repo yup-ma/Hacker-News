@@ -10,3 +10,7 @@ Just download the project and you are good to go to run in a browser.
 --> Go to View folder
 --> Go to template folder
 --> Run index.html
+
+
+Any suggestion, feedbacks are most welcomed
+You can provide that through issues
