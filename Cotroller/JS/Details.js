@@ -7,7 +7,7 @@ let timeMSUnitsObject = {
     year: 24 * 60 * 60 * 1000 * 365
 }
 let currentTimeStampVar;
-let apiUrlForArticles = `http://hn.algolia.com/api/v1/items/${searchedObjectId}`;
+let apiUrlForArticles = `https://hn.algolia.com/api/v1/items/${searchedObjectId}`;
 
 //Running a test search on load of page
 window.addEventListener("load", () => {
@@ -27,7 +27,7 @@ window.addEventListener("load", () => {
         window.location.replace(`../Template/Details.html?object_id=${searchedObjectId}`);
     }
     //Updating url with param
-    apiUrlForArticles = `http://hn.algolia.com/api/v1/items/${searchedObjectId}`;
+    apiUrlForArticles = `https://hn.algolia.com/api/v1/items/${searchedObjectId}`;
     apiRunningFunc(apiUrlForArticles)
 })
 

@@ -1,5 +1,5 @@
 let appliedFiltersArray = [];
-let apiUrlForArticles = `http://hn.algolia.com/api/v1/search?tags=front_page`;
+let apiUrlForArticles = `https://hn.algolia.com/api/v1/search?tags=front_page`;
 let debounceInputTimer;
 let searchedThroughInput = false;
 let pageNumber = 0;
@@ -247,14 +247,14 @@ document.querySelector("#search-input").addEventListener('input', function () {
 function updatingURLForAPIFunc() {
     searchedThroughInput = true;
     document.querySelector(".articles-main-container-heading").innerHTML = "Articles";
-    let baseAPIUrlForArticles = `http://hn.algolia.com/api/v1/search`
+    let baseAPIUrlForArticles = `https://hn.algolia.com/api/v1/search`
     let articleSearchInputVal = document.querySelector("#search-input").value.replace(/\s+/g, '_');
     let tagsAllVal = "";
     let authorAllVal = "";
     let filterByDate = false;
 
     if (searchedThroughInput == false) {
-        apiUrlForArticles = `http://hn.algolia.com/api/v1/search?tags=front_page`;
+        apiUrlForArticles = `https://hn.algolia.com/api/v1/search?tags=front_page`;
     } else {
         for (array in appliedFiltersArray) {
             if (appliedFiltersArray[array].type == "trival") {
