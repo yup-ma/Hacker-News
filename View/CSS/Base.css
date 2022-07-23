@@ -529,8 +529,6 @@ nav [data-nav-title]:focus::after {
 }
 
 .updates-section h5 {
-    position: sticky;
-    top: -1px;
     text-align: left;
     font-size: 22px;
     padding: 15px 25px;
