@@ -70,7 +70,7 @@ updatesTemplate.innerHTML = `<div class="updates-fixed-section">
             </div>
             <div class="updates-section catched-up-with-section">
                 <h5>All catched with updates</h5>
-                <img src="../Images/catched-up-all.svg" alt="All catched up with updated">
+                <img src="View/Images/catched-up-all.svg" alt="All catched up with updated">
                 <p>We would love to hear from you<br>Any suggestion, feedback, feature requests are most
                     welcomed<br><br>You can send it through <br><a
                         href="mailto:aman080420@gmail.com?subject=Feedback%20for%20Hacer%20News%20Search%Engine">aman080420@gmail.com</a>
