@@ -332,7 +332,7 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
         }
         articles.forEach(ele => {
             const newAnchor = document.createElement("a");
-            newAnchor.href = `../Template/Details.html?object_id=${ele.objectID}`;
+            newAnchor.href = `View/Template/Details.html?object_id=${ele.objectID}`;
             newAnchor.className = "articles-container d-flex d-flex-dir-col d-flex-just-cent";
             newAnchor.dataset.articleId = ele.objectID;
             let pointsAmount = ele.points;
