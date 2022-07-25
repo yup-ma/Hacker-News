@@ -10,7 +10,7 @@ updatesTemplate.innerHTML = `<div class="updates-fixed-section">
             </button>
         </h3>
         <div class="updates-main-section">
-            <p>A section where you can learn about new updates, beta releases, and potential future releases.</p>
+            <p class="update-main-section-desc">A section where you can learn about new updates, beta releases, and potential future releases.</p>
             <div class="updates-section updates-recent-releases-section">
                 <h5>Recent</h5>
                 <div class="updates-section-details">

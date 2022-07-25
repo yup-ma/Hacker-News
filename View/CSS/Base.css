@@ -475,7 +475,7 @@ nav [data-nav-title]:focus::after {
 .updates-parent-main-section button {
     cursor: pointer;
     position: absolute;
-    top: 15px;
+    top: 13.5px;
     right: 15px;
     width: 40px;
     height: 40px;
@@ -527,7 +527,10 @@ nav [data-nav-title]:focus::after {
     margin: auto;
     margin-bottom: 60px;
 }
-
+p.update-main-section-desc{
+    text-align: left;
+    margin-left: 0;
+}
 .updates-section h5 {
     text-align: left;
     font-size: 22px;
@@ -616,6 +619,10 @@ nav [data-nav-title]:focus::after {
 
     .updates-parent-main-section h3 {
         text-align: center;
+    }
+    p.update-main-section-desc{
+        text-align: center;
+        margin-left: auto;
     }
 }
 
