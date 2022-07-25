@@ -12,12 +12,12 @@ navbarTemplate.innerHTML = `<div class="navbar-top"></div>
     </div>
     </div>
     <nav class="d-flex d-flex-just-space-btw">
-        <a href="Index.html" class="company-logo-container d-flex web-links" title="Hacker News">
+        <a href="/" class="company-logo-container d-flex web-links" title="Hacker News">
             <span class="company-logo d-flex"><i class="fa-brands fa-hacker-news-square"></i></span>
             <span class="company-name">Hacker News</span>
         </a>
         <div class="d-flex">
-            <a href="Index.html#search-input-parent-container" class="web-links d-flex d-flex-just-cent"
+            <a href="/#search-input-parent-container" class="web-links d-flex d-flex-just-cent"
                 title="Search for articles" data-nav-title="Search for articles"">
                 <span class="link-icon link-search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                 <span class="link-text">Search</span>
