@@ -17,7 +17,7 @@ navbarTemplate.innerHTML = `<div class="navbar-top"></div>
             <span class="company-name">Hacker News</span>
         </a>
         <div class="d-flex">
-            <a href="/Hacker-News/#search-input-parent-container" class="web-links d-flex d-flex-just-cent"
+            <a href="/Hacker-News#search-input-parent-container" class="web-links d-flex d-flex-just-cent"
                 title="Search for articles" data-nav-title="Search for articles"">
                 <span class="link-icon link-search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
                 <span class="link-text">Search</span>
