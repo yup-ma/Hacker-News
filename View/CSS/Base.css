@@ -122,6 +122,14 @@ h6 {
 .web-links:focus {
     outline: 2px solid var(--cta-outline-color);
 }
+.company-logo-container:hover,
+.company-logo-container:focus {
+    background-color: initial;
+    color: initial;
+}
+.company-logo-container:focus {
+    outline: none;
+}
 
 .web-links .link-icon {
     font-size: 24px;
