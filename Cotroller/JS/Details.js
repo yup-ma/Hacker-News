@@ -36,7 +36,6 @@ function apiRunningFunc(e) {
     fetch(e)
         .then(response => response.json())
         .then((jsonData) => {
-            console.log(jsonData)
             articleCreatorFunc(jsonData);
         })
         //Catching any erros if api fails
@@ -51,16 +50,14 @@ function apiRunningFunc(e) {
 //Displaying article info based on fetched data
 function articleCreatorFunc(jsonData) {
     let articleTitle = jsonData.title;
-    let articleCommentTitle = "";
     let pointsAmount = jsonData.points;
     //Checking null stats of data
-    if (articleTitle == null) {
+    if (articleTitle == null || articleTitle == "") {
         if (jsonData.text !== null) {
             if (jsonData.type == "comment") {
-                articleTitle = "Comment: " + (jsonData.text).substring(0, 50).trim() + "...";
-                articleCommentTitle = jsonData.text;
+                articleTitle = "Comment: " + jsonData.text;
             } else {
-                articleTitle = "Poll option: " + removingParagraphTag(jsonData.text);
+                articleTitle = "Poll option: " + jsonData.text;
             }
         } else {
             articleTitle = "Couldn't find title";
@@ -73,7 +70,7 @@ function articleCreatorFunc(jsonData) {
     document.querySelector("main").innerHTML = `<div class="article-main-container d-flex d-flex-dir-col">
         <div class="article-main-container-top-section d-flex d-flex-dir-col">
             <span class="article-type-container">${jsonData.type}</span>
-            <h1 class="article-title-container" title="${articleCommentTitle}">${articleTitle}</h1>
+            <h1 class="article-title-container">${articleTitle}</h1>
             <h3 class="d-flex">
                 <span class="article-creating-date-container">${articleDateConverterFunc(jsonData.created_at)}</span>
                 <span class="dot"><i class="fa-solid fa-circle"></i></span>
@@ -113,7 +110,12 @@ function articleCreatorFunc(jsonData) {
         if (jsonData.url !== null) {
             document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank">Read article <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
         } else {
-            document.querySelector(".article-extra-details-container").style.display = "none";
+            if (jsonData.text !== null) {
+                document.querySelector(".article-extra-details-container").innerHTML = "Description:" + jsonData.text;
+                
+            } else {
+                document.querySelector(".article-extra-details-container").style.display = "none";
+            }
         }
     } else if (jsonData.type == "poll") {
         if (jsonData.options.length > 0) {
