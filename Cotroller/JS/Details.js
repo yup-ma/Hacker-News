@@ -36,6 +36,7 @@ function apiRunningFunc(e) {
     fetch(e)
         .then(response => response.json())
         .then((jsonData) => {
+            console.log(jsonData)
             articleCreatorFunc(jsonData);
         })
         //Catching any erros if api fails
@@ -108,11 +109,10 @@ function articleCreatorFunc(jsonData) {
     //Updating a extra section based on tags like story, poll
     if (jsonData.type == "story") {
         if (jsonData.url !== null) {
-            document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank">Read article <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
+            document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank" class="article-extra-details-container-link">Read article <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
         } else {
             if (jsonData.text !== null) {
                 document.querySelector(".article-extra-details-container").innerHTML = "Description:" + jsonData.text;
-                
             } else {
                 document.querySelector(".article-extra-details-container").style.display = "none";
             }
@@ -129,10 +129,14 @@ function articleCreatorFunc(jsonData) {
             document.querySelector(".article-extra-details-container").style.display = "none";
         }
     } else if (jsonData.type == "job") {
-        if (jsonData.url !== null) {
-            document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank">Job link <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
+        if (jsonData.url !== null && jsonData.url !== "") {
+            document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank" class="article-extra-details-container-link">Job link <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
         } else {
-            document.querySelector(".article-extra-details-container").style.display = "none";
+            if (jsonData.text !== null) {
+                document.querySelector(".article-extra-details-container").innerHTML = "Description:" + jsonData.text;
+            } else {
+                document.querySelector(".article-extra-details-container").style.display = "none";
+            }
         }
     } else {
         document.querySelector(".article-extra-details-container").style.display = "none";
