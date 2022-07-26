@@ -366,18 +366,6 @@
     animation: articleTransformAnime var(--transition02) linear;
 }
 
-@keyframes articleTransformAnime {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
 .articles-container:hover,
 .articles-container:focus {
     outline: 3px solid var(--article-color);
