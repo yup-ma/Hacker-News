@@ -36,6 +36,7 @@ function apiRunningFunc(e) {
     fetch(e)
         .then(response => response.json())
         .then((jsonData) => {
+            console.log(jsonData)
             articleCreatorFunc(jsonData);
         })
         //Catching any erros if api fails
@@ -56,7 +57,7 @@ function articleCreatorFunc(jsonData) {
     if (articleTitle == null) {
         if (jsonData.text !== null) {
             if (jsonData.type == "comment") {
-                articleTitle = "Comment: " + removingParagraphTag(jsonData.text).substring(0, 50).trim() + "...";
+                articleTitle = "Comment: " + (jsonData.text).substring(0, 50).trim() + "...";
                 articleCommentTitle = jsonData.text;
             } else {
                 articleTitle = "Poll option: " + removingParagraphTag(jsonData.text);
@@ -125,6 +126,12 @@ function articleCreatorFunc(jsonData) {
         } else {
             document.querySelector(".article-extra-details-container").style.display = "none";
         }
+    } else if (jsonData.type == "job") {
+        if (jsonData.url !== null) {
+            document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank">Job link <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
+        } else {
+            document.querySelector(".article-extra-details-container").style.display = "none";
+        }
     } else {
         document.querySelector(".article-extra-details-container").style.display = "none";
     }
@@ -141,8 +148,6 @@ function articleCreatorFunc(jsonData) {
         <p>Opps, Couldn't find any comment</a>
     </div>`;
     }
-    //Entering comments amount based on all stats after removing comments with no auth or text
-    document.querySelector(".comment-amount").innerHTML = document.querySelectorAll("li").length
 }
 
 //Removing paragraph tag for texts if required
@@ -185,6 +190,8 @@ function addingCommentsToArticleFunc(container, commentsArray) {
         }
         container.appendChild(newLi);
     });
+    //Entering comments amount based on all stats after removing comments with no auth or text
+    document.querySelector(".comment-amount").innerHTML = document.querySelectorAll("li").length
 }
 
 //Adding a toggle state to show more replies
