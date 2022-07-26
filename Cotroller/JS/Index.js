@@ -344,7 +344,7 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
                 commentsAmount = 0;
             }
             let articleTitle = ele.title;
-            if (articleTitle == null) {
+            if (articleTitle == null || articleTitle == "") {
                 if (ele.comment_text !== null) {
                     articleTitle = "Comment: " + ele.comment_text;
                 } else if (ele.story_text !== null) {
