@@ -150,6 +150,8 @@ function articleCreatorFunc(jsonData) {
         <p>Opps, Couldn't find any comment</a>
     </div>`;
     }
+        //Entering comments amount based on all stats after removing comments with no auth or text
+    document.querySelector(".comment-amount").innerHTML = commentCountVar;
 }
 
 //Removing paragraph tag for texts if required
@@ -157,6 +159,7 @@ function removingParagraphTag(e) {
     return e.replace("<p>", "").replace("</p>", "")
 }
 
+let commentCountVar = 0;
 //Looping through all comments
 function addingCommentsToArticleFunc(container, commentsArray) {
     commentsArray.forEach(ele => {
@@ -166,6 +169,7 @@ function addingCommentsToArticleFunc(container, commentsArray) {
         } else if (ele.text == null) {
             return
         }
+        commentCountVar++
         if (ele.points == null) {
             commentPointsAmt = 0;
         }
@@ -192,8 +196,6 @@ function addingCommentsToArticleFunc(container, commentsArray) {
         }
         container.appendChild(newLi);
     });
-    //Entering comments amount based on all stats after removing comments with no auth or text
-    document.querySelector(".comment-amount").innerHTML = document.querySelectorAll("li").length
 }
 
 //Adding a toggle state to show more replies
