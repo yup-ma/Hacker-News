@@ -287,6 +287,7 @@ function apiRunningFunc(e) {
     fetch(e)
         .then(response => response.json())
         .then((jsonData) => {
+            currentTimeStampVar = new Date().getTime()
             creatingArticlesFunc(jsonData.hits, jsonData.page, jsonData.nbPages, jsonData.nbHits, jsonData.processingTimeMS);
         })
         //Handling errors
@@ -354,7 +355,7 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
                 }
             }
             newAnchor.innerHTML = `<h3 class="articles-container-heading" title="${articleTitle}">${articleTitle}</h3>
-            <div class="articles-container-created-date">${articleDateConverterFunc(ele.created_at)}</div>
+            <div class="articles-container-created-date">${articleDateConverterFunc(ele.created_at, ele.created_at_i)}</div>
             <div class="articles-container-info-main d-flex">
                 <div class="articles-container-info articles-container-info-author d-flex" title="Author: ${ele.author}">
                     <span class="articles-container-info-icon"><i class="fa-solid fa-user"></i></span>
@@ -428,7 +429,7 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
         document.querySelector(".articles-main-container-sub-heading").style.display = "none";
         document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
             <img src="View/Images/empty-list-image.svg" alt="Couldn't find any results">
-            <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="../Template/Index.html#search-input-parent-container">filters</a> and <a href="../Template/Index.html#search-input-parent-container">search query</a>
+            <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="/Hacker-News#search-input-parent-container">filters</a> and <a href="/Hacker-News#search-input-parent-container">search query</a>
         </div>`;
     }
 }
@@ -473,4 +474,12 @@ function articlePaginationClickFunc() {
 //Set local storage for the object id of clicked article as a fallback
 function articleClickedFunc() {
     localStorage.setItem("searched-article-id", this.dataset.articleId);
+}
+
+document.querySelector(".dark-light-mode-switch input").addEventListener('click', anotherUpdateThemeFunc)
+
+function anotherUpdateThemeFunc(){
+    searchedThroughInput = false;
+    document.querySelector(".articles-main-container-heading").innerHTML = "Recent articles";
+    apiRunningFunc(apiUrlForArticles)
 }

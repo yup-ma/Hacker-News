@@ -39,8 +39,8 @@ navbarTemplate.innerHTML = `<div class="navbar-top"></div>
                 <span class="link-icon"><i class="fa-brands fa-github"></i></span>
                 <span class="link-text">Github</span>
             </a>
-            <label class="dark-light-mode-switch" title="Comming soon" data-nav-title="Comming soon">
-                <input type="checkbox">
+            <label class="dark-light-mode-switch" title="Toggle dark theme" data-nav-title="Toggle dark theme">
+                <input type="checkbox" class="dark-light-mode-input">
                 <span class="dark-light-mode-slider"></span>
             </label>
         </div>

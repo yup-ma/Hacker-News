@@ -26,6 +26,10 @@ updatesTemplate.innerHTML = `<div class="updates-fixed-section">
             <div class="updates-section updates-beta-releases-section">
                 <h5>Beta releases</h5>
                 <div class="updates-section-details">
+                    <span class="update-release-time">Aug 2, 2022</span>
+                    <ul>
+                        <li>Dual themes - Dark and Light both</li>
+                    </ul>
                     <span class="update-release-time">Jul 22, 2022</span>
                     <ul>
                         <li>Multicolor search results</li>
@@ -40,10 +44,9 @@ updatesTemplate.innerHTML = `<div class="updates-fixed-section">
                         <li>Cute name and logo for website (Any suggestions most welcomed)</li>
                         <li>Pro features
                             <ul>
-                                <li>Dual themes - Dark and Light both</li>
                                 <li>Search results - upto 20 pages</li>
                                 <li>Dual color modes for results - multicolor(currently) and single colored</li>
-                                <li>Dual view mode for search results - Grid view(currently) and more conjusted
+                                <li>Dual view mode for search results - Grid view(currently) and more congested
                                     stack view</li>
                             </ul>
                         </li>

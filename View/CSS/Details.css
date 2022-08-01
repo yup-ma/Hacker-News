@@ -39,6 +39,7 @@
 }
 
 .article-title-container {
+    color: var(--primary-color);
     font-size: 34px;
     text-align: center;
     margin-top: 20px;

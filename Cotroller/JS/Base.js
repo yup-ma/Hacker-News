@@ -1,6 +1,31 @@
 const networkStatusBar = document.getElementById("network-status");
 let actionStatus = "";
 let actionMessage = "";
+let timeMSUnitsObject = {
+    min: 60 * 1000,
+    hour: 60 * 60 * 1000,
+    day: 24 * 60 * 60 * 1000,
+    month: 24 * 60 * 60 * 1000 * 365 / 12,
+    year: 24 * 60 * 60 * 1000 * 365
+}
+let currentTimeStampVar;
+
+//Running a test search on load of page
+window.addEventListener("load", () => {
+    if (localStorage.getItem("theme") == "dark") {
+        const inputVar = document.querySelector(".dark-light-mode-input")
+        const labelVar = document.querySelector(".dark-light-mode-switch")
+        document.documentElement.classList.add("changing-theme")
+        inputVar.checked = true;
+        document.documentElement.dataset.theme = "dark";
+        labelVar.title = "Toggle light theme";
+        labelVar.dataset.navTitle = "Toggle light theme";
+        
+        setTimeout(() => {
+            document.documentElement.classList.remove("changing-theme")
+        }, 300);
+    }
+})
 
 //Showing a message on online and offline status
 window.addEventListener("online", () => {
@@ -97,19 +122,42 @@ function observeHeadingFunc() {
 }
 
 //Create a time stamp in format "month date, year" for article
-function articleDateConverterFunc(e) {
-    const date = new Date(e)
+function articleDateConverterFunc(utcTimeStamp, secondsTimeStamp) {
+    const date = new Date(utcTimeStamp)
     let monthsName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     let articleMonth = monthsName[date.getMonth()]
-    return `${articleMonth} ${date.getUTCDate()}, ${date.getUTCFullYear()}`
+    let timePassedVar = "";
+
+    let timePassedSinceComment = currentTimeStampVar - secondsTimeStamp * 1000;
+    if (timePassedSinceComment < timeMSUnitsObject.min) {
+        timePassedVar = "(" + Math.floor(timePassedSinceComment / 1000) + ' sec ago)';
+    } else if (timePassedSinceComment < timeMSUnitsObject.hour) {
+        timePassedVar = "(" + Math.floor(timePassedSinceComment / timeMSUnitsObject.min) + ' min ago)';
+    } else if (timePassedSinceComment < timeMSUnitsObject.day) {
+        if (Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) > 1) {
+            timePassedVar = "(" + Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) + ' hours ago)';
+        } else {
+            timePassedVar = "(" + Math.floor(timePassedSinceComment / timeMSUnitsObject.hour) + ' hour ago)';
+        }
+    } else {
+        timePassedVar = "";
+    }
+    return `${articleMonth} ${date.getUTCDate()}, ${date.getUTCFullYear()} ${timePassedVar}`;
 }
 
 //Create a random number in format "xx, xx, xx" for rgb color
 function randomColorGenerator() {
-    let r = Math.floor(Math.random() * (181));
-    let g = Math.floor(Math.random() * (181));
-    let b = Math.floor(Math.random() * (181));
-    return `${r}, ${g}, ${b}`;
+    if (document.querySelector(".dark-light-mode-input").checked == true) {
+        let r = Math.floor(Math.random() * 256) + 120;
+        let g = Math.floor(Math.random() * 256) + 120;
+        let b = Math.floor(Math.random() * 256) + 120;
+        return `${r}, ${g}, ${b}`;
+    } else {
+        let r = Math.floor(Math.random() * 181);
+        let g = Math.floor(Math.random() * 181);
+        let b = Math.floor(Math.random() * 181);
+        return `${r}, ${g}, ${b}`;
+    }
 }
 
 //Adding a observer to change the style of update section heading when user scrolls
@@ -120,8 +168,6 @@ const observer_1 = new IntersectionObserver(
 );
 
 document.querySelector(".updates-modal-btn").addEventListener('click', updatesInfoModalOpenFunc)
-document.querySelector(".dark-light-mode-switch").addEventListener('click', updatesInfoModalOpenFunc)
-
 //Func to open update section
 function updatesInfoModalOpenFunc() {
     document.querySelector(".updates-fixed-section").style.display = "flex";
@@ -162,4 +208,29 @@ function trapFocus(e) {
             }
         }
     }
+}
+
+
+document.querySelector(".dark-light-mode-switch input").addEventListener('click', updateThemeFunc)
+
+function updateThemeFunc(){
+    const inputVar = document.querySelector(".dark-light-mode-input")
+    const labelVar = document.querySelector(".dark-light-mode-switch")
+    setTimeout(() => {
+        document.documentElement.classList.add("changing-theme")
+        if (inputVar.checked == true) {
+            document.documentElement.dataset.theme = "dark";
+            labelVar.title = "Toggle light theme";
+            labelVar.dataset.navTitle = "Toggle light theme";
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.documentElement.dataset.theme = "light";
+            labelVar.title = "Toggle dark theme";
+            labelVar.dataset.navTitle = "Toggle dark theme";
+            localStorage.setItem("theme", "light");
+        }
+    }, 500);
+    setTimeout(() => {
+        document.documentElement.classList.remove("changing-theme")
+    }, 700);
 }

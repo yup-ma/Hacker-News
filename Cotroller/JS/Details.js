@@ -1,12 +1,4 @@
 let searchedObjectId = "";
-let timeMSUnitsObject = {
-    min: 60 * 1000,
-    hour: 60 * 60 * 1000,
-    day: 24 * 60 * 60 * 1000,
-    month: 24 * 60 * 60 * 1000 * 365 / 12,
-    year: 24 * 60 * 60 * 1000 * 365
-}
-let currentTimeStampVar;
 let apiUrlForArticles = `https://hn.algolia.com/api/v1/items/${searchedObjectId}`;
 
 //Running a test search on load of page
@@ -36,14 +28,15 @@ function apiRunningFunc(e) {
     fetch(e)
         .then(response => response.json())
         .then((jsonData) => {
-            console.log(jsonData)
+            //Current time while running this func
+            currentTimeStampVar = new Date().getTime();
             articleCreatorFunc(jsonData);
         })
         //Catching any erros if api fails
         .catch((error) => {
             document.querySelector("main").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
             <img src="View/Images/error-occured-image.svg" alt="Faced an error">
-            <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page<br><br><a href="../Template/Index.html">Go to home page</a></p>
+            <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page<br><br><a href="/Hacker-News">Go to home page</a></p>
         </div>`
         });
 }
@@ -73,7 +66,7 @@ function articleCreatorFunc(jsonData) {
             <span class="article-type-container">${jsonData.type}</span>
             <h1 class="article-title-container">${articleTitle}</h1>
             <h3 class="d-flex">
-                <span class="article-creating-date-container">${articleDateConverterFunc(jsonData.created_at)}</span>
+                <span class="article-creating-date-container">${articleDateConverterFunc(jsonData.created_at, jsonData.created_at_i)}</span>
                 <span class="dot"><i class="fa-solid fa-circle"></i></span>
                 <span class="article-author-container">${jsonData.author}</span>
             </h3>
@@ -142,8 +135,6 @@ function articleCreatorFunc(jsonData) {
         document.querySelector(".article-extra-details-container").style.display = "none";
     }
 
-    //Current time while running this func
-    currentTimeStampVar = new Date().getTime()
     //Checking if there are any comments
     if (jsonData.children.length > 0) {
         document.querySelector(".article-coments-main-container ul")
