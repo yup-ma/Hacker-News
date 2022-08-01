@@ -429,7 +429,7 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
         document.querySelector(".articles-main-container-sub-heading").style.display = "none";
         document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
             <img src="View/Images/empty-list-image.svg" alt="Couldn't find any results">
-            <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="/Hacker-News#search-input-parent-container">filters</a> and <a href="/Hacker-News#search-input-parent-container">search query</a>
+            <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="#search-input-parent-container">filters</a> and <a href="#search-input-parent-container">search query</a>
         </div>`;
     }
 }
