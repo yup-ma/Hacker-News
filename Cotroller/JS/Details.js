@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
         } else {
             searchedObjectId = "";
         }
-        window.location.replace(`../Template/Details.html?object_id=${searchedObjectId}`);
+        window.location.replace(`/Hacker-News/Details.html?object_id=${searchedObjectId}`);
     }
     //Updating url with param
     apiUrlForArticles = `https://hn.algolia.com/api/v1/items/${searchedObjectId}`;
