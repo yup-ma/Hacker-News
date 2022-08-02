@@ -14,7 +14,7 @@ window.addEventListener("load", () => {
         if (localStorage.getItem("searched-article-id")) {
             searchedObjectId = localStorage.getItem("searched-article-id");
         } else {
-            searchedObjectId = "";
+            searchedObjectId = "NaN";
         }
         window.location.replace(`/Hacker-News/Details.html?object_id=${searchedObjectId}`);
     }
