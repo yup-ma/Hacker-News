@@ -397,6 +397,7 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
             let randomArticleColor = randomColorGenerator();
             newAnchor.style.setProperty("--article-color", `rgb(${randomArticleColor})`);
             newAnchor.style.backgroundColor = `rgba(${randomArticleColor}, 0.15)`;
+            newAnchor.querySelector(".article-share-btn").style.backgroundColor = `rgba(${randomArticleColor}, 0.3)`;
 
             ele._tags.forEach(e => {
                 const newButton = document.createElement("button");
