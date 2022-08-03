@@ -227,19 +227,6 @@ document.querySelector("#search-input").addEventListener('input', function () {
     clearTimeout(debounceInputTimer);
     debounceInputTimer = setTimeout(() => {
         updatingURLForAPIFunc();
-        document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
-        document.querySelector(".articles-main-container-pagination").style.display = "none";
-        document.querySelector(".articles-main-container").innerHTML = `<div class="loader-container">
-    <div>
-        <span class="loader loader1">l</span>  
-        <span class="loader loader2">o</span>  
-        <span class="loader loader3">a</span>  
-        <span class="loader loader4">d</span>  
-        <span class="loader loader5">i</span>  
-        <span class="loader loader6">n</span>  
-        <span class="loader loader7">g</span>  
-    </div>
-</div>`;
     }, 300);
 })
 
@@ -284,6 +271,19 @@ function updatingURLForAPIFunc() {
 apiRunningFunc(apiUrlForArticles)
 //Running the api with the url provided as argument
 function apiRunningFunc(e) {
+    document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
+        document.querySelector(".articles-main-container-pagination").style.display = "none";
+        document.querySelector(".articles-main-container").innerHTML = `<div class="loader-container">
+    <div>
+        <span class="loader loader1">l</span>  
+        <span class="loader loader2">o</span>  
+        <span class="loader loader3">a</span>  
+        <span class="loader loader4">d</span>  
+        <span class="loader loader5">i</span>  
+        <span class="loader loader6">n</span>  
+        <span class="loader loader7">g</span>  
+    </div>
+</div>`;
     fetch(e)
         .then(response => response.json())
         .then((jsonData) => {
@@ -292,6 +292,7 @@ function apiRunningFunc(e) {
         })
         //Handling errors
         .catch((error) => {
+            console.log(error)
             document.querySelector(".articles-main-container-pagination").innerHTML = "";
             document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
             document.querySelector(".articles-main-container").innerHTML = "";
@@ -354,7 +355,12 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
                     articleTitle = "Couldn't find title"
                 }
             }
-            newAnchor.innerHTML = `<h3 class="articles-container-heading" title="${articleTitle}">${articleTitle}</h3>
+            newAnchor.innerHTML = `<div class="article-share-container d-flex d-flex-dir-col">
+                <button class="article-share-btn" title="Share it"><i class="fa-solid fa-share-nodes"></i><span class="hidden-ele">Share</span></button>
+                <div class="share-options-container d-flex d-flex-dir-col">
+                </div>
+            </div>
+            <h3 class="articles-container-heading" title="${articleTitle}">${articleTitle}</h3>
             <div class="articles-container-created-date">${articleDateConverterFunc(ele.created_at, ele.created_at_i)}</div>
             <div class="articles-container-info-main d-flex">
                 <div class="articles-container-info articles-container-info-author d-flex" title="Author: ${ele.author}">
@@ -383,8 +389,11 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
                 <div class="articles-container-tags-main-container d-flex">
                 </div>
             </div>`;
+            articleBlocksSharingFunc(newAnchor.querySelector(".share-options-container"), newAnchor.href, articleTitle)
             document.querySelector(".articles-main-container").appendChild(newAnchor);
             newAnchor.addEventListener('click', articleClickedFunc)
+            newAnchor.querySelector(".article-share-container:not(a)").addEventListener('click', shareOptionsPrevDefaultFunc)
+            newAnchor.querySelector(".article-share-btn").addEventListener('click', shareOptionsOpenerFunc)
             let randomArticleColor = randomColorGenerator();
             newAnchor.style.setProperty("--article-color", `rgb(${randomArticleColor})`);
             newAnchor.style.backgroundColor = `rgba(${randomArticleColor}, 0.15)`;
@@ -431,6 +440,26 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
             <img src="View/Images/empty-list-image.svg" alt="Couldn't find any results">
             <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="#search-input-parent-container">filters</a> and <a href="#search-input-parent-container">search query</a>
         </div>`;
+    }
+}
+
+function shareOptionsPrevDefaultFunc(){
+    event.preventDefault();
+}
+
+function shareOptionsOpenerFunc(){
+    if (document.querySelector(".active-share-dropdown")) {
+        document.querySelector(".active-share-dropdown").classList.remove("active-share-dropdown");
+    }
+    this.parentElement.classList.add("active-share-dropdown");
+    document.body.addEventListener('click', sharingDropdownClosingFunc)
+}
+// Closing dropdowns for filters
+function sharingDropdownClosingFunc(e) {
+    let currentTarget = document.querySelector(".active-share-dropdown").contains(e.target);
+    if (!currentTarget) { //clikced outside of box
+        document.querySelector(".active-share-dropdown").classList.remove("active-share-dropdown");
+        document.body.removeEventListener('click', sharingDropdownClosingFunc)
     }
 }
 

@@ -62,6 +62,12 @@ html[data-theme="dark"] {
     --pink-shade-color: #fe6f7b;
     --success-bg-color: #006729;
 }
+html[data-theme="dark"] .articles-container {
+    filter: brightness(0.9);
+}
+html[data-theme="dark"] img {
+    filter: brightness(.8) contrast(1.2);
+  }
 html.changing-theme {
     --transition02: 0;
     --transition03: 0;
@@ -651,7 +657,15 @@ p.update-main-section-desc{
     max-width: 100%;
     padding: 20px;
 }
+@keyframes transformDropdown {
+    0% {
+        transform: scale(0.5);
+    }
 
+    100% {
+        transform: scale(1);
+    }
+}
 @media only screen and (min-width: 414px) {
     .articles-main-container-heading {
         font-size: 36px;

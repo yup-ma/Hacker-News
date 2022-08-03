@@ -243,7 +243,7 @@
     left: -1px;
     z-index: 1;
     background-color: var(--white-color);
-    padding: 12px 0;
+    padding: 7px 0;
     border-radius: 5px;
     box-shadow: var(--box-shadow-color) 0px 3px 8px;
     transform-origin: top left;
@@ -254,16 +254,6 @@
     left: auto;
     right: -1px;
     transform-origin: top right;
-}
-
-@keyframes transformDropdown {
-    0% {
-        transform: scale(0.5);
-    }
-
-    100% {
-        transform: scale(1);
-    }
 }
 
 .filter-search-types-container.active-filter-dropdown .filter-dropdown {
@@ -300,6 +290,9 @@
     color: var(--primary-color);
     background-color: var(--cta-mostlight-color);
     border-left: 3px solid var(--primary-color);
+}
+.filter-dropdown>button:active{
+    background-color: var(--cta-light-color);
 }
 
 .filter-dropdown-special-btn-container button {
@@ -355,11 +348,12 @@
 
 .articles-container {
     --article-color: var(--secondary-color);
+    position: relative;
     cursor: pointer;
     width: 100%;
     min-width: 100%;
     text-decoration: none;
-    padding: 15px;
+    padding: 30px 15px;
     margin: 10px;
     background: rgb(182 179 179 / 10%);
     color: var(--article-color);
@@ -368,6 +362,7 @@
     border-radius: 20px;
     transition: var(--transition05);
     animation: articleTransformAnime var(--transition02) linear;
+    overflow: hidden;
 }
 
 .articles-container:hover,
@@ -475,7 +470,7 @@
     margin: 0 5px;
     padding: 2px 11px;
     color: inherit;
-    background-color: var(--white-color);
+    background-color: transparent;
     border: 1px solid var(--article-color);
     border-radius: 20px;
     text-transform: capitalize;
@@ -525,6 +520,89 @@
     display: none;
 }
 
+/* -----------------------------------------------------------------------   */
+.article-share-container{
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    transition: var(--transition05);
+}
+.article-share-btn{
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    color: var(--article-color);
+    border: none;
+    border-radius: 0 20px 0 14px;
+    transition: var(--transition05);
+    background: white;
+}
+.article-share-btn:hover ,.article-share-btn:focus{
+    height: 45px;
+    width: 45px;
+    box-shadow: var(--box-shadow-color) 0px 3px 8px;
+}
+.article-share-container:hover,.article-share-container:focus-within{
+    right: 0;
+    top: 0;
+}
+.articles-container:hover .article-share-container,.articles-container:focus .article-share-container{
+    right: 0;
+    top: 0;
+}
+.share-options-container {
+    display: none;
+    /* display: flex; */
+    max-width: 200px;
+    min-width: 160px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 1;
+    background-color: var(--white-color);
+    padding: 7px 0;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-color) 0px 3px 8px;
+    transform-origin: top right;
+    animation: transformDropdown var(--transition02) linear;
+}
+.article-share-container.active-share-dropdown {
+    right: 0;
+    top: 0;
+}
+.article-share-container.active-share-dropdown .share-options-container {
+    display: flex;
+}
+.share-options-container .share-option {
+    cursor: pointer;
+    width: 100%;
+    padding: 8px 14px 8px 7px;
+    text-decoration: none;
+    text-align: left;
+    margin: 2px;
+    background-color: var(--white-color);
+    color: var(--article-color);
+    border: none;
+    border-left: 3px solid transparent;
+    outline: none;
+    transition: var(--transition05) background-color;
+}
+.share-options-container .share-option.close-share-option{
+    border-top: 1px solid var(--secondary-light-color);
+}
+.share-options-container .share-option:hover,.share-options-container .share-option:focus{
+    background-color: var(--cta-mostlight-color);
+    border-left: 3px solid var(--primary-color);
+}
+.share-options-container .share-option:active{
+    background-color: var(--cta-light-color);
+}
+.share-options-container .share-option i{
+    font-size: 18px;
+    width: 25px;
+    margin-right: 10px;
+    text-align: center;
+}
 /* -----------------------------------------------------------------------   */
 
 @media only screen and (min-width: 414px) {
@@ -588,6 +666,28 @@
         min-width: auto;
         max-width: 400px;
         margin: 20px;
+    }
+}
+
+@media (pointer:coarse) {
+
+    /*For touch screen devices, tablet or mobile devices*/
+    .article-share-container{
+        position: absolute;
+        right: -40px;
+        top: -40px;
+        transition: var(--transition05);
+        animation: shareBtnAnime var(--transition05) linear forwards;
+    }
+    @keyframes shareBtnAnime {
+        0%{
+            right: -40px;
+            top: -40px;
+        }
+        100%{
+            right: 0;
+            top: 0;
+        }
     }
 }
 

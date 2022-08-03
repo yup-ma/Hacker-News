@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
         } else {
             searchedObjectId = "NaN";
         }
-        window.location.replace(`/Hacker-News/Details.html?object_id=${searchedObjectId}`);
+        window.location.replace(`/Quality-Reads/Details.html?object_id=${searchedObjectId}`);
     }
     //Updating url with param
     apiUrlForArticles = `https://hn.algolia.com/api/v1/items/${searchedObjectId}`;
@@ -36,7 +36,7 @@ function apiRunningFunc(e) {
         .catch((error) => {
             document.querySelector("main").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
             <img src="View/Images/error-occured-image.svg" alt="Faced an error">
-            <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page<br><br><a href="/Hacker-News">Go to home page</a></p>
+            <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page<br><br><a href="/Quality-Reads">Go to home page</a></p>
         </div>`
         });
 }
@@ -88,6 +88,8 @@ function articleCreatorFunc(jsonData) {
             </div>
             <div class="article-extra-details-container">
             </div>
+            <div class="article-share-container d-flex d-flex-dir-col">
+            </div>
         </div>
 
         <div class="article-main-container-comment-section">
@@ -100,8 +102,9 @@ function articleCreatorFunc(jsonData) {
     </div>`
 
     //Updating a extra section based on tags like story, poll
+    let heading = ""
     if (jsonData.type == "story") {
-        if (jsonData.url !== null) {
+        if (jsonData.url !== null && jsonData.url !== "") {
             document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank" class="article-extra-details-container-link">Read article <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
         } else {
             if (jsonData.text !== null) {
@@ -110,6 +113,7 @@ function articleCreatorFunc(jsonData) {
                 document.querySelector(".article-extra-details-container").style.display = "none";
             }
         }
+        heading = '"' + document.querySelector(".article-title-container").innerHTML + '"';
     } else if (jsonData.type == "poll") {
         if (jsonData.options.length > 0) {
             document.querySelector(".article-extra-details-container").innerHTML = `<div class="option-container d-flex d-flex-dir-col">Option(s)<div class="option-btn-container d-flex"></div></div>`;
@@ -121,6 +125,7 @@ function articleCreatorFunc(jsonData) {
         } else {
             document.querySelector(".article-extra-details-container").style.display = "none";
         }
+        heading = 'Poll: "' + document.querySelector(".article-title-container").innerHTML + '"';
     } else if (jsonData.type == "job") {
         if (jsonData.url !== null && jsonData.url !== "") {
             document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank" class="article-extra-details-container-link">Job link <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
@@ -131,10 +136,15 @@ function articleCreatorFunc(jsonData) {
                 document.querySelector(".article-extra-details-container").style.display = "none";
             }
         }
+        heading = 'Job: "' + document.querySelector(".article-title-container").innerHTML + '"';
     } else {
         document.querySelector(".article-extra-details-container").style.display = "none";
     }
 
+    if (hashtag !== "") {
+        cumulativeSharingFunc(window.location.href, heading, hashtag, extraDetail)
+    }
+    
     //Checking if there are any comments
     if (jsonData.children.length > 0) {
         document.querySelector(".article-coments-main-container ul")
@@ -237,5 +247,22 @@ function commentTimestampCreatorFunc(commentTimeStampVar) {
         } else {
             return Math.floor(timePassedSinceComment / timeMSUnitsObject.year) + ' year';
         }
+    }
+}
+
+function sharingDropdownOpenFunc(){
+    if (document.querySelector(".active-share-dropdown")) {
+        document.querySelector(".active-share-dropdown").classList.remove("active-share-dropdown");
+    }
+    this.parentElement.classList.add("active-share-dropdown");
+    document.body.addEventListener('click', sharingDropdownClosingFunc)
+}
+
+// Closing dropdowns for filters
+function sharingDropdownClosingFunc(e) {
+    let currentTarget = document.querySelector(".active-share-dropdown").contains(e.target);
+    if (!currentTarget) { //clikced outside of box
+        document.querySelector(".active-share-dropdown").classList.remove("active-share-dropdown");
+        document.body.removeEventListener('click', sharingDropdownClosingFunc)
     }
 }

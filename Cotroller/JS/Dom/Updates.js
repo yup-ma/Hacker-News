@@ -14,6 +14,10 @@ updatesTemplate.innerHTML = `<div class="updates-fixed-section">
             <div class="updates-section updates-recent-releases-section">
                 <h5>Recent</h5>
                 <div class="updates-section-details">
+                    <span class="update-release-time">Aug 4, 2022</span>
+                    <ul>
+                        <li>Now you can share the articles to friends and families with a direct option provided on it, to make things faster for you.</li>
+                    </ul>
                     <span class="update-release-time">Jul 22, 2022</span>
                     <ul>
                         <li>Seach bar so that you can search for articles related to your query</li>
@@ -41,7 +45,7 @@ updatesTemplate.innerHTML = `<div class="updates-fixed-section">
                 <div class="updates-section-details">
                     <span class="update-release-time">Soon</span>
                     <ul>
-                        <li>Cute name and logo for website (Any suggestions most welcomed)</li>
+                        <li>Cute logo for website (Any suggestions most welcomed)</li>
                         <li>Pro features
                             <ul>
                                 <li>Search results - upto 20 pages</li>
@@ -77,7 +81,7 @@ updatesTemplate.innerHTML = `<div class="updates-fixed-section">
                 <p>We would love to hear from you<br>Any suggestion, feedback, feature requests are most
                     welcomed<br><br>You can send it through <br><a
                         href="mailto:aman080420@gmail.com?subject=Feedback%20for%20Hacer%20News%20Search%Engine">aman080420@gmail.com</a>
-                    or <a href="https://github.com/yup-ma/Hacker-News/issues" target="_blank">Github
+                    or <a href="https://github.com/yup-ma/Quality-Reads/issues" target="_blank">Github
                         issues</a>
                 </p>
             </div>
