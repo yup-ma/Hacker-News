@@ -12,7 +12,7 @@ updatesTemplate.innerHTML = `<div class="updates-fixed-section">
         <div class="updates-main-section">
             <p class="update-main-section-desc">A section where you can learn about new updates, beta releases, and potential future releases.</p>
             <div class="updates-section updates-recent-releases-section">
-                <h5>Recent</h5>
+                <h5>Recent updates</h5>
                 <div class="updates-section-details">
                     <span class="update-release-time">Aug 4, 2022</span>
                     <ul>
