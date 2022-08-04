@@ -60,6 +60,7 @@ function articleCreatorFunc(jsonData) {
     if (pointsAmount == null) {
         pointsAmount = 0;
     }
+    document.title = articleTitle + " | Quality Reads"
     //Adding html for the data
     document.querySelector("main").innerHTML = `<div class="article-main-container d-flex d-flex-dir-col">
         <div class="article-main-container-top-section d-flex d-flex-dir-col">

@@ -12,18 +12,34 @@ let currentTimeStampVar;
 
 //Running a test search on load of page
 window.addEventListener("load", () => {
-    if (localStorage.getItem("theme") == "dark") {
+    if (!localStorage.getItem("theme")) {
         const inputVar = document.querySelector(".dark-light-mode-input")
         const labelVar = document.querySelector(".dark-light-mode-switch")
-        document.documentElement.classList.add("changing-theme")
-        inputVar.checked = true;
-        document.documentElement.dataset.theme = "dark";
-        labelVar.title = "Toggle light theme";
-        labelVar.dataset.navTitle = "Toggle light theme";
-        
-        setTimeout(() => {
-            document.documentElement.classList.remove("changing-theme")
-        }, 300);
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.documentElement.classList.add("changing-theme")
+            inputVar.checked = true;
+            document.documentElement.dataset.theme = "dark";
+            labelVar.title = "Toggle light theme";
+            labelVar.dataset.navTitle = "Toggle light theme";
+            console.log("Se")
+            setTimeout(() => {
+                document.documentElement.classList.remove("changing-theme")
+            }, 300);
+        }
+    } else{
+        if (localStorage.getItem("theme") == "dark") {
+            const inputVar = document.querySelector(".dark-light-mode-input")
+            const labelVar = document.querySelector(".dark-light-mode-switch")
+            document.documentElement.classList.add("changing-theme")
+            inputVar.checked = true;
+            document.documentElement.dataset.theme = "dark";
+            labelVar.title = "Toggle light theme";
+            labelVar.dataset.navTitle = "Toggle light theme";
+            
+            setTimeout(() => {
+                document.documentElement.classList.remove("changing-theme")
+            }, 300);
+        }
     }
 })
 
@@ -234,3 +250,33 @@ function updateThemeFunc(){
         document.documentElement.classList.remove("changing-theme")
     }, 700);
 }
+
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', setColorScheme);
+function setColorScheme(){
+    if (!localStorage.getItem("theme")) {
+        const inputVar = document.querySelector(".dark-light-mode-input")
+        const labelVar = document.querySelector(".dark-light-mode-switch")
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            inputVar.checked = true;
+            document.documentElement.dataset.theme = "dark";
+            labelVar.title = "Toggle light theme";
+            labelVar.dataset.navTitle = "Toggle light theme";
+            
+            document.documentElement.classList.add("changing-theme")
+            setTimeout(() => {
+                document.documentElement.classList.remove("changing-theme")
+            }, 300);
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches){
+            inputVar.checked = false;
+            document.documentElement.dataset.theme = "light";
+            labelVar.title = "Toggle dark theme";
+            labelVar.dataset.navTitle = "Toggle dark theme";
+            
+            document.documentElement.classList.add("changing-theme")
+            setTimeout(() => {
+                document.documentElement.classList.remove("changing-theme")
+            }, 300);
+        }
+    }
+}
+
