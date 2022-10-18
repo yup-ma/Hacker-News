@@ -19,7 +19,6 @@ window.addEventListener("load", () => {
         window.location.replace(`/Quality-Reads/Details.html?object_id=${searchedObjectId}`);
     }
     //Updating url with param
-    console.log(searchedObjectId);
     apiUrlForArticles = `https://hn.algolia.com/api/v1/items/${searchedObjectId}`;
     apiRunningFunc(apiUrlForArticles)
 })
@@ -35,7 +34,6 @@ function apiRunningFunc(e) {
         })
         //Catching any erros if api fails
         .catch((error) => {
-            console.log(error);
             document.querySelector("main").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
             <img src="View/Images/error-occured-image.svg" alt="Faced an error">
             <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page<br><br><a href="/Quality-Reads">Go to home page</a></p>
