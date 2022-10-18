@@ -21,7 +21,6 @@ window.addEventListener("load", () => {
             document.documentElement.dataset.theme = "dark";
             labelVar.title = "Toggle light theme";
             labelVar.dataset.navTitle = "Toggle light theme";
-            console.log("Se")
             setTimeout(() => {
                 document.documentElement.classList.remove("changing-theme")
             }, 300);
