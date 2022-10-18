@@ -29,7 +29,7 @@ function cumulativeSharingFunc(url, heading) {
         <div class="share-options-container d-flex d-flex-dir-col">
             <a href="${updatedUrl}" class="share-option d-flex"><i
                     class="fa-solid fa-envelope"></i> Email</a>
-            <button class="share-option d-flex"><i class="fa-solid fa-link"></i> Copy link</button>
+            <button class="share-option copy-link-option d-flex"><i class="fa-solid fa-link"></i> Copy link</button>
         </div>`;
     }
 
