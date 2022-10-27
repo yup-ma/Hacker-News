@@ -25,7 +25,7 @@ window.addEventListener("load", () => {
                 document.documentElement.classList.remove("changing-theme")
             }, 300);
         }
-    } else{
+    } else {
         if (localStorage.getItem("theme") == "dark") {
             const inputVar = document.querySelector(".dark-light-mode-input")
             const labelVar = document.querySelector(".dark-light-mode-switch")
@@ -34,7 +34,7 @@ window.addEventListener("load", () => {
             document.documentElement.dataset.theme = "dark";
             labelVar.title = "Toggle light theme";
             labelVar.dataset.navTitle = "Toggle light theme";
-            
+
             setTimeout(() => {
                 document.documentElement.classList.remove("changing-theme")
             }, 300);
@@ -71,8 +71,8 @@ const observer = new IntersectionObserver(
     ([e]) => {
         navbarContainer.classList.toggle("active-stucked", e.intersectionRatio < 1); //The second parameter can be used to determine whether the class is included or not. This example would include the class only if the element is sticked at top
     }, {
-        threshold: [1]
-    }
+    threshold: [1]
+}
 );
 observer.observe(navbarTop);
 
@@ -83,12 +83,20 @@ function showActionMessageFunc() {
         newDiv.className = "user-action-status-error user-action-status-container";
         newDiv.innerHTML = `<span class="message-icon"><i class="fa-solid fa-circle-exclamation"></i></span>
         <span class="message-text">${actionMessage}</span>
-        <button><i class="fa-solid fa-xmark"></i></button>`;
+        <button class="d-flex justify-content-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 320.15 320.15">
+                <path data-name="Path 1" d="M310.6,150.6a32.032,32.032,0,1,0-45.3-45.3L160,210.7,54.6,105.4A32.032,32.032,0,1,0,9.3,150.7L114.7,256,9.4,361.4a32.032,32.032,0,0,0,45.3,45.3L160,301.3,265.4,406.6a32.032,32.032,0,0,0,45.3-45.3L205.3,256Z" transform="translate(0.075 -95.925)" fill="currentColor"/>
+            </svg>
+        </button>`;
     } else {
         newDiv.className = "user-action-status-success user-action-status-container";
         newDiv.innerHTML = `<span class="message-icon"><i class="fa-solid fa-circle-check"></i></span>
         <span class="message-text">${actionMessage}</span>
-        <button><i class="fa-solid fa-xmark"></i></button>`;
+        <button class="d-flex justify-content-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 320.15 320.15">
+                <path data-name="Path 1" d="M310.6,150.6a32.032,32.032,0,1,0-45.3-45.3L160,210.7,54.6,105.4A32.032,32.032,0,1,0,9.3,150.7L114.7,256,9.4,361.4a32.032,32.032,0,0,0,45.3,45.3L160,301.3,265.4,406.6a32.032,32.032,0,0,0,45.3-45.3L205.3,256Z" transform="translate(0.075 -95.925)" fill="currentColor"/>
+            </svg>
+        </button>`;
     }
     document.querySelector("#user-action-status-messages").appendChild(newDiv);
     newDiv.querySelector("button").addEventListener('click', closingActionMessageFunc);
@@ -178,8 +186,8 @@ function randomColorGenerator() {
 //Adding a observer to change the style of update section heading when user scrolls
 const observer_1 = new IntersectionObserver(
     ([e]) => document.querySelector(".updates-parent-main-section h3").classList.toggle("active-state", e.intersectionRatio < 1), {
-        threshold: [1]
-    }
+    threshold: [1]
+}
 );
 
 document.querySelector(".updates-modal-btn").addEventListener('click', updatesInfoModalOpenFunc)
@@ -228,7 +236,7 @@ function trapFocus(e) {
 
 document.querySelector(".dark-light-mode-switch input").addEventListener('click', updateThemeFunc)
 
-function updateThemeFunc(){
+function updateThemeFunc() {
     const inputVar = document.querySelector(".dark-light-mode-input")
     const labelVar = document.querySelector(".dark-light-mode-switch")
     setTimeout(() => {
@@ -251,7 +259,7 @@ function updateThemeFunc(){
 }
 
 window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', setColorScheme);
-function setColorScheme(){
+function setColorScheme() {
     if (!localStorage.getItem("theme")) {
         const inputVar = document.querySelector(".dark-light-mode-input")
         const labelVar = document.querySelector(".dark-light-mode-switch")
@@ -260,17 +268,17 @@ function setColorScheme(){
             document.documentElement.dataset.theme = "dark";
             labelVar.title = "Toggle light theme";
             labelVar.dataset.navTitle = "Toggle light theme";
-            
+
             document.documentElement.classList.add("changing-theme")
             setTimeout(() => {
                 document.documentElement.classList.remove("changing-theme")
             }, 300);
-        } else if (window.matchMedia('(prefers-color-scheme: light)').matches){
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
             inputVar.checked = false;
             document.documentElement.dataset.theme = "light";
             labelVar.title = "Toggle dark theme";
             labelVar.dataset.navTitle = "Toggle dark theme";
-            
+
             document.documentElement.classList.add("changing-theme")
             setTimeout(() => {
                 document.documentElement.classList.remove("changing-theme")

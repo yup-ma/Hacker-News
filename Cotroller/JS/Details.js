@@ -34,7 +34,7 @@ function apiRunningFunc(e) {
         })
         //Catching any erros if api fails
         .catch((error) => {
-            document.querySelector("main").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
+            document.querySelector("main").innerHTML = `<div class="fetch-api-error-container d-flex justify-content-center">
             <img src="View/Images/error-occured-image.svg" alt="Faced an error">
             <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page<br><br><a href="/Quality-Reads">Go to home page</a></p>
         </div>`
@@ -145,18 +145,18 @@ function articleCreatorFunc(jsonData) {
     if (hashtag !== "") {
         cumulativeSharingFunc(window.location.href, heading, hashtag, extraDetail)
     }
-    
+
     //Checking if there are any comments
     if (jsonData.children.length > 0) {
         document.querySelector(".article-coments-main-container ul")
         addingCommentsToArticleFunc(document.querySelector(".article-coments-main-container ul"), jsonData.children)
     } else {
-        document.querySelector(".article-coments-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
+        document.querySelector(".article-coments-main-container").innerHTML = `<div class="fetch-api-error-container d-flex justify-content-center">
         <img src="View/Images/no-comments-found.svg" alt="No comments found">
         <p>Opps, Couldn't find any comment</a>
     </div>`;
     }
-        //Entering comments amount based on all stats after removing comments with no auth or text
+    //Entering comments amount based on all stats after removing comments with no auth or text
     document.querySelector(".comment-amount").innerHTML = commentCountVar;
 }
 
@@ -251,7 +251,7 @@ function commentTimestampCreatorFunc(commentTimeStampVar) {
     }
 }
 
-function sharingDropdownOpenFunc(){
+function sharingDropdownOpenFunc() {
     if (document.querySelector(".active-share-dropdown")) {
         document.querySelector(".active-share-dropdown").classList.remove("active-share-dropdown");
     }

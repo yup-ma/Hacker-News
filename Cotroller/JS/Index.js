@@ -157,7 +157,10 @@ function updatingTextForFilterQuantityStateFunc() {
         document.querySelector(".filter-search-clear-filter").style.display = "none";
 
     } else {
-        document.querySelector(".search-applied-filters-parent-container h3").innerHTML = `<i class="fa-solid fa-arrow-down"></i> Applied filters`;
+        document.querySelector(".search-applied-filters-parent-container h3").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 384.15 447.975">
+        <path data-name="Path 1" d="M169.4,470.6a32.049,32.049,0,0,0,45.3,0l160-160a32.032,32.032,0,1,0-45.3-45.3L224,370.8V64a32,32,0,0,0-64,0V370.7L54.6,265.4A32.032,32.032,0,0,0,9.3,310.7l160,160Z" transform="translate(0.075 -32)" fill="currentColor"/>
+      </svg>
+       Applied filters`;
         document.querySelector(".search-applied-filters-parent-container h3").style.textAlign = "left";
         document.querySelector(".filter-search-clear-filter").style.display = "block";
     }
@@ -184,7 +187,9 @@ function creatingAppliedFilterBtnsFunc(e) {
     ${e.value}
 </span>
 <span class="search-applied-filters-btn-close">
-    <i class="fa-solid fa-xmark"></i>
+    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 320.15 320.15">
+        <path data-name="Path 1" d="M310.6,150.6a32.032,32.032,0,1,0-45.3-45.3L160,210.7,54.6,105.4A32.032,32.032,0,1,0,9.3,150.7L114.7,256,9.4,361.4a32.032,32.032,0,0,0,45.3,45.3L160,301.3,265.4,406.6a32.032,32.032,0,0,0,45.3-45.3L205.3,256Z" transform="translate(0.075 -95.925)" fill="currentColor"/>
+    </svg>
     <span class="hidden-ele">Close</span>
 </span>`;
     document.querySelector(".search-applied-filters-container").appendChild(newButton);
@@ -272,8 +277,8 @@ apiRunningFunc(apiUrlForArticles)
 //Running the api with the url provided as argument
 function apiRunningFunc(e) {
     document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
-        document.querySelector(".articles-main-container-pagination").style.display = "none";
-        document.querySelector(".articles-main-container").innerHTML = `<div class="loader-container">
+    document.querySelector(".articles-main-container-pagination").style.display = "none";
+    document.querySelector(".articles-main-container").innerHTML = `<div class="loader-container">
     <div>
         <span class="loader loader1">l</span>  
         <span class="loader loader2">o</span>  
@@ -297,7 +302,7 @@ function apiRunningFunc(e) {
             document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
             document.querySelector(".articles-main-container").innerHTML = "";
             document.querySelector(".articles-main-container-sub-heading").style.display = "none";
-            document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
+            document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex justify-content-center">
                 <img src="View/Images/error-occured-image.svg" alt="Faced an error">
                 <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page</p>
             </div>`
@@ -328,14 +333,14 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
             document.querySelector(`[data-pagination-value="${currentPageNum}"]`).classList.add("active-pagination");
         }
         if (document.querySelector("#search-input").value !== "") {
-            document.querySelector(".articles-main-container-sub-heading").innerHTML = `Showing <b>${articles.length}</b> result(s) for <b>"${document.querySelector("#search-input").value}"</b> in ${processingTime/1000}s`;
+            document.querySelector(".articles-main-container-sub-heading").innerHTML = `Showing <b>${articles.length}</b> result(s) for <b>"${document.querySelector("#search-input").value}"</b> in ${processingTime / 1000}s`;
         } else {
-            document.querySelector(".articles-main-container-sub-heading").innerHTML = `Showing <b>${articles.length}</b> result(s) in ${processingTime/1000}s`;
+            document.querySelector(".articles-main-container-sub-heading").innerHTML = `Showing <b>${articles.length}</b> result(s) in ${processingTime / 1000}s`;
         }
         articles.forEach(ele => {
             const newAnchor = document.createElement("a");
             newAnchor.href = `Details.html?object_id=${ele.objectID}`;
-            newAnchor.className = "articles-container d-flex d-flex-dir-col d-flex-just-cent";
+            newAnchor.className = "articles-container d-flex d-flex-dir-col justify-content-center";
             newAnchor.dataset.articleId = ele.objectID;
             let pointsAmount = ele.points;
             if (pointsAmount == null) {
@@ -356,7 +361,12 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
                 }
             }
             newAnchor.innerHTML = `<div class="article-share-container d-flex d-flex-dir-col">
-                <button class="article-share-btn" title="Share it"><i class="fa-solid fa-share-nodes"></i><span class="hidden-ele">Share</span></button>
+                <button class="article-share-btn" title="Share it">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 448 448">
+                        <path id="Path_1" data-name="Path 1" d="M352,224a96,96,0,1,0-96-96,93.886,93.886,0,0,0,.7,11.9l-94.1,47a96,96,0,1,0,0,138.2l94.1,47A92.8,92.8,0,0,0,256,384a96.071,96.071,0,1,0,29.4-69.1l-94.1-47a101.5,101.5,0,0,0,0-23.8l94.1-47A95.237,95.237,0,0,0,352,224Z" transform="translate(0 -32)" fill="currentColor"/>
+                    </svg>
+                    <span class="hidden-ele">Share</span>
+                </button>
                 <div class="share-options-container d-flex d-flex-dir-col">
                 </div>
             </div>
@@ -437,18 +447,18 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
         minArticleHeadingHeight()
     } else {
         document.querySelector(".articles-main-container-sub-heading").style.display = "none";
-        document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex d-flex-just-cent">
+        document.querySelector(".articles-main-container").innerHTML = `<div class="fetch-api-error-container d-flex justify-content-center">
             <img src="View/Images/empty-list-image.svg" alt="Couldn't find any results">
             <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="#search-input-parent-container">filters</a> and <a href="#search-input-parent-container">search query</a>
         </div>`;
     }
 }
 
-function shareOptionsPrevDefaultFunc(){
+function shareOptionsPrevDefaultFunc() {
     event.preventDefault();
 }
 
-function shareOptionsOpenerFunc(){
+function shareOptionsOpenerFunc() {
     if (document.querySelector(".active-share-dropdown")) {
         document.querySelector(".active-share-dropdown").classList.remove("active-share-dropdown");
     }
@@ -508,7 +518,7 @@ function articleClickedFunc() {
 
 document.querySelector(".dark-light-mode-switch input").addEventListener('click', anotherUpdateThemeFunc)
 
-function anotherUpdateThemeFunc(){
+function anotherUpdateThemeFunc() {
     searchedThroughInput = false;
     document.querySelector(".articles-main-container-heading").innerHTML = "Recent articles";
     apiRunningFunc(apiUrlForArticles)

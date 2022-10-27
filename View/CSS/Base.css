@@ -46,6 +46,7 @@ html {
     --transition03: 0.3s;
     --transition05: 0.5s;
 }
+
 html[data-theme="dark"] {
     --primary-color: #f1f1f1;
     --secondary-color: #cacaca;
@@ -62,12 +63,15 @@ html[data-theme="dark"] {
     --pink-shade-color: #fe6f7b;
     --success-bg-color: #006729;
 }
+
 html[data-theme="dark"] .articles-container {
     filter: brightness(0.9);
 }
+
 html[data-theme="dark"] img {
     filter: brightness(.8) contrast(1.2);
-  }
+}
+
 html.changing-theme {
     --transition02: 0;
     --transition03: 0;
@@ -116,12 +120,16 @@ h6 {
     flex-direction: column;
 }
 
-.d-flex-just-cent {
+.justify-content-center {
     justify-content: center;
 }
 
-.d-flex-just-space-btw {
+.justify-content-space-between {
     justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
 }
 
 .hidden-ele {
@@ -134,6 +142,7 @@ h6 {
 
 .web-links {
     position: relative;
+    align-items: center;
     height: 40px;
     min-width: 40px;
     margin: 5px;
@@ -155,21 +164,19 @@ h6 {
 .web-links:focus {
     outline: 2px solid var(--cta-outline-color);
 }
+
 .company-logo-container:hover,
 .company-logo-container:focus {
     background-color: inherit;
     color: var(--primary-color);
 }
+
 .company-logo-container:focus {
     outline: none;
 }
 
 .web-links .link-icon {
     font-size: 24px;
-}
-
-.web-links .link-search-icon {
-    font-size: 18px;
 }
 
 .web-btns {
@@ -583,10 +590,12 @@ nav [data-nav-title]:focus::after {
     margin: auto;
     margin-bottom: 60px;
 }
-p.update-main-section-desc{
+
+p.update-main-section-desc {
     text-align: left;
     margin-left: 0;
 }
+
 .updates-section h5 {
     text-align: left;
     font-size: 22px;
@@ -657,6 +666,7 @@ p.update-main-section-desc{
     max-width: 100%;
     padding: 20px;
 }
+
 @keyframes transformDropdown {
     0% {
         transform: scale(0.5);
@@ -666,6 +676,7 @@ p.update-main-section-desc{
         transform: scale(1);
     }
 }
+
 @media only screen and (min-width: 414px) {
     .articles-main-container-heading {
         font-size: 36px;
@@ -685,7 +696,8 @@ p.update-main-section-desc{
     .updates-parent-main-section h3 {
         text-align: center;
     }
-    p.update-main-section-desc{
+
+    p.update-main-section-desc {
         text-align: center;
         margin-left: auto;
     }

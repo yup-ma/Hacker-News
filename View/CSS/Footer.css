@@ -19,6 +19,11 @@ footer a {
     margin: 5px 0;
 }
 
+footer a svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .mail-link {
     margin-top: 20px;
 }
