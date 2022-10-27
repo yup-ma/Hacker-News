@@ -91,11 +91,12 @@ function cumulativeSharingFunc(url, heading) {
         document.body.removeEventListener('click', sharingDropdownClosingFunc)
     })
     document.querySelector(".whatsapp-share-option").addEventListener('click', () => {
-        window.open(`${container.querySelector(".share-option").href}`, '_blank');
+        window.open(`${document.querySelector(".whatsapp-share-option").href}`, '_blank');
         document.querySelector(".active-share-dropdown").classList.remove("active-share-dropdown");
         document.body.removeEventListener('click', sharingDropdownClosingFunc)
     })
     document.querySelector(".share-btn").addEventListener('click', sharingDropdownOpenFunc)
+    console.log(whatsappUrl, heading)
 }
 
 function articleBlocksSharingFunc(container, url, heading) {
@@ -179,7 +180,7 @@ function articleBlocksSharingFunc(container, url, heading) {
         document.body.removeEventListener('click', sharingDropdownClosingFunc)
     })
     container.querySelector(".whatsapp-share-option").addEventListener('click', () => {
-        window.open(`${container.querySelector(".share-option").href}`, '_blank');
+        window.open(`${container.querySelector(".whatsapp-share-option").href}`, '_blank');
         document.querySelector(".active-share-dropdown").classList.remove("active-share-dropdown");
         document.body.removeEventListener('click', sharingDropdownClosingFunc)
     })

@@ -122,7 +122,7 @@ function articleCreatorFunc(jsonData) {
                 document.querySelector(".article-extra-details-container").style.display = "none";
             }
         }
-        heading = '"' + document.querySelector(".article-title-container").innerHTML + '"';
+        heading = document.querySelector(".article-title-container").innerHTML;
     } else if (jsonData.type == "poll") {
         if (jsonData.options.length > 0) {
             document.querySelector(".article-extra-details-container").innerHTML = `<div class="option-container d-flex d-flex-dir-col">Option(s)<div class="option-btn-container d-flex"></div></div>`;
@@ -134,7 +134,7 @@ function articleCreatorFunc(jsonData) {
         } else {
             document.querySelector(".article-extra-details-container").style.display = "none";
         }
-        heading = 'Poll: "' + document.querySelector(".article-title-container").innerHTML + '"';
+        heading = document.querySelector(".article-title-container").innerHTML;
     } else if (jsonData.type == "job") {
         if (jsonData.url !== null && jsonData.url !== "") {
             document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank" class="article-extra-details-container-link">Job link <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
@@ -145,7 +145,7 @@ function articleCreatorFunc(jsonData) {
                 document.querySelector(".article-extra-details-container").style.display = "none";
             }
         }
-        heading = 'Job: "' + document.querySelector(".article-title-container").innerHTML + '"';
+        heading = 'Job: ' + document.querySelector(".article-title-container").innerHTML;
     } else {
         document.querySelector(".article-extra-details-container").style.display = "none";
     }

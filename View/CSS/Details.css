@@ -249,7 +249,7 @@ a.article-extra-details-container-link:focus {
     left: -1px;
     z-index: 1;
     background-color: var(--white-color);
-    padding: 7px 0;
+    padding: 7px;
     border-radius: 5px;
     box-shadow: var(--box-shadow-color) 0px 3px 8px;
     transform-origin: top left;
@@ -266,16 +266,25 @@ a.article-extra-details-container-link:focus {
     padding: 8px 14px 8px 7px;
     text-decoration: none;
     text-align: left;
-    margin: 2px;
+    margin: 0.5px 2px;
     background-color: var(--white-color);
     color: var(--secondary-color);
     border: none;
-    border-left: 3px solid transparent;
+    border-radius: 6px;
     outline: none;
     transition: var(--transition05) background-color;
 }
 
 .share-options-container .share-option.more-share-option {
+    position: relative;
+}
+
+.share-options-container .share-option.more-share-option::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 5px;
+    width: calc(100% - 10px);
     border-top: 1px solid var(--secondary-light-color);
 }
 
@@ -283,7 +292,6 @@ a.article-extra-details-container-link:focus {
 .share-options-container .share-option:focus {
     color: var(--primary-color);
     background-color: var(--cta-mostlight-color);
-    border-left: 3px solid var(--primary-color);
 }
 
 .share-options-container .share-option:active {

@@ -232,7 +232,7 @@ document.querySelector("#search-input").addEventListener('input', function () {
     clearTimeout(debounceInputTimer);
     debounceInputTimer = setTimeout(() => {
         updatingURLForAPIFunc();
-    }, 300);
+    }, 800);
 })
 
 //Updating url based on query and filters
@@ -418,8 +418,7 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
             newAnchor.querySelector(".article-share-btn").addEventListener('click', shareOptionsOpenerFunc)
             let randomArticleColor = randomColorGenerator();
             newAnchor.style.setProperty("--article-color", `rgb(${randomArticleColor})`);
-            newAnchor.style.backgroundColor = `rgba(${randomArticleColor}, 0.15)`;
-            newAnchor.querySelector(".article-share-btn").style.backgroundColor = `rgba(${randomArticleColor}, 0.3)`;
+            newAnchor.style.setProperty("--article-bg-color", `${randomArticleColor}`);
 
             ele._tags.forEach(e => {
                 const newButton = document.createElement("button");

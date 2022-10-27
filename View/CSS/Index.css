@@ -248,7 +248,7 @@
     left: -1px;
     z-index: 1;
     background-color: var(--white-color);
-    padding: 7px 0;
+    padding: 7px;
     border-radius: 5px;
     box-shadow: var(--box-shadow-color) 0px 3px 8px;
     transform-origin: top left;
@@ -275,13 +275,13 @@
     background-color: var(--white-color);
     color: var(--secondary-color);
     border: none;
-    border-left: 3px solid transparent;
+    border-radius: 6px;
     outline: none;
     transition: var(--transition05) background-color;
 }
 
 .filter-dropdown>button {
-    margin: 2px;
+    margin: 0.5px 2px;
 }
 
 .filter-dropdown input::-webkit-input-placeholder {
@@ -294,7 +294,6 @@
 .filter-dropdown input:focus {
     color: var(--primary-color);
     background-color: var(--cta-mostlight-color);
-    border-left: 3px solid var(--primary-color);
 }
 
 .filter-dropdown>button:active {
@@ -354,6 +353,7 @@
 
 .articles-container {
     --article-color: var(--secondary-color);
+    --article-bg-color: 182, 179, 179;
     position: relative;
     cursor: pointer;
     width: 100%;
@@ -362,9 +362,11 @@
     padding: 30px 15px;
     margin: 10px;
     background: rgb(182 179 179 / 10%);
+    background-color: rgb(var(--article-bg-color), 0.15);
     color: var(--article-color);
     border: 2px solid var(--article-color);
-    outline: 3px solid transparent;
+    outline: 5px solid transparent;
+    outline-offset: -3px;
     border-radius: 20px;
     transition: var(--transition05);
     animation: articleTransformAnime var(--transition02) linear;
@@ -373,11 +375,8 @@
 
 .articles-container:hover,
 .articles-container:focus {
-    outline: 3px solid var(--article-color);
-}
-
-.articles-container:active {
-    transform: scale(0.97);
+    outline: 5px solid var(--article-color);
+    border: 2px solid transparent;
 }
 
 .articles-container h3 {
@@ -543,7 +542,7 @@
     border: none;
     border-radius: 0 10px 0 14px;
     transition: var(--transition05);
-    background-color: var(--white-color);
+    background-color: rgb(var(--article-bg-color), 0.3);
 }
 
 .article-share-btn svg {
@@ -555,6 +554,8 @@
     height: 45px;
     width: 45px;
     box-shadow: var(--box-shadow-color) 0px 3px 8px;
+    background-color: rgb(var(--article-bg-color), 1);
+    color: var(--white-color);
 }
 
 .article-share-container:hover,
@@ -575,12 +576,12 @@
     max-width: 200px;
     min-width: 160px;
     position: absolute;
-    top: 2px;
-    right: 2px;
+    top: 0;
+    right: 0;
     z-index: 1;
     background-color: var(--white-color);
-    padding: 7px 0;
-    border-radius: 5px;
+    padding: 7px;
+    border-radius: 0 0 0 8px;
     box-shadow: var(--box-shadow-color) 0px 3px 8px;
     transform-origin: top right;
     animation: transformDropdown var(--transition02) linear;
@@ -601,27 +602,35 @@
     padding: 8px 14px 8px 7px;
     text-decoration: none;
     text-align: left;
-    margin: 2px;
+    margin: 0.5px 2px;
     background-color: var(--white-color);
     color: var(--article-color);
     border: none;
-    border-left: 3px solid transparent;
+    border-radius: 6px;
     outline: none;
     transition: var(--transition05) background-color;
 }
 
 .share-options-container .share-option.close-share-option {
-    border-top: 1px solid var(--secondary-light-color);
+    position: relative;
+}
+
+.share-options-container .share-option.close-share-option::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 5px;
+    width: calc(100% - 10px);
+    border-top: 1px solid rgb(var(--article-bg-color), 0.6);
 }
 
 .share-options-container .share-option:hover,
 .share-options-container .share-option:focus {
-    background-color: var(--cta-mostlight-color);
-    border-left: 3px solid var(--primary-color);
+    background-color: rgb(var(--article-bg-color), 0.15);
 }
 
 .share-options-container .share-option:active {
-    background-color: var(--cta-light-color);
+    background-color: rgb(var(--article-bg-color), 0.3);
 }
 
 .share-options-container .share-option svg {
