@@ -480,6 +480,7 @@
     border: 1px solid var(--article-color);
     border-radius: 20px;
     text-transform: capitalize;
+    white-space: nowrap;
     transition: var(--transition05);
 }
 
