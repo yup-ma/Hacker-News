@@ -274,14 +274,11 @@
     text-align: left;
     background-color: var(--white-color);
     color: var(--secondary-color);
+    margin: 0.5px 2px;
     border: none;
     border-radius: 6px;
     outline: none;
     transition: var(--transition05) background-color;
-}
-
-.filter-dropdown>button {
-    margin: 0.5px 2px;
 }
 
 .filter-dropdown input::-webkit-input-placeholder {
