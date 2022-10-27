@@ -11,7 +11,7 @@ function cumulativeSharingFunc(url, heading) {
     if (navigator.share) {
         document.querySelector(".article-share-container").innerHTML = `<button class="share-btn d-flex">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 448 448">
-                <path id="Path_1" data-name="Path 1" d="M352,224a96,96,0,1,0-96-96,93.886,93.886,0,0,0,.7,11.9l-94.1,47a96,96,0,1,0,0,138.2l94.1,47A92.8,92.8,0,0,0,256,384a96.071,96.071,0,1,0,29.4-69.1l-94.1-47a101.5,101.5,0,0,0,0-23.8l94.1-47A95.237,95.237,0,0,0,352,224Z" transform="translate(0 -32)" fill="currentColor"/>
+                <path data-name="Path 1" d="M352,224a96,96,0,1,0-96-96,93.886,93.886,0,0,0,.7,11.9l-94.1,47a96,96,0,1,0,0,138.2l94.1,47A92.8,92.8,0,0,0,256,384a96.071,96.071,0,1,0,29.4-69.1l-94.1-47a101.5,101.5,0,0,0,0-23.8l94.1-47A95.237,95.237,0,0,0,352,224Z" transform="translate(0 -32)" fill="currentColor"/>
             </svg>
             Share
         </button>
@@ -25,7 +25,7 @@ function cumulativeSharingFunc(url, heading) {
             <button class="share-option copy-link-option d-flex"><i class="fa-solid fa-link"></i> Copy link</button>
             <button class="share-option more-share-option d-flex">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 112 432">
-                    <path id="Path_1" data-name="Path 1" d="M64,360A56,56,0,1,1,8,416,56.036,56.036,0,0,1,64,360Zm0-160A56,56,0,1,1,8,256,56.036,56.036,0,0,1,64,200ZM120,96A56,56,0,1,1,64,40,56.036,56.036,0,0,1,120,96Z" transform="translate(-8 -40)" fill="currentColor"/>
+                    <path data-name="Path 1" d="M64,360A56,56,0,1,1,8,416,56.036,56.036,0,0,1,64,360Zm0-160A56,56,0,1,1,8,256,56.036,56.036,0,0,1,64,200ZM120,96A56,56,0,1,1,64,40,56.036,56.036,0,0,1,120,96Z" transform="translate(-8 -40)" fill="currentColor"/>
                 </svg>
                 More option
             </button>
@@ -41,7 +41,7 @@ function cumulativeSharingFunc(url, heading) {
     } else {
         document.querySelector(".article-share-container").innerHTML = `<button class="share-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 448 448">
-                <path id="Path_1" data-name="Path 1" d="M352,224a96,96,0,1,0-96-96,93.886,93.886,0,0,0,.7,11.9l-94.1,47a96,96,0,1,0,0,138.2l94.1,47A92.8,92.8,0,0,0,256,384a96.071,96.071,0,1,0,29.4-69.1l-94.1-47a101.5,101.5,0,0,0,0-23.8l94.1-47A95.237,95.237,0,0,0,352,224Z" transform="translate(0 -32)" fill="currentColor"/>
+                <path data-name="Path 1" d="M352,224a96,96,0,1,0-96-96,93.886,93.886,0,0,0,.7,11.9l-94.1,47a96,96,0,1,0,0,138.2l94.1,47A92.8,92.8,0,0,0,256,384a96.071,96.071,0,1,0,29.4-69.1l-94.1-47a101.5,101.5,0,0,0,0-23.8l94.1-47A95.237,95.237,0,0,0,352,224Z" transform="translate(0 -32)" fill="currentColor"/>
             </svg>
             Share
         </button>
@@ -93,7 +93,7 @@ function articleBlocksSharingFunc(container, url, heading) {
         </button>
         <button class="share-option more-share-option d-flex">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 112 432">
-                <path id="Path_1" data-name="Path 1" d="M64,360A56,56,0,1,1,8,416,56.036,56.036,0,0,1,64,360Zm0-160A56,56,0,1,1,8,256,56.036,56.036,0,0,1,64,200ZM120,96A56,56,0,1,1,64,40,56.036,56.036,0,0,1,120,96Z" transform="translate(-8 -40)" fill="currentColor"/>
+                <path data-name="Path 1" d="M64,360A56,56,0,1,1,8,416,56.036,56.036,0,0,1,64,360Zm0-160A56,56,0,1,1,8,256,56.036,56.036,0,0,1,64,200ZM120,96A56,56,0,1,1,64,40,56.036,56.036,0,0,1,120,96Z" transform="translate(-8 -40)" fill="currentColor"/>
             </svg>
             More option
         </button>
