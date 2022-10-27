@@ -6,7 +6,7 @@ function cumulativeSharingFunc(url, heading) {
     let subjectVar = `${extraDetail} - ${heading} on Quality Reads`;
     let bodyVar = `${hashtag}%0A${heading} @QualityReads%0A${url}%0A%0A${sharingDesc}`;
     let emailUrl = `mailto:?subject=${encodeURIComponent(subjectVar)}&Body=${encodeURIComponent(bodyVar).replace(/%25/g, '%')}`;
-    let whatsappUrl = `https://wa.me?text=${extraDetail} - ${heading}%0A${url}%0A%0A${sharingDesc}`
+    let whatsappUrl = `https://wa.me?text=${extraDetail} - ${heading} on Quality Reads%0A${url}%0A%0A${sharingDesc}`
 
     if (navigator.share) {
         document.querySelector(".article-share-container").innerHTML = `<button class="share-btn d-flex">
@@ -103,7 +103,7 @@ function articleBlocksSharingFunc(container, url, heading) {
     let subjectVar = `${extraDetail} - ${heading} on Quality Reads`;
     let bodyVar = `${hashtag}%0A${heading} @QualityReads%0A${url}%0A%0A${sharingDesc}`;
     let emailUrl = `mailto:?subject=${encodeURIComponent(subjectVar)}&Body=${encodeURIComponent(bodyVar).replace(/%25/g, '%')}`;
-    let whatsappUrl = `https://wa.me?text=${extraDetail} - ${heading}%0A${url}%0A%0A${sharingDesc}`
+    let whatsappUrl = `https://wa.me?text=${extraDetail} - ${heading} on Quality Reads%0A${url}%0A%0A${sharingDesc}`
 
     if (navigator.share) {
         container.innerHTML = `<a href="${whatsappUrl}" target="_blank" class="share-option whatsapp-share-option d-flex">
