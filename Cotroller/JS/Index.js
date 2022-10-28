@@ -527,8 +527,10 @@ function articleClickedFunc() {
     localStorage.setItem("searched-article-id", this.dataset.articleId);
 }
 
-document.querySelector(".dark-light-mode-switch input").addEventListener('click', anotherUpdateThemeFunc)
-
+document.querySelectorAll(".theme-dropdown-content-container .theme-btn").forEach(ele => {
+    ele.addEventListener('click', anotherUpdateThemeFunc)
+});
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', anotherUpdateThemeFunc);
 function anotherUpdateThemeFunc() {
     searchedThroughInput = false;
     document.querySelector(".articles-main-container-heading").innerHTML = "Recent articles";

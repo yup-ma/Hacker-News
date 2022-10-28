@@ -374,7 +374,6 @@
 .articles-container:focus {
     outline: 5px solid var(--article-color);
     border: 2px solid transparent;
-    border-radius: 10px;
 }
 
 .articles-container h3 {

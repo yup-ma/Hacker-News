@@ -177,6 +177,17 @@ h6 {
 
 .web-links .link-icon {
     font-size: 24px;
+    min-width: 25px;
+    min-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.web-links .link-arrow {
+    margin-left: auto;
+    flex-shrink: 0;
 }
 
 .web-btns {
@@ -186,56 +197,18 @@ h6 {
 }
 
 .web-btns .link-icon {
-    width: 24px;
-    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    justify-content: center;
 }
 
 .web-links .link-text {
     display: none;
     margin-left: 5px;
-}
-
-nav [data-nav-title]::before,
-nav [data-nav-title]::after {
-    cursor: default;
-    position: absolute;
-    opacity: 0;
-    z-index: 99999;
-    visibility: hidden;
-}
-
-nav [data-nav-title]::before {
-    content: '';
-    top: calc(100% - 7px);
-    left: 50%;
-    transform: translateX(-50%);
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border: 7px solid transparent;
-    vertical-align: middle;
-    border-bottom-color: var(--secondary-color);
-}
-
-nav [data-nav-title]::after {
-    content: attr(data-nav-title);
-    right: 0;
-    top: calc(100% + 7px);
-    padding: 4px 4px 4px 8px;
-    font-size: 14px;
-    color: var(--white-color);
+    max-width: 100%;
     white-space: nowrap;
-    border-radius: 5px;
-    background-color: var(--secondary-color);
-}
-
-nav [data-nav-title]:hover::before,
-nav [data-nav-title]:focus::before,
-nav [data-nav-title]:hover::after,
-nav [data-nav-title]:focus::after {
-    opacity: 1;
-    transition: 0.5s;
-    visibility: visible;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #network-status,
@@ -686,11 +659,6 @@ p.update-main-section-desc {
 @media only screen and (min-width: 592px) {
     .web-links .link-text {
         display: inline-block;
-    }
-
-    nav [data-nav-title]::before,
-    nav [data-nav-title]::after {
-        display: none;
     }
 
     .updates-parent-main-section h3 {
