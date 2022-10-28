@@ -273,11 +273,7 @@ function updatingURLForAPIFunc() {
     }
 }
 
-if (appliedFiltersArray.length == 0) {
-    apiRunningFunc(apiUrlForArticles)
-} else {
-    updatingURLForAPIFunc()
-}
+apiRunningFunc(apiUrlForArticles)
 //Running the api with the url provided as argument
 function apiRunningFunc(e) {
     document.querySelector(".articles-main-container-sub-heading").innerHTML = "";
