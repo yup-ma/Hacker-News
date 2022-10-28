@@ -274,7 +274,7 @@
     text-align: left;
     background-color: var(--white-color);
     color: var(--secondary-color);
-    margin: 0.5px 2px;
+    margin: 1px 0;
     border: none;
     border-radius: 6px;
     outline: none;
@@ -374,6 +374,7 @@
 .articles-container:focus {
     outline: 5px solid var(--article-color);
     border: 2px solid transparent;
+    border-radius: 10px;
 }
 
 .articles-container h3 {
@@ -537,7 +538,7 @@
     width: 40px;
     color: var(--article-color);
     border: none;
-    border-radius: 0 10px 0 14px;
+    border-radius: 0 0 0 14px;
     transition: var(--transition05);
     background-color: rgb(var(--article-bg-color), 0.3);
 }
@@ -599,7 +600,7 @@
     padding: 8px 14px 8px 7px;
     text-decoration: none;
     text-align: left;
-    margin: 0.5px 2px;
+    margin: 1px 0;
     background-color: var(--white-color);
     color: var(--article-color);
     border: none;

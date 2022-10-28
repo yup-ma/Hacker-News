@@ -266,7 +266,7 @@ a.article-extra-details-container-link:focus {
     padding: 8px 14px 8px 7px;
     text-decoration: none;
     text-align: left;
-    margin: 0.5px 2px;
+    margin: 1px 0;
     background-color: var(--white-color);
     color: var(--secondary-color);
     border: none;

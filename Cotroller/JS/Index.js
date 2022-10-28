@@ -224,7 +224,7 @@ function searchAppliedFiltersBtnRemoveFunc() {
     actionStatus = "success";
     actionMessage = "Filter removed successfully";
     showActionMessageFunc();
-    localStorage.setItem("applied-filters-array", JSON.stringify(appliedFiltersArray))
+    localStorage.setItem("applied-filters-array", JSON.stringify(appliedFiltersArray));
 }
 
 //Preventing reunning of api on consecutive presses so deboucing it
@@ -273,7 +273,11 @@ function updatingURLForAPIFunc() {
     }
 }
 
-apiRunningFunc(apiUrlForArticles)
+if (appliedFiltersArray.length == 0) {
+    apiRunningFunc(apiUrlForArticles)
+} else {
+    updatingURLForAPIFunc()
+}
 //Running the api with the url provided as argument
 function apiRunningFunc(e) {
     document.querySelector(".articles-main-container-sub-heading").innerHTML = "";

@@ -3,6 +3,7 @@ let hashtag = "#Reading"
 let sharingDesc = "Quality Reads - A tool to search the articles from hacker news based on various tags, queries, popularity, author and more";
 
 function cumulativeSharingFunc(url, heading) {
+    heading = heading.replace(`"`, `'`)
     let subjectVar = `${extraDetail} - ${heading} on Quality Reads`;
     let bodyVar = `${hashtag}%0A${heading} @QualityReads%0A${url}%0A%0A${sharingDesc}`;
     let emailUrl = `mailto:?subject=${encodeURIComponent(subjectVar)}&Body=${encodeURIComponent(bodyVar).replace(/%25/g, '%')}`;
@@ -101,6 +102,7 @@ function cumulativeSharingFunc(url, heading) {
 
 function articleBlocksSharingFunc(container, url, heading) {
     // console.log(container, url, heading)
+    heading = heading.replace(`"`, `'`)
     let subjectVar = `${extraDetail} - ${heading} on Quality Reads`;
     let bodyVar = `${hashtag}%0A${heading} @QualityReads%0A${url}%0A%0A${sharingDesc}`;
     let emailUrl = `mailto:?subject=${encodeURIComponent(subjectVar)}&Body=${encodeURIComponent(bodyVar).replace(/%25/g, '%')}`;
