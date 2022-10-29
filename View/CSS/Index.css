@@ -242,7 +242,9 @@
 .filter-dropdown {
     display: none;
     max-width: 200px;
+    max-height: 300px;
     min-width: 160px;
+    overflow: auto;
     position: absolute;
     top: -1px;
     left: -1px;
@@ -356,13 +358,13 @@
     width: 100%;
     min-width: 100%;
     text-decoration: none;
-    padding: 30px 15px;
+    padding: 32px 15px;
     margin: 10px;
     background: rgb(182 179 179 / 10%);
     background-color: rgb(var(--article-bg-color), 0.15);
     color: var(--article-color);
     border: 2px solid var(--article-color);
-    outline: 5px solid transparent;
+    outline: 2px solid var(--article-color);
     outline-offset: -3px;
     border-radius: 20px;
     transition: var(--transition05);
@@ -525,6 +527,72 @@
 }
 
 /* -----------------------------------------------------------------------   */
+.article-share-btn {
+    border-radius: 0 0 0 14px;
+}
+
+.add-to-bookmark-btn {
+    position: absolute;
+    left: -40px;
+    top: -40px;
+    border-radius: 0 0 14px 0;
+}
+
+.add-to-bookmark-btn:hover,
+.add-to-bookmark-btn:focus-within,
+.add-to-bookmark-btn.active-bookmark {
+    left: 0;
+    top: 0;
+}
+
+.articles-container:hover .add-to-bookmark-btn,
+.articles-container:focus .add-to-bookmark-btn,
+.articles-container:focus-within .add-to-bookmark-btn {
+    left: 0;
+    top: 0;
+}
+
+.follow-author-btn {
+    position: absolute;
+    left: -40px;
+    bottom: -40px;
+    border-radius: 0 14px 0 0;
+}
+
+.follow-author-btn:hover,
+.follow-author-btn:focus-within,
+.follow-author-btn.active-follow {
+    left: 0;
+    bottom: 0;
+}
+
+.articles-container:hover .follow-author-btn,
+.articles-container:focus .follow-author-btn,
+.articles-container:focus-within .follow-author-btn {
+    left: 0;
+    bottom: 0;
+}
+
+.open-in-new-tab-btn {
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    border-radius: 14px 0 0 0;
+}
+
+.open-in-new-tab-btn:hover,
+.open-in-new-tab-btn:focus-within {
+    right: 0;
+    bottom: 0;
+}
+
+.articles-container:hover .open-in-new-tab-btn,
+.articles-container:focus .open-in-new-tab-btn,
+.articles-container:focus-within .open-in-new-tab-btn {
+    right: 0;
+    bottom: 0;
+}
+
 .article-share-container {
     position: absolute;
     right: -40px;
@@ -532,23 +600,25 @@
     transition: var(--transition05);
 }
 
-.article-share-btn {
+.article-extra-option {
     cursor: pointer;
     height: 40px;
     width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--article-color);
     border: none;
-    border-radius: 0 0 0 14px;
     transition: var(--transition05);
     background-color: rgb(var(--article-bg-color), 0.3);
 }
 
-.article-share-btn svg {
+.article-extra-option svg {
     display: inline-block;
 }
 
-.article-share-btn:hover,
-.article-share-btn:focus {
+.article-extra-option:hover,
+.article-extra-option:focus {
     height: 45px;
     width: 45px;
     box-shadow: var(--box-shadow-color) 0px 3px 8px;
@@ -573,7 +643,9 @@
     display: none;
     /* display: flex; */
     max-width: 200px;
+    max-height: 250px;
     min-width: 160px;
+    overflow: auto;
     position: absolute;
     top: 0;
     right: 0;
@@ -584,6 +656,10 @@
     box-shadow: var(--box-shadow-color) 0px 3px 8px;
     transform-origin: top right;
     animation: transformDropdown var(--transition02) linear;
+}
+
+.share-options-container .dropdown-type-text {
+    color: var(--article-color);
 }
 
 .article-share-container.active-share-dropdown {
@@ -709,10 +785,6 @@
 
     /*For touch screen devices, tablet or mobile devices*/
     .article-share-container {
-        position: absolute;
-        right: -40px;
-        top: -40px;
-        transition: var(--transition05);
         animation: shareBtnAnime var(--transition05) linear forwards;
     }
 
@@ -725,6 +797,54 @@
         100% {
             right: 0;
             top: 0;
+        }
+    }
+
+    .add-to-bookmark-btn {
+        animation: bookmarkBtnAnime var(--transition05) linear forwards;
+    }
+
+    @keyframes bookmarkBtnAnime {
+        0% {
+            left: -40px;
+            top: -40px;
+        }
+
+        100% {
+            left: 0;
+            top: 0;
+        }
+    }
+
+    .follow-author-btn {
+        animation: followAuthorBtnAnime var(--transition05) linear forwards;
+    }
+
+    @keyframes followAuthorBtnAnime {
+        0% {
+            left: -40px;
+            bottom: -40px;
+        }
+
+        100% {
+            left: 0;
+            bottom: 0;
+        }
+    }
+
+    .open-in-new-tab-btn {
+        animation: openNewTabBtnAnime var(--transition05) linear forwards;
+    }
+
+    @keyframes openNewTabBtnAnime {
+        0% {
+            right: -40px;
+            bottom: -40px;
+        }
+
+        100% {
+            right: 0;
+            bottom: 0;
         }
     }
 }

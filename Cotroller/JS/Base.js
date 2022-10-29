@@ -25,10 +25,8 @@ window.addEventListener("online", () => {
     networkStatusBar.style.color = "var(--primary-color)";
     networkStatusBar.innerText = "Back online";
     networkStatusBar.style.maxHeight = "48px";
-    document.querySelector("main").style.marginTop = "113px";
     setTimeout(() => {
         networkStatusBar.style.maxHeight = "0";
-        document.querySelector("main").style.marginTop = "65px";
     }, 2000)
 })
 
@@ -38,7 +36,6 @@ window.addEventListener("offline", () => {
     networkStatusBar.style.color = "var(--white-color)";
     networkStatusBar.style.maxHeight = "48px";
     networkStatusBar.innerText = "Network connection lost";
-    document.querySelector("main").style.marginTop = "113px";
 })
 
 //Adding observer to have a shadow on nav on scroll
@@ -87,7 +84,7 @@ function showActionMessageFunc() {
     newDiv.querySelector("button").addEventListener('click', closingActionMessageFunc);
     setTimeout(() => {
         newDiv.remove()
-    }, 4000);
+    }, 6000);
 }
 
 //Closing func for action messages
@@ -182,6 +179,11 @@ function updatesInfoModalOpenFunc() {
     document.querySelector(".modal-close-btn").focus();
     observer_1.observe(document.querySelector(".updates-main-section p"));
     window.addEventListener('keydown', trapFocus);
+
+    document.querySelector(".dropdown-menu-container").classList.remove("active-menu")
+    document.body.style.overflow = "auto";
+    document.querySelector(".user-dropdown-menu-container.active-submenu").classList.remove("active-submenu");
+    document.body.removeEventListener('click', closeUserModalFunc)
 }
 
 

@@ -83,6 +83,8 @@ body {
     -webkit-font-smoothing: antialiased;
     font-family: 'Roboto', sans-serif;
     background-color: var(--white-color);
+    height: fit-content;
+    min-height: 100vh;
 }
 
 img,
@@ -236,6 +238,17 @@ h6 {
     bottom: 5px;
     margin: 0 10px;
     z-index: 1;
+}
+
+.dropdown-type-text {
+    text-align: left;
+    width: 100%;
+    font-size: 12px;
+    padding: 4px;
+    background-color: white;
+    position: sticky;
+    top: -7px;
+    color: var(--secondary-color);
 }
 
 .user-action-status-container {

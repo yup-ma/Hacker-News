@@ -360,8 +360,18 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
                     articleTitle = "Couldn't find title"
                 }
             }
-            newAnchor.innerHTML = `<div class="article-share-container d-flex d-flex-dir-col">
-                <button class="article-share-btn" title="Share it">
+            newAnchor.innerHTML = `<button class="add-to-bookmark-btn article-extra-option" title="Add to Bookmarks">
+                <span class="option-icon d-flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 143.93 191.886">
+                        <path id="Path_176" data-name="Path 176"
+                            d="M125.938,0H17.991A17.991,17.991,0,0,0,0,17.991V179.874a11.993,11.993,0,0,0,18.036,10.36l53.929-31.462L125.9,190.231c7.984,4.337,18.029-1.1,18.029-10.356V17.991A17.993,17.993,0,0,0,125.938,0Zm0,169.417L71.965,137.932,17.991,169.417V20.24A2.18,2.18,0,0,1,19.9,17.991H123.352a2.315,2.315,0,0,1,2.586,2.249Z"
+                            fill="currentColor" />
+                    </svg>
+                </span>
+                <span class="hidden-ele">Bookmark</span>
+            </button>
+            <div class="article-share-container d-flex d-flex-dir-col">
+                <button class="article-share-btn article-extra-option" title="Share it">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 448 448">
                         <path data-name="Path 1" d="M352,224a96,96,0,1,0-96-96,93.886,93.886,0,0,0,.7,11.9l-94.1,47a96,96,0,1,0,0,138.2l94.1,47A92.8,92.8,0,0,0,256,384a96.071,96.071,0,1,0,29.4-69.1l-94.1-47a101.5,101.5,0,0,0,0-23.8l94.1-47A95.237,95.237,0,0,0,352,224Z" transform="translate(0 -32)" fill="currentColor"/>
                     </svg>
@@ -410,11 +420,31 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
             <div class="articles-container-tags-main d-flex">Tag:
                 <div class="articles-container-tags-main-container d-flex">
                 </div>
-            </div>`;
+            </div>
+            <button class="follow-author-btn article-extra-option" data-article-author="${ele.author}" title="Follow Author: ${ele.author}">
+                <span class="option-icon d-flex">
+                    <svg width="20" height="20" viewBox="0 0 512 512">
+                        <path
+                            d="m179 282c64 0 115-52 115-116 0-63-51-115-115-115-63 0-115 52-115 115 0 64 52 116 115 116z m0-192c43 0 77 34 77 76 0 43-34 77-77 77-42 0-77-34-77-77 0-42 35-76 77-76z m72 204c-23 0-34 13-72 13-37 0-48-13-71-13-60 0-108 49-108 108l0 20c0 22 17 39 38 39l282 0c21 0 38-17 38-39l0-20c0-59-48-108-107-108z m69 128l-282 0 0-20c0-38 31-69 70-69 11 0 30 13 71 13 42 0 60-13 72-13 38 0 69 31 69 69z m179-198l-57 0 0-58c0-7-6-12-13-12l-13 0c-7 0-13 5-13 12l0 58-57 0c-7 0-13 6-13 13l0 13c0 7 6 12 13 12l57 0 0 58c0 7 6 13 13 13l13 0c7 0 13-6 13-13l0-58 57 0c7 0 13-5 13-12l0-13c0-7-6-13-13-13z"
+                            fill="currentColor" />
+                    </svg>
+                </span>
+                <span class="hidden-ele">Follow Author</span>
+            </button>
+            <a href="Details.html?object_id=${ele.objectID}" class="open-in-new-tab-btn article-extra-option" target="_blank" title="Open in new tab">
+                <svg width="16" height="16" viewBox="0 0 512 512">
+                    <path
+                        d="m498 0l-164 0c-8 0-14 7-14 15l0 33c0 4 2 7 4 10 3 3 7 4 11 4l73-2 2 2-278 278c-3 3-4 6-4 9 0 3 1 6 4 8l23 23c2 3 5 4 8 4 3 0 6-1 9-4l278-278 2 2-2 73c0 4 1 8 4 11 3 2 6 4 10 4l33 0c8 0 15-6 15-14l0-164c0-8-6-14-14-14z m-66 288l-16 0c-9 0-16 7-16 16l0 154c0 3-3 6-6 6l-340 0c-3 0-6-3-6-6l0-340c0-3 3-6 6-6l154 0c9 0 16-7 16-16l0-16c0-9-7-16-16-16l-160 0c-27 0-48 21-48 48l0 352c0 27 21 48 48 48l352 0c27 0 48-21 48-48l0-160c0-9-7-16-16-16z"
+                        fill="currentColor" />
+                </svg>
+                <span class="hidden-ele">Open in new tab</span>
+            </a>`;
             articleBlocksSharingFunc(newAnchor.querySelector(".share-options-container"), newAnchor.href, articleTitle)
             document.querySelector(".articles-main-container").appendChild(newAnchor);
             newAnchor.addEventListener('click', articleClickedFunc)
             newAnchor.querySelector(".article-share-container:not(a)").addEventListener('click', shareOptionsPrevDefaultFunc)
+            newAnchor.querySelector(".add-to-bookmark-btn").addEventListener('click', addToBookmarkFunc)
+            newAnchor.querySelector(".follow-author-btn").addEventListener('click', followAuthorFunc)
             newAnchor.querySelector(".article-share-btn").addEventListener('click', shareOptionsOpenerFunc)
             let randomArticleColor = randomColorGenerator();
             newAnchor.style.setProperty("--article-color", `rgb(${randomArticleColor})`);
@@ -467,6 +497,45 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
 
 function shareOptionsPrevDefaultFunc() {
     event.preventDefault();
+}
+function addToBookmarkFunc() {
+    event.preventDefault();
+    if (this.classList.contains("active-bookmark")) {
+        this.classList.remove("active-bookmark")
+        this.querySelector(".option-icon").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 143.93 191.886">
+            <path id="Path_176" data-name="Path 176"
+                d="M125.938,0H17.991A17.991,17.991,0,0,0,0,17.991V179.874a11.993,11.993,0,0,0,18.036,10.36l53.929-31.462L125.9,190.231c7.984,4.337,18.029-1.1,18.029-10.356V17.991A17.993,17.993,0,0,0,125.938,0Zm0,169.417L71.965,137.932,17.991,169.417V20.24A2.18,2.18,0,0,1,19.9,17.991H123.352a2.315,2.315,0,0,1,2.586,2.249Z"
+                fill="currentColor" />
+        </svg>`;
+    } else {
+        this.classList.add("active-bookmark")
+        this.querySelector(".option-icon").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 88.056 117.408">
+            <path id="Path_1" data-name="Path 1"
+                d="M0,11.007V111.836A5.582,5.582,0,0,0,8.783,116.4L44.028,91.725,79.274,116.4a5.582,5.582,0,0,0,8.783-4.563V11.007A11.01,11.01,0,0,0,77.049,0H11.007A11.01,11.01,0,0,0,0,11.007Z"
+                fill="currentColor" />
+        </svg>`;
+    }
+
+}
+function followAuthorFunc() {
+    event.preventDefault();
+    console.log(this)
+    if (this.classList.contains("active-follow")) {
+        this.classList.remove("active-follow")
+        this.querySelector(".option-icon").innerHTML = `<svg width="20" height="20" viewBox="0 0 512 512">
+            <path
+                d="m179 282c64 0 115-52 115-116 0-63-51-115-115-115-63 0-115 52-115 115 0 64 52 116 115 116z m0-192c43 0 77 34 77 76 0 43-34 77-77 77-42 0-77-34-77-77 0-42 35-76 77-76z m72 204c-23 0-34 13-72 13-37 0-48-13-71-13-60 0-108 49-108 108l0 20c0 22 17 39 38 39l282 0c21 0 38-17 38-39l0-20c0-59-48-108-107-108z m69 128l-282 0 0-20c0-38 31-69 70-69 11 0 30 13 71 13 42 0 60-13 72-13 38 0 69 31 69 69z m179-198l-57 0 0-58c0-7-6-12-13-12l-13 0c-7 0-13 5-13 12l0 58-57 0c-7 0-13 6-13 13l0 13c0 7 6 12 13 12l57 0 0 58c0 7 6 13 13 13l13 0c7 0 13-6 13-13l0-58 57 0c7 0 13-5 13-12l0-13c0-7-6-13-13-13z"
+                fill="currentColor" />
+        </svg>`;
+    } else {
+        this.classList.add("active-follow")
+        this.querySelector(".option-icon").innerHTML = `<svg width="20" height="20" viewBox="0 0 512 512">
+            <path
+                d="m499 218l-51 0 0-52c0-7-6-12-13-12l-25 0c-7 0-13 5-13 12l0 52-51 0c-7 0-13 5-13 12l0 26c0 7 6 13 13 13l51 0 0 51c0 7 6 13 13 13l25 0c7 0 13-6 13-13l0-51 51 0c7 0 13-6 13-13l0-26c0-7-6-12-13-12z m-320 38c57 0 103-46 103-102 0-57-46-103-103-103-56 0-102 46-102 103 0 56 46 102 102 102z m72 26l-13 0c-18 8-38 12-59 12-21 0-40-4-58-12l-13 0c-60 0-108 48-108 107l0 33c0 22 17 39 38 39l282 0c21 0 38-17 38-39l0-33c0-59-48-107-107-107z"
+                fill="currentColor" />
+        </svg>`;
+    }
+
 }
 
 function shareOptionsOpenerFunc() {

@@ -1,15 +1,10 @@
-main {
-    margin-top: 65px;
-    transition: var(--transition05);
-}
-
 .navbar-top {
     height: 1px;
 }
 
 .navbar-container {
     background-color: var(--cta-color);
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
@@ -125,7 +120,7 @@ nav {
     background-color: transparent;
     border-radius: 8px;
     width: 100%;
-    min-width: 250px;
+    min-width: 225px;
     padding: 7px;
     animation: maxHeightAnime282 var(--transition03) linear;
 }
