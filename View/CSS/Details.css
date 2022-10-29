@@ -503,7 +503,6 @@ a.article-extra-details-container-link:focus {
 }
 
 .sub-level-comment:hover::after {
-    width: 4px;
     background-color: var(--cta-color);
 }
 

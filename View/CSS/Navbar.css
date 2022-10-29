@@ -125,9 +125,9 @@ nav {
     background-color: transparent;
     border-radius: 8px;
     width: 100%;
-    min-width: 210px;
+    min-width: 250px;
     padding: 7px;
-    animation: maxHeightAnime240 var(--transition03) linear;
+    animation: maxHeightAnime282 var(--transition03) linear;
 }
 
 .user-dropdown-menu-container.active-submenu {
@@ -144,14 +144,14 @@ nav {
     display: block;
 }
 
-@keyframes maxHeightAnime240 {
+@keyframes maxHeightAnime282 {
     0% {
         max-height: 0;
         overflow: hidden;
     }
 
     100% {
-        max-height: 240px;
+        max-height: 282px;
         overflow: hidden;
     }
 }

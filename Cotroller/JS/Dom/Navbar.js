@@ -103,6 +103,16 @@ navbarTemplate.innerHTML = `    <div class="navbar-top"></div>
                             </span>
                             <span class="link-text">Profile</span>
                         </a>
+                        <a href="#" class="web-links d-flex justify-content-center">
+                            <span class="link-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 88.056 117.408">
+                                    <path id="Path_1" data-name="Path 1"
+                                        d="M0,11.007V111.836A5.582,5.582,0,0,0,8.783,116.4L44.028,91.725,79.274,116.4a5.582,5.582,0,0,0,8.783-4.563V11.007A11.01,11.01,0,0,0,77.049,0H11.007A11.01,11.01,0,0,0,0,11.007Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </span>
+                            <span class="link-text">Bookmark</span>
+                        </a>
                         <div class="theme-dropdown-menu-container">
                             <button class="theme-modal-btn web-links web-btns d-flex justify-content-center">
                                 <span class="link-icon d-flex">
