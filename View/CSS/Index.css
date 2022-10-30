@@ -167,6 +167,7 @@
     border-radius: 20px;
     text-transform: capitalize;
     transition: var(--transition05);
+    flex-shrink: 0;
 }
 
 .search-applied-filters-btn:hover,
@@ -242,7 +243,7 @@
 .filter-dropdown {
     display: none;
     max-width: 200px;
-    max-height: 300px;
+    max-height: 350px;
     min-width: 160px;
     overflow: auto;
     position: absolute;
@@ -255,6 +256,20 @@
     box-shadow: var(--box-shadow-color) 0px 3px 8px;
     transform-origin: top left;
     animation: transformDropdown var(--transition02) linear;
+}
+
+.filter-dropdown::-webkit-scrollbar {
+    width: 10px;
+}
+
+.filter-dropdown::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 150px;
+    border: 3px solid var(--white-color);
+}
+
+.filter-dropdown::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
 .filter-dropdown-right-aligned {
@@ -281,6 +296,36 @@
     border-radius: 6px;
     outline: none;
     transition: var(--transition05) background-color;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+}
+
+.filter-dropdown>button .filter-text {
+    overflow: hidden;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.filter-dropdown .remove-recent-filter {
+    flex-shrink: 0;
+    padding: 2px;
+    color: var(--secondary-light-color);
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    transition: var(--transition05);
+    margin-left: auto;
+}
+
+.filter-dropdown .remove-recent-filter:hover {
+    background-color: var(--error-bg-color);
+    color: var(--white-color);
 }
 
 .filter-dropdown input::-webkit-input-placeholder {
@@ -671,9 +716,24 @@
     display: flex;
 }
 
+.share-options-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.share-options-container::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 150px;
+    border: 3px solid var(--white-color);
+}
+
+.share-options-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
 .share-options-container .share-option {
     cursor: pointer;
     width: 100%;
+    white-space: nowrap;
     padding: 8px 14px 8px 7px;
     text-decoration: none;
     text-align: left;
@@ -684,6 +744,13 @@
     border-radius: 6px;
     outline: none;
     transition: var(--transition05) background-color;
+}
+
+.share-options-container .share-option .share-option-text {
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .share-options-container .share-option.close-share-option {
@@ -713,6 +780,7 @@
     width: 25px;
     margin-right: 10px;
     text-align: center;
+    flex-shrink: 0;
 }
 
 /* -----------------------------------------------------------------------   */

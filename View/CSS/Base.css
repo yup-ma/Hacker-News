@@ -134,6 +134,10 @@ h6 {
     align-items: center;
 }
 
+.word-break-break-all {
+    word-break: break-all;
+}
+
 .hidden-ele {
     display: none;
     visibility: none;
@@ -245,7 +249,7 @@ h6 {
     width: 100%;
     font-size: 12px;
     padding: 4px;
-    background-color: white;
+    background-color: var(--white-color);
     position: sticky;
     top: -7px;
     color: var(--secondary-color);

@@ -58,9 +58,13 @@
 }
 
 .article-main-container-top-section h3 .dot {
-    font-size: 4px;
+    font-size: 32px;
     color: var(--primary-color);
-    margin: 0 10px;
+    margin: 0px 6px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .article-main-container-top-section h3 .article-author-container {
@@ -124,7 +128,9 @@
 }
 
 a.article-extra-details-container-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: auto;
     width: fit-content;
     font-weight: 500;
@@ -136,7 +142,7 @@ a.article-extra-details-container-link {
     transition: var(--transition05);
 }
 
-a.article-extra-details-container-link i {
+a.article-extra-details-container-link svg {
     margin-left: 5px;
 }
 
@@ -175,6 +181,7 @@ a.article-extra-details-container-link:focus {
 .article-extra-details-container .option-container div::-webkit-scrollbar-thumb {
     background-color: var(--secondary-color);
     border-radius: 150px;
+    border: 5px solid white;
 }
 
 .article-extra-details-container .option-container div::-webkit-scrollbar-track {
@@ -262,9 +269,24 @@ a.article-extra-details-container-link:focus {
     display: flex;
 }
 
+.share-options-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.share-options-container::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 150px;
+    border: 3px solid var(--white-color);
+}
+
+.share-options-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
 .share-options-container .share-option {
     cursor: pointer;
     width: 100%;
+    white-space: nowrap;
     padding: 8px 14px 8px 7px;
     text-decoration: none;
     text-align: left;
@@ -275,6 +297,13 @@ a.article-extra-details-container-link:focus {
     border-radius: 6px;
     outline: none;
     transition: var(--transition05) background-color;
+}
+
+.share-options-container .share-option .share-option-text {
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .share-options-container .share-option.more-share-option {
@@ -305,6 +334,7 @@ a.article-extra-details-container-link:focus {
     width: 25px;
     margin-right: 10px;
     text-align: center;
+    flex-shrink: 0;
 }
 
 /* --------------------------------------------------------------------------------------------- */
@@ -481,8 +511,9 @@ a.article-extra-details-container-link:focus {
     transform: scale(0.95);
 }
 
-.article-coments-main-container ul li button i {
+.article-coments-main-container ul li button svg {
     transform: rotate(180deg);
+    margin-right: 4px;
 }
 
 .sub-level-comment {

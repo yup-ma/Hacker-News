@@ -68,7 +68,7 @@ function articleCreatorFunc(jsonData) {
             <h1 class="article-title-container">${articleTitle}</h1>
             <h3 class="d-flex">
                 <span class="article-creating-date-container">${articleDateConverterFunc(jsonData.created_at, jsonData.created_at_i)}</span>
-                <span class="dot"><i class="fa-solid fa-circle"></i></span>
+                <span class="dot">·</span>
                 <span class="article-author-container">${jsonData.author}</span>
             </h3>
             <div class="article-main-container-top-section-extra-info d-flex">
@@ -114,7 +114,13 @@ function articleCreatorFunc(jsonData) {
     let heading = ""
     if (jsonData.type == "story") {
         if (jsonData.url !== null && jsonData.url !== "") {
-            document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank" class="article-extra-details-container-link">Read article <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
+            document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank" class="article-extra-details-container-link">Read article
+                <svg width="16" height="16" viewBox="0 0 512 512">
+                    <path
+                        d="m498 0l-164 0c-8 0-14 7-14 15l0 33c0 4 2 7 4 10 3 3 7 4 11 4l73-2 2 2-278 278c-3 3-4 6-4 9 0 3 1 6 4 8l23 23c2 3 5 4 8 4 3 0 6-1 9-4l278-278 2 2-2 73c0 4 1 8 4 11 3 2 6 4 10 4l33 0c8 0 15-6 15-14l0-164c0-8-6-14-14-14z m-66 288l-16 0c-9 0-16 7-16 16l0 154c0 3-3 6-6 6l-340 0c-3 0-6-3-6-6l0-340c0-3 3-6 6-6l154 0c9 0 16-7 16-16l0-16c0-9-7-16-16-16l-160 0c-27 0-48 21-48 48l0 352c0 27 21 48 48 48l352 0c27 0 48-21 48-48l0-160c0-9-7-16-16-16z"
+                        fill="currentColor"></path>
+                </svg>
+            </a>`;
         } else {
             if (jsonData.text !== null) {
                 document.querySelector(".article-extra-details-container").innerHTML = "Description:" + jsonData.text;
@@ -137,7 +143,13 @@ function articleCreatorFunc(jsonData) {
         heading = document.querySelector(".article-title-container").innerHTML;
     } else if (jsonData.type == "job") {
         if (jsonData.url !== null && jsonData.url !== "") {
-            document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank" class="article-extra-details-container-link">Job link <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`;
+            document.querySelector(".article-extra-details-container").innerHTML = `<a href="${jsonData.url}" target="_blank" class="article-extra-details-container-link">Job link     
+                <svg width="16" height="16" viewBox="0 0 512 512">
+                    <path
+                        d="m498 0l-164 0c-8 0-14 7-14 15l0 33c0 4 2 7 4 10 3 3 7 4 11 4l73-2 2 2-278 278c-3 3-4 6-4 9 0 3 1 6 4 8l23 23c2 3 5 4 8 4 3 0 6-1 9-4l278-278 2 2-2 73c0 4 1 8 4 11 3 2 6 4 10 4l33 0c8 0 15-6 15-14l0-164c0-8-6-14-14-14z m-66 288l-16 0c-9 0-16 7-16 16l0 154c0 3-3 6-6 6l-340 0c-3 0-6-3-6-6l0-340c0-3 3-6 6-6l154 0c9 0 16-7 16-16l0-16c0-9-7-16-16-16l-160 0c-27 0-48 21-48 48l0 352c0 27 21 48 48 48l352 0c27 0 48-21 48-48l0-160c0-9-7-16-16-16z"
+                        fill="currentColor"></path>
+                </svg>
+            </a>`;
         } else {
             if (jsonData.text !== null) {
                 document.querySelector(".article-extra-details-container").innerHTML = "Description:" + jsonData.text;
@@ -194,13 +206,18 @@ function addingCommentsToArticleFunc(container, commentsArray) {
         const newButton = document.createElement("button");
         const newDiv2 = document.createElement("div");
         newDiv1.className = "comment-info";
+        newButton.className = " d-flex justify-content-center";
         newDiv1.innerHTML = `<span>${ele.author}</span><span title="Points: ${commentPointsAmt}">Pts: <b>${commentPointsAmt}</b></span><span>${commentTimestampCreatorFunc(ele.created_at_i)} ago</span>`;
         newP.className = "comment-paragraph";
         newP.innerHTML = ele.text;
         newLi.appendChild(newDiv1);
         newLi.appendChild(newP);
         if (ele.children.length > 0) {
-            newButton.innerHTML = `<i class="fa-solid fa-reply"></i> Replies`;
+            newButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 39.887 34.903">
+                <path id="Path_1" data-name="Path 1"
+                    d="M15.971,32.2a2.5,2.5,0,0,1,1.48,2.275V39.46h8.725A13.712,13.712,0,0,1,39.887,53.172a15.277,15.277,0,0,1-7.806,13.563,1.277,1.277,0,0,1-.631.148,1.538,1.538,0,0,1-1.535-1.535,2.151,2.151,0,0,1,.763-1.519,5.823,5.823,0,0,0,1.729-4.417,7.481,7.481,0,0,0-7.479-7.479H17.451v4.986a2.5,2.5,0,0,1-4.16,1.854L.826,47.555A2.538,2.538,0,0,1,0,45.693a2.508,2.508,0,0,1,.826-1.854L13.291,32.62A2.474,2.474,0,0,1,15.971,32.2Z"
+                    transform="translate(0 -31.98)" fill="currentColor" />
+            </svg> Replies`;
             newDiv2.className = "sub-level-comment";
             newButton.addEventListener('click', showMoreRepliesBtnFunc)
             newLi.appendChild(newButton);
@@ -217,11 +234,19 @@ function showMoreRepliesBtnFunc() {
     if (this.classList.contains("active")) {
         this.classList.remove("active");
         this.parentElement.querySelector(".sub-level-comment").style.display = "none";
-        this.innerHTML = `<i class="fa-solid fa-reply"></i> Replies`;
+        this.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 39.887 34.903">
+            <path id="Path_1" data-name="Path 1"
+                d="M15.971,32.2a2.5,2.5,0,0,1,1.48,2.275V39.46h8.725A13.712,13.712,0,0,1,39.887,53.172a15.277,15.277,0,0,1-7.806,13.563,1.277,1.277,0,0,1-.631.148,1.538,1.538,0,0,1-1.535-1.535,2.151,2.151,0,0,1,.763-1.519,5.823,5.823,0,0,0,1.729-4.417,7.481,7.481,0,0,0-7.479-7.479H17.451v4.986a2.5,2.5,0,0,1-4.16,1.854L.826,47.555A2.538,2.538,0,0,1,0,45.693a2.508,2.508,0,0,1,.826-1.854L13.291,32.62A2.474,2.474,0,0,1,15.971,32.2Z"
+                transform="translate(0 -31.98)" fill="currentColor" />
+        </svg> Replies`;
     } else {
         this.classList.add("active");
         this.parentElement.querySelector(".sub-level-comment").style.display = "block";
-        this.innerHTML = `<i class="fa-solid fa-reply"></i> Collapse`;
+        this.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 39.887 34.903">
+            <path id="Path_1" data-name="Path 1"
+                d="M15.971,32.2a2.5,2.5,0,0,1,1.48,2.275V39.46h8.725A13.712,13.712,0,0,1,39.887,53.172a15.277,15.277,0,0,1-7.806,13.563,1.277,1.277,0,0,1-.631.148,1.538,1.538,0,0,1-1.535-1.535,2.151,2.151,0,0,1,.763-1.519,5.823,5.823,0,0,0,1.729-4.417,7.481,7.481,0,0,0-7.479-7.479H17.451v4.986a2.5,2.5,0,0,1-4.16,1.854L.826,47.555A2.538,2.538,0,0,1,0,45.693a2.508,2.508,0,0,1,.826-1.854L13.291,32.62A2.474,2.474,0,0,1,15.971,32.2Z"
+                transform="translate(0 -31.98)" fill="currentColor" />
+        </svg> Collapse`;
     }
 }
 

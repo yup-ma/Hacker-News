@@ -12,30 +12,38 @@ let currentTimeStampVar;
 
 //Running a test search on load of page
 window.addEventListener("load", () => {
-    if (localStorage.getItem("theme") || localStorage.getItem("theme") != "system") {
-        document.querySelector(".theme-modal-btn .link-icon").innerHTML = document.querySelector(`.theme-btn[data-theme-type=${localStorage.getItem("theme")}]`).querySelector(".link-icon").innerHTML;
-        document.querySelector(".theme-dropdown-content-container").querySelector(".active-theme").classList.remove("active-theme");
-        document.querySelector(`.theme-btn[data-theme-type=${localStorage.getItem("theme")}]`).classList.add("active-theme");
+    if (localStorage.getItem("theme")) {
+        if (localStorage.getItem("theme") != "system") {
+            document.querySelector(".theme-modal-btn .link-icon").innerHTML = document.querySelector(`.theme-btn[data-theme-type=${localStorage.getItem("theme")}]`).querySelector(".link-icon").innerHTML;
+            document.querySelector(".theme-dropdown-content-container").querySelector(".active-theme").classList.remove("active-theme");
+            document.querySelector(`.theme-btn[data-theme-type=${localStorage.getItem("theme")}]`).classList.add("active-theme");
+        }
     }
 })
 
 //Showing a message on online and offline status
 window.addEventListener("online", () => {
-    networkStatusBar.style.backgroundColor = "var(--success-bg-color)";
-    networkStatusBar.style.color = "var(--primary-color)";
-    networkStatusBar.innerText = "Back online";
-    networkStatusBar.style.maxHeight = "48px";
-    setTimeout(() => {
-        networkStatusBar.style.maxHeight = "0";
-    }, 2000)
+    // networkStatusBar.style.backgroundColor = "var(--success-bg-color)";
+    // networkStatusBar.style.color = "var(--primary-color)";
+    // networkStatusBar.innerText = "Back online";
+    // networkStatusBar.style.maxHeight = "48px";
+    // setTimeout(() => {
+    //     networkStatusBar.style.maxHeight = "0";
+    // }, 2000)
+    actionStatus = "success";
+    actionMessage = "Back online";
+    showActionMessageFunc();
 })
 
 //Showing a message on online and offline status
 window.addEventListener("offline", () => {
-    networkStatusBar.style.backgroundColor = "var(--error-bg-color)";
-    networkStatusBar.style.color = "var(--white-color)";
-    networkStatusBar.style.maxHeight = "48px";
-    networkStatusBar.innerText = "Network connection lost";
+    // networkStatusBar.style.backgroundColor = "var(--error-bg-color)";
+    // networkStatusBar.style.color = "var(--white-color)";
+    // networkStatusBar.style.maxHeight = "48px";
+    // networkStatusBar.innerText = "Network connection lost";
+    actionStatus = "error";
+    actionMessage = "Network connection lost";
+    showActionMessageFunc();
 })
 
 //Adding observer to have a shadow on nav on scroll

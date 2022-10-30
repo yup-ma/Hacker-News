@@ -33,6 +33,20 @@
 </head>
 
 <body>
+    <noscript>
+        <div id="user-action-status-messages">
+            <div class="user-action-status-error user-action-status-container">
+                <span class="message-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512">
+                        <path data-name="Path 1"
+                            d="M256,512c141.4,0,256-114.6,256-256S397.4,0,256,0,0,114.6,0,256,114.6,512,256,512Zm0-384a23.942,23.942,0,0,1,24,24V264a24,24,0,0,1-48,0V152A23.942,23.942,0,0,1,256,128Zm32,224a32,32,0,1,1-32-32A31.966,31.966,0,0,1,288,352Z"
+                            fill="currentColor" />
+                    </svg>
+                </span>
+                <span class="message-text">Please enable javascript for best experience</span>
+            </div>
+        </div>
+    </noscript>
     <navbar-component></navbar-component>
     <updates-component></updates-component>
     <main>
@@ -78,11 +92,13 @@
                     <button class="filter-btn">Tag</button>
                     <div class="filter-dropdown tags-dropdown d-flex d-flex-dir-col">
                         <span class="dropdown-type-text">Tag(s)</span>
-                        <button class="filter-dropdown-btn" data-option-value="story">story</button>
-                        <button class="filter-dropdown-btn" data-option-value="poll">poll</button>
-                        <button class="filter-dropdown-btn" data-option-value="job">job</button>
-                        <button class="filter-dropdown-btn" data-option-value="ask_hn">Ask HN</button>
-                        <button class="filter-dropdown-btn" data-option-value="show_hn">Show HN</button>
+                        <button class="filter-dropdown-btn" data-option-value="story" title="Tag: Story">Story</button>
+                        <button class="filter-dropdown-btn" data-option-value="poll" title="Tag: Poll">Poll</button>
+                        <button class="filter-dropdown-btn" data-option-value="job" title="Tag: Job">Job</button>
+                        <button class="filter-dropdown-btn" data-option-value="ask_hn" title="Tag: Ask HN">Ask
+                            HN</button>
+                        <button class="filter-dropdown-btn" data-option-value="show_hn" title="Tag: Show HN">Show
+                            HN</button>
                         <div class="filter-dropdown-special-btn-container" data-option-value="">
                             <input type="text" placeholder="Other" maxlength="30">
                             <button class="filter-dropdown-special-btn">Add</button>
@@ -105,8 +121,10 @@
                     <button class="filter-btn">Sort by <span class="trival-filter-value">Popularity</span></button>
                     <div class="filter-dropdown tags-dropdown d-flex d-flex-dir-col">
                         <span class="dropdown-type-text">Sort by</span>
-                        <button class="filter-dropdown-btn" data-option-value="Popularity">Popularity</button>
-                        <button class="filter-dropdown-btn" data-option-value="Date">Date (Recent)</button>
+                        <button class="filter-dropdown-btn" data-option-value="Popularity"
+                            title="Sort by Popularity">Popularity</button>
+                        <button class="filter-dropdown-btn" data-option-value="Date" title="Sort by Date (Recent)">Date
+                            (Recent)</button>
                     </div>
                 </div>
                 <div class="filter-search-types-container filter-search-clear-filter">

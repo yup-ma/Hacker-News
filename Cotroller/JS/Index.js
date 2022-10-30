@@ -3,6 +3,20 @@ let apiUrlForArticles = `https://hn.algolia.com/api/v1/search?tags=front_page`;
 let debounceInputTimer;
 let searchedThroughInput = false;
 let pageNumber = 0;
+let originalTags = ["story", "poll", "job", "ask_hn", "show_hn"];
+let recentFiltersArray = [];
+
+let followedAuthors = [];
+
+if (localStorage.getItem("recent-filters-array")) {
+    let localStorageRecentFiltersArray = JSON.parse(localStorage.getItem("recent-filters-array"));
+    if (localStorageRecentFiltersArray.length !== 0) {
+        recentFiltersArray = localStorageRecentFiltersArray;
+        recentFiltersArray.forEach(ele => {
+            createRecentFilterBtnFunc(ele.type, ele.value)
+        });
+    }
+}
 
 //Updating filters from local storage if any, on load of browser
 window.addEventListener("load", () => {
@@ -73,6 +87,8 @@ function filterDropdownSpecialInputAddTagFunc() {
     let addingFilterValue = this.parentElement.dataset.optionValue;
     this.parentElement.parentElement.parentElement.classList.remove("active-filter-dropdown");
     this.parentElement.querySelector("input").value = "";
+    this.parentElement.dataset.optionValue = "";
+    this.style.display = "none";
     document.body.removeEventListener('click', filterSearchDropwDownClosingFunc)
     for (let i = 0; i < appliedFiltersArray.length; i++) {
         //Checking if filter is already present
@@ -110,7 +126,6 @@ function filterDropdownSpecialInputAddTagFunc() {
     filterArrayVal.value = addingFilterValue;
     appliedFiltersArray.push(filterArrayVal);
     creatingAppliedFilterBtnsFunc(filterArrayVal);
-
 }
 //Applying filters starts
 document.querySelectorAll(".filter-dropdown-btn").forEach(ele => {
@@ -200,8 +215,113 @@ function creatingAppliedFilterBtnsFunc(e) {
     actionMessage = "Filter added successfully";
     showActionMessageFunc();
     localStorage.setItem("applied-filters-array", JSON.stringify(appliedFiltersArray));
+
+    if (e.type == "tags") {
+        if (originalTags.includes(e.value)) {
+            return
+        }
+    }
+    for (let i = 0; i < recentFiltersArray.length; i++) {
+        //Checking if value is already present
+        if (recentFiltersArray[i].type == e.type && recentFiltersArray[i].value == e.value) {
+            return
+        }
+    }
+    let recentFilterArrayVal = {};
+    recentFilterArrayVal.type = e.type;
+    recentFilterArrayVal.value = e.value;
+    recentFiltersArray.push(recentFilterArrayVal)
+    localStorage.setItem("recent-filters-array", JSON.stringify(recentFiltersArray));
+
+    createRecentFilterBtnFunc(e.type, e.value)
 }
 
+function createRecentFilterBtnFunc(filterType, filterValue) {
+    const newRecentButton = document.createElement("button");
+    newRecentButton.style.paddingRight = "6px";
+    if (filterType == "tags") {
+        if (!document.querySelector(".filter-search-tags").querySelector(".dropdown-type-text-recent")) {
+            const newRecentSpan = document.createElement("span");
+            newRecentSpan.className = "dropdown-type-text dropdown-type-text-recent";
+            newRecentSpan.innerHTML = "Recent Tag(s)";
+            newRecentSpan.style.marginTop = "5px"
+            document.querySelector(".filter-search-tags").querySelector(".tags-dropdown").appendChild(newRecentSpan);
+        }
+        newRecentButton.className = "filter-dropdown-btn recent-filter-dropdown-btn";
+        newRecentButton.dataset.optionValue = filterValue;
+        newRecentButton.title = `Tag: ${filterValue}`;
+        newRecentButton.innerHTML = `<span class="filter-text">${filterValue}</span>
+        <span class="remove-recent-filter d-flex justify-content-center"
+            title="Remove from Recent Tag(s)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9"
+                viewBox="0 0 320.15 320.15">
+                <path data-name="Path 1"
+                    d="M310.6,150.6a32.032,32.032,0,1,0-45.3-45.3L160,210.7,54.6,105.4A32.032,32.032,0,1,0,9.3,150.7L114.7,256,9.4,361.4a32.032,32.032,0,0,0,45.3,45.3L160,301.3,265.4,406.6a32.032,32.032,0,0,0,45.3-45.3L205.3,256Z"
+                    transform="translate(0.075 -95.925)" fill="currentColor"></path>
+            </svg>
+        </span>`;
+        document.querySelector(".filter-search-tags").querySelector(".tags-dropdown").appendChild(newRecentButton);
+    }
+
+    if (filterType == "author") {
+        if (!document.querySelector(".filter-search-author").querySelector(".dropdown-type-text-recent")) {
+            const newRecentSpan = document.createElement("span");
+            newRecentSpan.className = "dropdown-type-text dropdown-type-text-recent";
+            newRecentSpan.innerHTML = "Recent Author(s)";
+            newRecentSpan.style.marginTop = "5px"
+            document.querySelector(".filter-search-author").querySelector(".author-dropdown").appendChild(newRecentSpan);
+        }
+        newRecentButton.className = "filter-dropdown-btn recent-filter-dropdown-btn";
+        newRecentButton.dataset.optionValue = filterValue;
+        newRecentButton.title = `Tag: ${filterValue}`;
+        newRecentButton.innerHTML = `<span class="filter-text">${filterValue}</span>
+        <span class="remove-recent-filter d-flex justify-content-center"
+            title="Remove from Recent Author(s)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9"
+                viewBox="0 0 320.15 320.15">
+                <path data-name="Path 1"
+                    d="M310.6,150.6a32.032,32.032,0,1,0-45.3-45.3L160,210.7,54.6,105.4A32.032,32.032,0,1,0,9.3,150.7L114.7,256,9.4,361.4a32.032,32.032,0,0,0,45.3,45.3L160,301.3,265.4,406.6a32.032,32.032,0,0,0,45.3-45.3L205.3,256Z"
+                    transform="translate(0.075 -95.925)" fill="currentColor"></path>
+            </svg>
+        </span>`;
+        document.querySelector(".filter-search-author").querySelector(".author-dropdown").appendChild(newRecentButton);
+    }
+    newRecentButton.addEventListener('click', filterDropdownBtnClickFunc)
+    newRecentButton.querySelector(".remove-recent-filter").addEventListener('click', removeRecentFilterBtnFunc)
+}
+
+function removeRecentFilterBtnFunc() {
+    event.stopPropagation();
+    let removingRecentFilterType = this.parentElement.parentElement.parentElement.dataset.filterType;
+    let removingRecentFilterVal = this.parentElement.dataset.optionValue;
+    this.parentElement.remove();
+
+    for (let i = 0; i < recentFiltersArray.length; i++) {
+        if (recentFiltersArray[i].type == removingRecentFilterType && recentFiltersArray[i].value == removingRecentFilterVal) {
+            recentFiltersArray.splice(i, 1)
+        }
+    }
+
+    if (!document.querySelector(".filter-search-author").querySelector(".author-dropdown").querySelector(".recent-filter-dropdown-btn")) {
+        if (document.querySelector(".filter-search-author").querySelector(".author-dropdown").querySelector(".dropdown-type-text-recent")) {
+            document.querySelector(".filter-search-author").querySelector(".author-dropdown").querySelector(".dropdown-type-text-recent").remove();
+        }
+    }
+    if (!document.querySelector(".filter-search-tags").querySelector(".tags-dropdown").querySelector(".recent-filter-dropdown-btn")) {
+        if (document.querySelector(".filter-search-tags").querySelector(".tags-dropdown").querySelector(".dropdown-type-text-recent")) {
+            document.querySelector(".filter-search-tags").querySelector(".tags-dropdown").querySelector(".dropdown-type-text-recent").remove();
+        }
+    }
+
+    actionStatus = "success";
+    if (removingRecentFilterType == "tags") {
+        actionMessage = `Recent Tag: <span class="word-break-break-all">${removingRecentFilterVal}</span> removed successfully`;
+    } else {
+        actionMessage = `Recent Author: <span class="word-break-break-all">${removingRecentFilterVal}</span> removed successfully`;
+    }
+    showActionMessageFunc();
+    localStorage.setItem("recent-filters-array", JSON.stringify(recentFiltersArray));
+}
 //Removing function for applied filters
 function searchAppliedFiltersBtnRemoveFunc() {
     let removingFilterType = this.dataset.filterAddedType;
@@ -441,11 +561,11 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
             </a>`;
             articleBlocksSharingFunc(newAnchor.querySelector(".share-options-container"), newAnchor.href, articleTitle)
             document.querySelector(".articles-main-container").appendChild(newAnchor);
-            newAnchor.addEventListener('click', articleClickedFunc)
             newAnchor.querySelector(".article-share-container:not(a)").addEventListener('click', shareOptionsPrevDefaultFunc)
             newAnchor.querySelector(".add-to-bookmark-btn").addEventListener('click', addToBookmarkFunc)
             newAnchor.querySelector(".follow-author-btn").addEventListener('click', followAuthorFunc)
             newAnchor.querySelector(".article-share-btn").addEventListener('click', shareOptionsOpenerFunc)
+            newAnchor.addEventListener('click', articleClickedFunc)
             let randomArticleColor = randomColorGenerator();
             newAnchor.style.setProperty("--article-color", `rgb(${randomArticleColor})`);
             newAnchor.style.setProperty("--article-bg-color", `${randomArticleColor}`);

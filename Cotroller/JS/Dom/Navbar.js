@@ -2,11 +2,6 @@
 const navbarTemplate = document.createElement('template');
 navbarTemplate.innerHTML = `    <div class="navbar-top"></div>
 <header class="navbar-container">
-    <noscript>
-        <div id="javascript-status" class="d-flex justify-content-center">
-            Please enable javascript for best experience
-        </div>
-    </noscript>
     <div id="network-status" class="d-flex justify-content-center"></div>
     <div id="user-action-status-messages">
     </div>
