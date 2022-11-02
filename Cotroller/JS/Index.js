@@ -349,6 +349,7 @@ function searchAppliedFiltersBtnRemoveFunc() {
 
 //Preventing reunning of api on consecutive presses so deboucing it
 document.querySelector("#search-input").addEventListener('input', function () {
+    pageNumber = 0;
     clearTimeout(debounceInputTimer);
     debounceInputTimer = setTimeout(() => {
         updatingURLForAPIFunc();

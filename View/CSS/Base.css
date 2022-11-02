@@ -42,9 +42,6 @@ html {
     --purple-shade-color: #4605a4;
     --box-shadow-color: rgb(0 0 0 / 24%);
     --box-bg-color: rgb(0 0 0 / 50%);
-    --transition02: 0.2s;
-    --transition03: 0.3s;
-    --transition05: 0.5s;
 }
 
 html[data-theme="dark"] {
@@ -194,6 +191,7 @@ h6 {
 .web-links .link-arrow {
     margin-left: auto;
     flex-shrink: 0;
+    transition: var(--transition05);
 }
 
 .web-btns {

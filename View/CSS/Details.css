@@ -374,8 +374,8 @@ a.article-extra-details-container-link:focus {
 }
 
 .article-coments-main-container ul li {
-    padding: 5px 0;
-    margin: 5px 0;
+    padding: 5px 0 0;
+    margin: 8px 0 0;
     color: var(--secondary-color);
     font-size: 15px;
     position: relative;
@@ -549,7 +549,7 @@ a.article-extra-details-container-link:focus {
 
     .article-coments-main-container ul li {
         position: relative;
-        padding: 10px 0;
+        padding: 10px 0 0;
     }
 }
 

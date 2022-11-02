@@ -108,6 +108,16 @@ navbarTemplate.innerHTML = `    <div class="navbar-top"></div>
                             </span>
                             <span class="link-text">Bookmark</span>
                         </a>
+                        <a href="#" class="web-links d-flex justify-content-center">
+                            <span class="link-icon">
+                                <svg width="20" height="20" viewBox="0 0 512 512">
+                                    <path
+                                        d="m491 85l-413 0c-12 0-21 10-21 22l0 7-36 0c-11 0-21 9-21 21l0 242c0 27 22 50 50 50l419 0c24 0 43-19 43-43l0-277c0-12-10-22-21-22z m-441 299c-4 0-7-3-7-7l0-221 14 0 0 221c0 4-3 7-7 7z m210-14l-136 0c-5 0-10-5-10-11l0-7c0-6 5-11 10-11l136 0c5 0 10 5 10 11l0 7c0 6-5 11-10 11z m184 0l-135 0c-6 0-10-5-10-11l0-7c0-6 4-11 10-11l135 0c6 0 11 5 11 11l0 7c0 6-5 11-11 11z m-184-86l-136 0c-5 0-10-4-10-10l0-7c0-6 5-11 10-11l136 0c5 0 10 5 10 11l0 7c0 6-5 10-10 10z m184 0l-135 0c-6 0-10-4-10-10l0-7c0-6 4-11 10-11l135 0c6 0 11 5 11 11l0 7c0 6-5 10-11 10z m0-85l-320 0c-5 0-10-5-10-11l0-35c0-6 5-11 10-11l320 0c6 0 11 5 11 11l0 35c0 6-5 11-11 11z"
+                                        fill="currentColor" />
+                                </svg>
+                            </span>
+                            <span class="link-text">Feed</span>
+                        </a>
                         <div class="theme-dropdown-menu-container">
                             <button class="theme-modal-btn web-links web-btns d-flex justify-content-center">
                                 <span class="link-icon d-flex">
@@ -171,24 +181,10 @@ navbarTemplate.innerHTML = `    <div class="navbar-top"></div>
                         </div>
                         <button class="updates-modal-btn web-links web-btns d-flex justify-content-center">
                             <span class="link-icon d-flex">
-                                <svg id="Icon_File" data-name="Icon/File" xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" viewBox="0 0 24 24">
-                                    <rect width="24" height="24" fill="none" />
-                                    <path data-name="Path 2795"
-                                        d="M79.942,0H66.058A1.962,1.962,0,0,0,64,1.844V20.156A1.962,1.962,0,0,0,66.058,22H79.942A1.962,1.962,0,0,0,82,20.156V1.844A1.962,1.962,0,0,0,79.942,0Zm1.24,20.156a1.182,1.182,0,0,1-1.24,1.111H66.058a1.182,1.182,0,0,1-1.24-1.111V1.844A1.182,1.182,0,0,1,66.058.733H79.942a1.182,1.182,0,0,1,1.24,1.111Z"
-                                        transform="translate(-61 1)" stroke="currentColor" stroke-width="1.2" />
-                                    <path data-name="Path 2796"
-                                        d="M146.1,232h-9.7a.4.4,0,0,0,0,.808h9.7a.4.4,0,0,0,0-.808Z"
-                                        transform="translate(-129.253 -220.404)" stroke="currentColor"
-                                        stroke-width="1.2" />
-                                    <path data-name="Path 2797"
-                                        d="M146.1,328h-9.7a.4.4,0,0,0,0,.808h9.7a.4.4,0,0,0,0-.808Z"
-                                        transform="translate(-129.253 -312.02)" stroke="currentColor"
-                                        stroke-width="1.2" />
-                                    <path data-name="Path 2798"
-                                        d="M146.1,136h-9.7a.4.4,0,0,0,0,.808h9.7a.4.4,0,0,0,0-.808Z"
-                                        transform="translate(-129.253 -128.789)" stroke="currentColor"
-                                        stroke-width="1.2" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 75.288 109.51">
+                                    <path id="Path_1" data-name="Path 1"
+                                        d="M70.755,82.132c2.053-6.823,6.31-12.641,10.523-18.437h0c1.112-1.519,2.224-3.037,3.294-4.577A37.651,37.651,0,1,0,22.716,59.1c1.069,1.54,2.182,3.059,3.294,4.577h0c4.235,5.8,8.491,11.635,10.523,18.437H70.755ZM53.644,109.51A17.106,17.106,0,0,0,70.755,92.4V88.977H36.533V92.4A17.106,17.106,0,0,0,53.644,109.51ZM36.533,37.644a3.422,3.422,0,1,1-6.844,0A23.943,23.943,0,0,1,53.644,13.689a3.422,3.422,0,0,1,0,6.844A17.106,17.106,0,0,0,36.533,37.644Z"
+                                        transform="translate(-16)" fill="currentColor" />
                                 </svg>
                             </span>
                             <span class="link-text">Updates</span>
