@@ -65,26 +65,26 @@ function showActionMessageFunc() {
         newDiv.className = "user-action-status-error user-action-status-container";
         newDiv.innerHTML = `<span class="message-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512">
-                <path data-name="Path 1" d="M256,512c141.4,0,256-114.6,256-256S397.4,0,256,0,0,114.6,0,256,114.6,512,256,512Zm0-384a23.942,23.942,0,0,1,24,24V264a24,24,0,0,1-48,0V152A23.942,23.942,0,0,1,256,128Zm32,224a32,32,0,1,1-32-32A31.966,31.966,0,0,1,288,352Z" fill="currentColor"/>
+                <path d="M256,512c141.4,0,256-114.6,256-256S397.4,0,256,0,0,114.6,0,256,114.6,512,256,512Zm0-384a23.942,23.942,0,0,1,24,24V264a24,24,0,0,1-48,0V152A23.942,23.942,0,0,1,256,128Zm32,224a32,32,0,1,1-32-32A31.966,31.966,0,0,1,288,352Z" fill="currentColor"/>
             </svg>
         </span>
         <span class="message-text">${actionMessage}</span>
         <button class="d-flex justify-content-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 320.15 320.15">
-                <path data-name="Path 1" d="M310.6,150.6a32.032,32.032,0,1,0-45.3-45.3L160,210.7,54.6,105.4A32.032,32.032,0,1,0,9.3,150.7L114.7,256,9.4,361.4a32.032,32.032,0,0,0,45.3,45.3L160,301.3,265.4,406.6a32.032,32.032,0,0,0,45.3-45.3L205.3,256Z" transform="translate(0.075 -95.925)" fill="currentColor"/>
+                <path d="M310.6,150.6a32.032,32.032,0,1,0-45.3-45.3L160,210.7,54.6,105.4A32.032,32.032,0,1,0,9.3,150.7L114.7,256,9.4,361.4a32.032,32.032,0,0,0,45.3,45.3L160,301.3,265.4,406.6a32.032,32.032,0,0,0,45.3-45.3L205.3,256Z" transform="translate(0.075 -95.925)" fill="currentColor"/>
             </svg>
         </button>`;
     } else {
         newDiv.className = "user-action-status-success user-action-status-container";
         newDiv.innerHTML = `<span class="message-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512">
-                <path data-name="Path 1" d="M256,512c141.4,0,256-114.6,256-256S397.4,0,256,0,0,114.6,0,256,114.6,512,256,512ZM369,209,241,337a23.9,23.9,0,0,1-33.9,0l-64-64A23.971,23.971,0,0,1,177,239.1l47,47L335,175a23.971,23.971,0,1,1,33.9,33.9Z" fill="currentColor"/>
+                <path d="M256,512c141.4,0,256-114.6,256-256S397.4,0,256,0,0,114.6,0,256,114.6,512,256,512ZM369,209,241,337a23.9,23.9,0,0,1-33.9,0l-64-64A23.971,23.971,0,0,1,177,239.1l47,47L335,175a23.971,23.971,0,1,1,33.9,33.9Z" fill="currentColor"/>
             </svg>
         </span>
         <span class="message-text">${actionMessage}</span>
         <button class="d-flex justify-content-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 320.15 320.15">
-                <path data-name="Path 1" d="M310.6,150.6a32.032,32.032,0,1,0-45.3-45.3L160,210.7,54.6,105.4A32.032,32.032,0,1,0,9.3,150.7L114.7,256,9.4,361.4a32.032,32.032,0,0,0,45.3,45.3L160,301.3,265.4,406.6a32.032,32.032,0,0,0,45.3-45.3L205.3,256Z" transform="translate(0.075 -95.925)" fill="currentColor"/>
+                <path d="M310.6,150.6a32.032,32.032,0,1,0-45.3-45.3L160,210.7,54.6,105.4A32.032,32.032,0,1,0,9.3,150.7L114.7,256,9.4,361.4a32.032,32.032,0,0,0,45.3,45.3L160,301.3,265.4,406.6a32.032,32.032,0,0,0,45.3-45.3L205.3,256Z" transform="translate(0.075 -95.925)" fill="currentColor"/>
             </svg>
         </button>`;
     }
@@ -110,27 +110,6 @@ function windowWidthCalcFunc() {
         document.querySelector(".company-logo-container").style.setProperty("--company-text", `"Quality Reads"`);
     } else {
         document.querySelector(".company-logo-container").style.setProperty("--company-text", `"QR"`);
-    }
-}
-
-//Changing nav text when passed by article heading on scroll
-let navScrollingAllowed = true;
-window.addEventListener('scroll', observeHeadingFunc)
-
-function observeHeadingFunc() {
-    if (windowWidth > 899) {
-        if (navScrollingAllowed == true) {
-            navScrollingAllowed = false;
-            const articlesMainContainerHeading = document.querySelector(".articles-main-container-heading");
-            if (window.scrollY >= articlesMainContainerHeading.offsetTop + articlesMainContainerHeading.offsetHeight) {
-                document.querySelector(".company-logo-container").style.setProperty("--company-text", `"${articlesMainContainerHeading.innerHTML}: Quality Reads"`);
-            } else {
-                document.querySelector(".company-logo-container").style.setProperty("--company-text", `"Quality Reads"`);
-            }
-            setTimeout(() => {
-                navScrollingAllowed = true;
-            }, 500);
-        }
     }
 }
 

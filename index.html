@@ -38,7 +38,7 @@
             <div class="user-action-status-error user-action-status-container">
                 <span class="message-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512">
-                        <path data-name="Path 1"
+                        <path
                             d="M256,512c141.4,0,256-114.6,256-256S397.4,0,256,0,0,114.6,0,256,114.6,512,256,512Zm0-384a23.942,23.942,0,0,1,24,24V264a24,24,0,0,1-48,0V152A23.942,23.942,0,0,1,256,128Zm32,224a32,32,0,1,1-32-32A31.966,31.966,0,0,1,288,352Z"
                             fill="currentColor" />
                     </svg>
@@ -51,105 +51,11 @@
     <updates-component></updates-component>
     <main>
         <div class="search-heading-parent-container d-flex d-flex-dir-col justify-content-center">
-            <div class="search-heading-container d-flex justify-content-center">
+            <div class="square-heading-container d-flex justify-content-center">
                 <h1>Search</h1>
             </div>
             <p>Search for <b>Hacker News</b> articles with our faster API calls so that you are always updated about the
                 world around you.</p>
-        </div>
-        <div class="search-input-parent-container d-flex justify-content-center" id="search-input-parent-container">
-            <div class="search-input-container d-flex justify-content-center">
-                <span class="seach-icon-container">
-                    <span class="seach-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 511.975 512.075">
-                            <path data-name="Path 1"
-                                d="M416,208a207.488,207.488,0,0,1-40,122.7L502.6,457.4a32.032,32.032,0,0,1-45.3,45.3L330.7,376A206.808,206.808,0,0,1,208,416C93.1,416,0,322.9,0,208S93.1,0,208,0,416,93.1,416,208ZM208,352A144,144,0,1,0,64,208,144.037,144.037,0,0,0,208,352Z"
-                                fill="currentColor" />
-                        </svg>
-                    </span>
-                    <span class="seach-icon-text hidden-ele">Search Icon</span>
-                </span>
-                <input type="search" name="search-input" id="search-input" placeholder="Search for articles">
-                <div class="search-applied-filters-parent-container">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 384.15 447.975">
-                            <path data-name="Path 1"
-                                d="M169.4,470.6a32.049,32.049,0,0,0,45.3,0l160-160a32.032,32.032,0,1,0-45.3-45.3L224,370.8V64a32,32,0,0,0-64,0V370.7L54.6,265.4A32.032,32.032,0,0,0,9.3,310.7l160,160Z"
-                                transform="translate(0.075 -32)" fill="currentColor" />
-                        </svg>
-                        Applied filters
-                    </h3>
-                    <div class="search-applied-filters-container d-flex">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="filter-search-parent-container">
-            <h3>Search based on</h3>
-            <div class="filter-search-container d-flex justify-content-center">
-                <div class="filter-search-types-container filter-search-tags d-flex d-flex-dir-col"
-                    data-filter-type="tags">
-                    <button class="filter-btn">Tag</button>
-                    <div class="filter-dropdown tags-dropdown d-flex d-flex-dir-col">
-                        <span class="dropdown-type-text">Tag(s)</span>
-                        <button class="filter-dropdown-btn" data-option-value="story" title="Tag: Story">Story</button>
-                        <button class="filter-dropdown-btn" data-option-value="poll" title="Tag: Poll">Poll</button>
-                        <button class="filter-dropdown-btn" data-option-value="job" title="Tag: Job">Job</button>
-                        <button class="filter-dropdown-btn" data-option-value="ask_hn" title="Tag: Ask HN">Ask
-                            HN</button>
-                        <button class="filter-dropdown-btn" data-option-value="show_hn" title="Tag: Show HN">Show
-                            HN</button>
-                        <div class="filter-dropdown-special-btn-container" data-option-value="">
-                            <input type="text" placeholder="Other" maxlength="30">
-                            <button class="filter-dropdown-special-btn">Add</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="filter-search-types-container filter-search-author d-flex d-flex-dir-col"
-                    data-filter-type="author">
-                    <button class="filter-btn">Author</button>
-                    <div class="filter-dropdown author-dropdown filter-dropdown-right-aligned d-flex d-flex-dir-col">
-                        <span class="dropdown-type-text">Author(s)</span>
-                        <div class="filter-dropdown-special-btn-container" data-option-value="">
-                            <input type="text" placeholder="Author name" maxlength="30">
-                            <button class="filter-dropdown-special-btn">Add</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="filter-search-types-container filter-search-relevance d-flex d-flex-dir-col"
-                    data-filter-type="trival">
-                    <button class="filter-btn">Sort by <span class="trival-filter-value">Popularity</span></button>
-                    <div class="filter-dropdown tags-dropdown d-flex d-flex-dir-col">
-                        <span class="dropdown-type-text">Sort by</span>
-                        <button class="filter-dropdown-btn" data-option-value="Popularity"
-                            title="Sort by Popularity">Popularity</button>
-                        <button class="filter-dropdown-btn" data-option-value="Date" title="Sort by Date (Recent)">Date
-                            (Recent)</button>
-                    </div>
-                </div>
-                <div class="filter-search-types-container filter-search-clear-filter">
-                    <button class="filter-btn filter-clear-btn">Clear filters</button>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="articles-main-container-heading">Recent articles</h3>
-        <h5 class="articles-main-container-sub-heading">Showing results for "<b>absc</b>" in 0.001s</h5>
-        <div class="articles-main-container d-flex justify-content-center">
-            <img src="View/Images/error-occured-image.svg" alt="error-image" class="hidden-ele">
-            <div class="loader-container">
-                <div>
-                    <span class="loader loader1">l</span>
-                    <span class="loader loader2">o</span>
-                    <span class="loader loader3">a</span>
-                    <span class="loader loader4">d</span>
-                    <span class="loader loader5">i</span>
-                    <span class="loader loader6">n</span>
-                    <span class="loader loader7">g</span>
-                </div>
-            </div>
-        </div>
-        <div class="articles-main-container-pagination d-flex justify-content-center">
         </div>
     </main>
     <footer-component></footer-component>

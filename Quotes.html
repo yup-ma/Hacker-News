@@ -9,8 +9,8 @@
     <link rel="icon" type="image/x-icon" href="View/Images/Icons/quality-reads-favicon.svg">
     <link rel="stylesheet" href="View/CSS/Base.css?version=4">
     <link rel="stylesheet" href="View/CSS/Navbar.css?version=4">
+    <link rel="stylesheet" href="View/CSS/Quotes.css?version=4">
     <link rel="stylesheet" href="View/CSS/Footer.css?version=4">
-    <link rel="stylesheet" href="View/CSS/Details.css?version=4">
     <script src="Cotroller/JS/Func/Initiate-theme.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/26b04b0eef.js" crossorigin="anonymous"></script>
@@ -19,13 +19,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <meta name="color-scheme" content="dark light">
-    <link rel="canonical" href="https://yup-ma.github.io/Quality-Reads/Details.html" />
+    <link rel="canonical" href="https://yup-ma.github.io/Quality-Reads/" />
     <meta name="description"
         content="A tool to search the articles from hacker news based on various tags, queries, date, author">
     <meta property="og:title" content="Quality Reads - A Search Engine">
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://yup-ma.github.io/Quality-Reads/View/Images/Icons/quality-reads-logo.svg">
-    <meta property="og:url" content="https://yup-ma.github.io/Quality-Reads/Details.html">
+    <meta property="og:url" content="https://yup-ma.github.io/Quality-Reads/">
     <meta name="twitter:card" content="summary">
     <meta property="og:description" content="A engine for all your articles need">
     <meta property="og:site_name" content="Quality Reads - A Search Engine">
@@ -50,39 +50,43 @@
     <navbar-component></navbar-component>
     <updates-component></updates-component>
     <main>
-        <div class="article-share-container d-flex d-flex-dir-col">
-
+        <div class="square-heading-container d-flex justify-content-center">
+            <h1>Quote's</h1>
         </div>
-        <div class="loader-container">
-            <div>
-                <span class="loader loader1">l</span>
-                <span class="loader loader2">o</span>
-                <span class="loader loader3">a</span>
-                <span class="loader loader4">d</span>
-                <span class="loader loader5">i</span>
-                <span class="loader loader6">n</span>
-                <span class="loader loader7">g</span>
+        <div class="quotes-main-container">
+            <div class="quotes-container">
+                <button class="bookmark-quote" title="Bookmark Quote">
+                    <span class="option-icon d-flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 143.93 191.886">
+                            <path id="Path_176" data-name="Path 176"
+                                d="M125.938,0H17.991A17.991,17.991,0,0,0,0,17.991V179.874a11.993,11.993,0,0,0,18.036,10.36l53.929-31.462L125.9,190.231c7.984,4.337,18.029-1.1,18.029-10.356V17.991A17.993,17.993,0,0,0,125.938,0Zm0,169.417L71.965,137.932,17.991,169.417V20.24A2.18,2.18,0,0,1,19.9,17.991H123.352a2.315,2.315,0,0,1,2.586,2.249Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <span class="hidden-ele">Follow Author</span>
+                </button>
+                <div class="quote-text">You, yourself, as much as anybody in the entire universe, deserve your love and
+                    affection.</div>
+                <div class="quote-author">- Buddha</div>
+                <button>
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 170.703 159.35">
+                            <path
+                                d="M61.13,71.415a56.893,56.893,0,0,1,80.124-.356L126.6,85.675a8.54,8.54,0,0,0,6.046,14.581h45.521a8.515,8.515,0,0,0,8.535-8.535V46.2a8.54,8.54,0,0,0-14.581-6.046L157.328,54.949A79.651,79.651,0,0,0,26.242,85.106a11.372,11.372,0,1,0,21.445,7.575A56.32,56.32,0,0,1,61.13,71.415ZM16,131.552v45.521a8.54,8.54,0,0,0,14.581,6.046l14.794-14.794A79.737,79.737,0,0,0,176.5,138.2a11.372,11.372,0,0,0-21.445-7.575,56.32,56.32,0,0,1-13.443,21.267,56.893,56.893,0,0,1-80.124.356L76.1,137.6a8.54,8.54,0,0,0-6.046-14.581H24.535A8.515,8.515,0,0,0,16,131.552Z"
+                                transform="translate(-16 -31.962)" fill="currentColor" />
+                        </svg>
+
+                    </span>
+                    New Quote</button>
             </div>
         </div>
     </main>
-    <!-- <button class="follow-author-btn article-extra-option" title="Add to Bookmarks">
-        <svg width="20" height="20" viewBox="0 0 512 512">
-            <path
-                d="m499 218l-51 0 0-52c0-7-6-12-13-12l-25 0c-7 0-13 5-13 12l0 52-51 0c-7 0-13 5-13 12l0 26c0 7 6 13 13 13l51 0 0 51c0 7 6 13 13 13l25 0c7 0 13-6 13-13l0-51 51 0c7 0 13-6 13-13l0-26c0-7-6-12-13-12z m-320 38c57 0 103-46 103-102 0-57-46-103-103-103-56 0-102 46-102 103 0 56 46 102 102 102z m72 26l-13 0c-18 8-38 12-59 12-21 0-40-4-58-12l-13 0c-60 0-108 48-108 107l0 33c0 22 17 39 38 39l282 0c21 0 38-17 38-39l0-33c0-59-48-107-107-107z"
-                fill="currentColor" />
-        </svg>
-        <span class="hidden-ele">Follow Author</span>
-       
-        .article-coments-main-container ul li button i
-    </button> -->
-
     <footer-component></footer-component>
+    <script src="Cotroller/JS/Quotes.js"></script>
     <script src="Cotroller/JS/Dom/Navbar.js"></script>
     <script src="Cotroller/JS/Dom/Updates.js"></script>
     <script src="Cotroller/JS/Dom/Footer.js"></script>
     <script src="Cotroller/JS/Base.js"></script>
-    <script src="Cotroller/JS/Change-head.js"></script>
-    <script src="Cotroller/JS/Details.js"></script>
     <script src="Cotroller/JS/Func/Sharing.js"></script>
 </body>
 

@@ -253,6 +253,31 @@ h6 {
     color: var(--secondary-color);
 }
 
+.square-heading-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+.square-heading-container::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+    background-color: var(--cta-color);
+    z-index: -1;
+}
+
+.square-heading-container h1 {
+    color: var(--primary-color);
+    font-size: 81px;
+    border: 4px solid;
+    padding: 5px 8px;
+}
+
 .user-action-status-container {
     position: relative;
     display: flex;
