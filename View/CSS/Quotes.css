@@ -1,4 +1,193 @@
 .quotes-main-container {
     flex-wrap: wrap;
     padding: 20px;
+    min-height: 350px;
 }
+
+.quotes-container {
+    --quote-color: rgb(84, 84, 84);
+    --quote-bg-color: 84, 84, 84;
+    position: relative;
+    max-width: 450px;
+    background-color: rgba(var(--quote-bg-color), 0.15);
+    color: var(--quote-color);
+    padding: 35px 20px 10px;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+    transition: var(--transition05);
+    animation: articleTransformAnime var(--transition02) linear;
+}
+
+.quotes-container:hover {
+    border-radius: 20px;
+}
+
+.bookmark-quote {
+    cursor: pointer;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+    color: var(--quote-color);
+    background-color: transparent;
+    transition: var(--transition05);
+}
+
+.bookmark-quote:hover,
+.bookmark-quote:focus {
+    background-color: rgba(var(--quote-bg-color), 0.3);
+}
+
+.quote-text {
+    color: var(--quote-color);
+    text-align: left;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.quote-author {
+    color: rgba(var(--quote-bg-color), 0.7);
+    text-align: left;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.quote-bottom-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+/* ------------------------------------------------------------ */
+.quote-share-container {
+    position: relative;
+}
+
+.option-btn {
+    cursor: pointer;
+    width: fit-content;
+    font-weight: 500;
+    padding: 7px 12px;
+    background-color: transparent;
+    color: var(--quote-color);
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: var(--transition05);
+}
+
+.option-btn svg {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.option-btn:hover,
+.option-btn:focus {
+    background-color: rgba(var(--quote-bg-color), 0.3);
+}
+
+.option-btn:active {
+    transform: scale(0.95);
+}
+
+.share-options-container {
+    display: none;
+    max-width: 200px;
+    max-height: 250px;
+    min-width: 160px;
+    overflow: auto;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    z-index: 1;
+    background-color: var(--white-color);
+    padding: 7px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-color) 0px 3px 8px;
+    transform-origin: top left;
+    animation: transformDropdown var(--transition02) linear;
+}
+
+.quote-share-container.active-share-dropdown .share-options-container {
+    display: flex;
+}
+
+.share-options-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.share-options-container::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 150px;
+    border: 3px solid var(--white-color);
+}
+
+.share-options-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.share-options-container .dropdown-type-text {
+    color: var(--quote-color);
+}
+
+.share-options-container .share-option {
+    cursor: pointer;
+    width: 100%;
+    white-space: nowrap;
+    padding: 8px 14px 8px 7px;
+    text-decoration: none;
+    text-align: left;
+    margin: 1px 0;
+    background-color: var(--white-color);
+    color: var(--quote-color);
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    transition: var(--transition05) background-color;
+}
+
+.share-options-container .share-option .share-option-text {
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.share-options-container .share-option.more-share-option {
+    position: relative;
+}
+
+.share-options-container .share-option.more-share-option::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 5px;
+    width: calc(100% - 10px);
+    border-top: 1px solid var(--quote-color);
+}
+
+.share-options-container .share-option:hover,
+.share-options-container .share-option:focus {
+    background-color: rgb(var(--quote-bg-color), 0.15);
+}
+
+.share-options-container .share-option:active {
+    background-color: var(--cta-light-color);
+}
+
+.share-options-container .share-option svg {
+    font-size: 18px;
+    width: 25px;
+    margin-right: 10px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------ */
