@@ -151,6 +151,10 @@ function randomColorGenerator() {
         return `${r}, ${g}, ${b}`;
     }
 }
+//Create a random number 
+function randomIntegerGenerator(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;;
+}
 
 //Adding a observer to change the style of update section heading when user scrolls
 const observer_1 = new IntersectionObserver(

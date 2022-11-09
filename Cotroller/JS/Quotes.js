@@ -1,4 +1,6 @@
 let quotesAPIUrl = "https://type.fit/api/quotes"
+let quotesCompleteArray = [];
+let reRunQuoteAPI;
 
 apiRunningFunc()
 //Running the api for quotes
@@ -17,6 +19,7 @@ function apiRunningFunc() {
     fetch(quotesAPIUrl)
         .then(response => response.json())
         .then((jsonData) => {
+            quotesCompleteArray = jsonData;
             creatingQuotesFunc(jsonData);
         })
         //Handling errors
@@ -32,8 +35,9 @@ function apiRunningFunc() {
 //Creating search results based on data from api
 function creatingQuotesFunc(quotesArray) {
     document.querySelector(".quotes-main-container").innerHTML = "";
-    if (quotesArray !== 0) {
-        let randomNumber = Math.floor(Math.random() * 100);
+    if (quotesArray.length !== 0) {
+        clearTimeout(reRunQuoteAPI)
+        let randomNumber = randomIntegerGenerator(0, quotesArray.length);
         let quoteText = quotesArray[randomNumber].text;
         let quoteAuthor = quotesArray[randomNumber].author;
         if (quoteAuthor == null || quoteAuthor == "") {
@@ -84,12 +88,15 @@ function creatingQuotesFunc(quotesArray) {
         document.querySelector(".quotes-main-container").appendChild(newDiv);
         newDiv.querySelector(".bookmark-quote").addEventListener('click', addToBookmarkFunc)
         newDiv.querySelector(".share-btn").addEventListener('click', shareOptionsOpenerFunc)
-        newDiv.querySelector(".new-quote-btn").addEventListener('click', apiRunningFunc)
+        newDiv.querySelector(".new-quote-btn").addEventListener('click', function () { creatingQuotesFunc(quotesCompleteArray) })
         quoteBlocksSharingFunc(newDiv.querySelector(".share-options-container"), quotesArray[randomNumber].text, quotesArray[randomNumber].author)
+        reRunQuoteAPI = setTimeout(() => {
+            creatingQuotesFunc(quotesCompleteArray)
+        }, 50000);
     } else {
         document.querySelector(".quotes-main-container").innerHTML = `<div class="fetch-api-error-container d-flex justify-content-center">
             <img src="View/Images/empty-list-image.svg" alt="Couldn't find any results">
-            <p>Opps, Couldn't find any article<br>Don't worry<br>Try out different <a href="#search-input-parent-container">filters</a> and <a href="#search-input-parent-container">search query</a>
+            <p>Opps, Couldn't find any quotes<br><button onclick="location.reload();">Reload</button> page</p>
         </div>`;
     }
 }
@@ -128,6 +135,6 @@ function addToBookmarkFunc() {
 }
 
 document.querySelectorAll(".theme-dropdown-content-container .theme-btn").forEach(ele => {
-    ele.addEventListener('click', apiRunningFunc)
+    ele.addEventListener('click', function () { creatingQuotesFunc(quotesCompleteArray) })
 });
-window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', apiRunningFunc);
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function () { creatingQuotesFunc(quotesCompleteArray) });

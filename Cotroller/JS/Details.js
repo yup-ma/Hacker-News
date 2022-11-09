@@ -173,7 +173,7 @@ function articleCreatorFunc(jsonData) {
     } else {
         document.querySelector(".article-coments-main-container").innerHTML = `<div class="fetch-api-error-container d-flex justify-content-center">
         <img src="View/Images/no-comments-found.svg" alt="No comments found">
-        <p>Opps, Couldn't find any comment</a>
+        <p>Opps, Couldn't find any comment</p>
     </div>`;
     }
     //Entering comments amount based on all stats after removing comments with no auth or text
