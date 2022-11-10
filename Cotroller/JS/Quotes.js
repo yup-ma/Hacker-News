@@ -2,17 +2,56 @@ quoteTypeDetailArray = [
     { type: "inspirational", url: "https://type.fit/api/quotes" },
     { type: "advice", url: "https://api.adviceslip.com/advice" },
     { type: "thisthat", url: "https://itsthisforthat.com/api.php?json" },
-    { type: "tronalddump", url: "https://type.fit/api/quotes" },
+    { type: "tronalddump", url: "https://www.tronalddump.io/random/quote" },
     { type: "chucknorris", url: "https://api.chucknorris.io/jokes/random" }
 ]
 let quotesAPIUrl = "https://type.fit/api/quotes"
 let quotesCompleteArray = [];
 let reRunQuoteAPI;
+let activeAPIName = "inspirational";
 
+document.querySelectorAll(".quote-type").forEach(ele => {
+    ele.addEventListener('click', changeQuoteTypeFunc)
+});
+
+function changeQuoteTypeFunc() {
+    if (this.parentElement.querySelector(".active-quote-type")) {
+        this.parentElement.querySelector(".active-quote-type").classList.remove("active-quote-type")
+    }
+    this.classList.add("active-quote-type")
+    if (this.dataset.quoteType == "joke" || this.dataset.quoteType == "tronalddump" || this.dataset.quoteType == "chucknorris") {
+        // document.querySelector(".quote-sub-type-parent-container").style.display = "block";
+        // checkForQuoteUrlFunc(document.querySelector(".quote-sub-type-parent-container").querySelector(".active-quote-type").dataset.quoteType)
+    } else {
+        // document.querySelector(".quote-sub-type-parent-container").style.display = "none";
+        checkForQuoteUrlFunc(this.dataset.quoteType)
+    }
+}
+
+function checkForQuoteUrlFunc(name) {
+    quoteTypeDetailArray.forEach(ele => {
+        if (ele.type == name) {
+            console.log(ele.url)
+            extraapirunningFunc(ele.url)
+        }
+    });
+}
+
+function extraapirunningFunc(url) {
+    fetch(url)
+        .then(response => response.json())
+        .then((jsonData) => {
+            console.log(jsonData, jsonData.length)
+        })
+        //Handling errors
+        .catch((error) => {
+            console.log(error)
+        });
+}
 apiRunningFunc()
 //Running the api for quotes
 function apiRunningFunc() {
-    document.querySelector(".quotes-main-container").innerHTML = `<div class="loader-container">
+    document.querySelector(".quotes-content-container").innerHTML = `<div class="loader-container">
         <div>
             <span class="loader loader1">l</span>  
             <span class="loader loader2">o</span>  
@@ -31,7 +70,7 @@ function apiRunningFunc() {
         })
         //Handling errors
         .catch((error) => {
-            document.querySelector(".quotes-main-container").innerHTML = `<div class="fetch-api-error-container d-flex justify-content-center">
+            document.querySelector(".quotes-content-container").innerHTML = `<div class="fetch-api-error-container d-flex justify-content-center">
                 <img src="View/Images/error-occured-image.svg" alt="Faced an error">
                 <p>Unexpected error :( , we are doing our best to resolve<br>Try to <button onclick="location.reload();">Reload</button> page</p>
             </div>`
@@ -41,7 +80,7 @@ function apiRunningFunc() {
 
 //Creating search results based on data from api
 function creatingQuotesFunc(quotesArray) {
-    document.querySelector(".quotes-main-container").innerHTML = "";
+    document.querySelector(".quotes-content-container").innerHTML = "";
     if (quotesArray.length !== 0) {
         clearTimeout(reRunQuoteAPI)
         let randomNumber = randomIntegerGenerator(0, quotesArray.length);
@@ -88,20 +127,20 @@ function creatingQuotesFunc(quotesArray) {
             New Quote
         </button>
     </div>`;
-        let randomArticleColor = randomColorGenerator();
-        newDiv.style.setProperty("--quote-color", `rgb(${randomArticleColor})`);
-        newDiv.style.setProperty("--quote-bg-color", `${randomArticleColor}`);
+        // let randomArticleColor = randomColorGenerator();
+        // newDiv.style.setProperty("--quote-color", `rgb(${randomArticleColor})`);
+        // newDiv.style.setProperty("--quote-bg-color", `${randomArticleColor}`);
 
-        document.querySelector(".quotes-main-container").appendChild(newDiv);
+        document.querySelector(".quotes-content-container").appendChild(newDiv);
         newDiv.querySelector(".bookmark-quote").addEventListener('click', addToBookmarkFunc)
         newDiv.querySelector(".share-btn").addEventListener('click', shareOptionsOpenerFunc)
         newDiv.querySelector(".new-quote-btn").addEventListener('click', function () { creatingQuotesFunc(quotesCompleteArray) })
         quoteBlocksSharingFunc(newDiv.querySelector(".share-options-container"), quotesArray[randomNumber].text, quotesArray[randomNumber].author)
-        reRunQuoteAPI = setTimeout(() => {
-            creatingQuotesFunc(quotesCompleteArray)
-        }, 50000);
+        // reRunQuoteAPI = setTimeout(() => {
+        //     creatingQuotesFunc(quotesCompleteArray)
+        // }, 60000);
     } else {
-        document.querySelector(".quotes-main-container").innerHTML = `<div class="fetch-api-error-container d-flex justify-content-center">
+        document.querySelector(".quotes-content-container").innerHTML = `<div class="fetch-api-error-container d-flex justify-content-center">
             <img src="View/Images/empty-list-image.svg" alt="Couldn't find any results">
             <p>Opps, Couldn't find any quotes<br><button onclick="location.reload();">Reload</button> page</p>
         </div>`;
