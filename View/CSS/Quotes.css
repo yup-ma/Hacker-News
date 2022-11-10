@@ -1,7 +1,15 @@
+.square-heading-container {
+    height: 200px;
+}
+
+.quotes-main-parent-container {
+    padding: 20px;
+}
+
 .quotes-main-container {
     flex-wrap: wrap;
-    padding: 20px;
-    min-height: 350px;
+    min-height: 250px;
+    margin-top: 50px;
 }
 
 .quotes-container {
@@ -15,7 +23,6 @@
     border-radius: 30px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 60px;
     transition: var(--transition05);
     animation: articleTransformAnime var(--transition02) linear;
 }
@@ -188,6 +195,72 @@
     margin-right: 10px;
     text-align: center;
     flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------ */
+
+.quote-type-parent-container {
+    overflow: auto;
+    margin-bottom: 15px;
+}
+
+.quote-type-parent-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.quote-type-parent-container::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 150px;
+    border: 5px solid white;
+}
+
+.quote-type-parent-container::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.quote-type-container {
+    width: max-content;
+    margin: auto;
+    padding: 6px;
+    border-radius: 100px;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-shrink: 0;
+}
+
+.quote-sub-type-parent {
+    background-color: var(--secondary-color);
+}
+
+.quote-type-container button {
+    padding: 4px 16px;
+    border-radius: 100px;
+    border: none;
+    color: var(--white-color);
+    background-color: transparent;
+    cursor: pointer;
+    margin-right: 5px;
+    flex-shrink: 0;
+    font-weight: 400;
+    transition: var(--transition05);
+}
+
+.quote-sub-type-parent button {
+    background-color: var(--secondary-color);
+}
+
+.quote-type-container button:hover {
+    background-color: var(--secondary-slight-light-color);
+}
+
+.quote-type-container button:last-child {
+    margin-right: 0;
+}
+
+.quote-type-container button.active-quote-type {
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    font-weight: 500;
 }
 
 /* ------------------------------------------------------------ */

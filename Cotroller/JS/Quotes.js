@@ -1,3 +1,10 @@
+quoteTypeDetailArray = [
+    { type: "inspirational", url: "https://type.fit/api/quotes" },
+    { type: "advice", url: "https://api.adviceslip.com/advice" },
+    { type: "thisthat", url: "https://itsthisforthat.com/api.php?json" },
+    { type: "tronalddump", url: "https://type.fit/api/quotes" },
+    { type: "chucknorris", url: "https://api.chucknorris.io/jokes/random" }
+]
 let quotesAPIUrl = "https://type.fit/api/quotes"
 let quotesCompleteArray = [];
 let reRunQuoteAPI;

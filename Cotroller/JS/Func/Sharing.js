@@ -204,9 +204,9 @@ function quoteBlocksSharingFunc(container, heading, author) {
     let url = "https://yup-ma.github.io/Quality-Reads/Quotes.html"
     heading = heading.replace(`"`, `'`)
     let subjectVar = `Checkout Quotes on Quality Reads`;
-    let bodyVar = `Quote: ${heading} - ${author}  %0A@QualityReads%0A${url}`;
+    let bodyVar = `${heading} %0A- ${author} %0A%0A@QualityReads%0A${url}`;
     let emailUrl = `mailto:?subject=${encodeURIComponent(subjectVar)}&Body=${encodeURIComponent(bodyVar).replace(/%25/g, '%')}`;
-    let whatsappUrl = `https://wa.me?text=Checkout Quotes: ${heading} - ${author}  on Quality Reads%0A${url}`
+    let whatsappUrl = `https://wa.me?text=${heading} %0A- ${author}  %0A%0AQuality Reads%0A${url}`
 
     if (navigator.share) {
         container.innerHTML = `<span class="dropdown-type-text">Share</span>

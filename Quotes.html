@@ -53,7 +53,26 @@
         <div class="square-heading-container d-flex justify-content-center">
             <h1>Quote</h1>
         </div>
-        <div class="quotes-main-container">
+        <div class="quotes-main-parent-container">
+            <div class="quote-type-parent-container">
+                <div class="quote-type-parent quote-type-container">
+                    <button class="quote-type quote-type-inspirational active-quote-type"
+                        data-quote-type="inspirational">Inspirational</button>
+                    <button class="quote-type quote-type-advice" data-quote-type="advice">Advice</button>
+                    <button class="quote-type quote-type-joke" data-quote-type="joke">Joke</button>
+                    <button class="quote-type quote-type-thisthat" data-quote-type="thisthat">This that</button>
+                </div>
+            </div>
+            <div class="quote-type-parent-container">
+                <div class="quote-sub-type-parent quote-type-container">
+                    <button class="quote-type quote-sub-type-tronalddump active-quote-type"
+                        data-quote-type="tronalddump">Tronald Dump</button>
+                    <button class="quote-type quote-sub-type-chucknorris" data-quote-type="chucknorris">Chuck
+                        Norris</button>
+                </div>
+            </div>
+            <div class="quotes-main-container">
+            </div>
         </div>
     </main>
     <footer-component></footer-component>
