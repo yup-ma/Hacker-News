@@ -8,35 +8,42 @@
 
 .quotes-main-container {
     max-width: 440px;
-    padding-top: 20px;
     border: 4px solid var(--primary-color);
     border-radius: 40px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
-    overflow: hidden;
     position: relative;
+    transition: 0.5s;
+}
+
+.quotes-main-container.error-occured {
+    max-width: 900px;
+    padding-bottom: 20px;
 }
 
 .quotes-container {
     position: relative;
     background-color: var(--primary-color);
     color: var(--white-color);
-    padding: 35px 20px 10px;
+    padding: 39px 20px 10px;
     margin-left: auto;
     margin-right: auto;
     transition: var(--transition05);
     animation: quoteTransformAnime var(--transition05) ease-in-out;
+    border-radius: 0 0 30px 30px;
 }
 
 @keyframes quoteTransformAnime {
     0% {
-        transform: translateY(100%);
+        opacity: 0;
+        /* transform: translateY(100%); */
     }
 
     100% {
-        transform: translateY(0);
+        opacity: 1;
+        /* transform: translateY(0); */
     }
 }
 
@@ -44,7 +51,7 @@
 .bookmark-quote {
     cursor: pointer;
     position: absolute;
-    top: 7px;
+    top: 9px;
     right: 7px;
     border: none;
     width: 32px;
@@ -207,12 +214,12 @@
 /* ------------------------------------------------------------ */
 
 .quote-type-parent-container {
-    margin-bottom: 20px;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 .quote-type-container {
-    width: 100%;
+    width: fit-content;
+    max-width: 100%;
     margin: auto;
     padding: 6px;
     border-radius: 100px;
@@ -253,6 +260,71 @@
     background-color: var(--white-color);
     color: var(--primary-color);
     font-weight: 500;
+}
+
+/* ------------------------------------------------------------ */
+
+.quote-timer-bar-container {
+    background-color: var(--secondary-light-color);
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.quote-timer-bar {
+    --timer-bar-timer: 60s;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: 0.5s;
+    animation: timerBarWidthAnime var(--timer-bar-timer) linear;
+}
+
+@keyframes timerBarWidthAnime {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+.quote-setting-button {
+    cursor: pointer;
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    height: 40px;
+    width: 40px;
+    border-radius: 70px;
+    border: 4px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--white-color);
+    z-index: 2;
+}
+
+.quote-settings-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 35px;
+    background-color: var(--secondary-color);
+    z-index: 1;
+    padding: 20px;
+}
+
+.quote-settings-container h3 {
+    font-size: 24px;
+    text-align: center;
+    color: var(--white-color);
 }
 
 /* ------------------------------------------------------------ */

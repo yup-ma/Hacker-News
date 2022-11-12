@@ -293,6 +293,8 @@ h6 {
 
 .fetch-api-error-container {
     flex-wrap: wrap;
+    max-width: 700px;
+    margin: auto;
 }
 
 .fetch-api-error-container>img {
