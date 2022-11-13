@@ -7,6 +7,7 @@ let originalTags = ["story", "poll", "job", "ask_hn", "show_hn"];
 let recentFiltersArray = [];
 
 let followedAuthors = [];
+let bookmarkedArticles = []
 
 if (localStorage.getItem("recent-filters-array")) {
     let localStorageRecentFiltersArray = JSON.parse(localStorage.getItem("recent-filters-array"));
@@ -36,6 +37,18 @@ window.addEventListener("load", () => {
         }
     }
     updatingTextForFilterQuantityStateFunc();
+    if (localStorage.getItem("followed-authors")) {
+        let localStorageFollowedAuthors = JSON.parse(localStorage.getItem("followed-authors"));
+        if (localStorageFollowedAuthors.length !== 0) {
+            followedAuthors = localStorageFollowedAuthors;
+        }
+    }
+    if (localStorage.getItem("bookmarked-articles")) {
+        let localStorageBookmarkedArticles = JSON.parse(localStorage.getItem("bookmarked-articles"));
+        if (localStorageBookmarkedArticles.length !== 0) {
+            bookmarkedArticles = localStorageBookmarkedArticles;
+        }
+    }
 })
 
 document.querySelectorAll(".filter-btn:not(.filter-clear-btn)").forEach(ele => {
@@ -561,13 +574,33 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
             articleBlocksSharingFunc(newAnchor.querySelector(".share-options-container"), newAnchor.href, articleTitle)
             document.querySelector(".articles-main-container").appendChild(newAnchor);
             newAnchor.querySelector(".article-share-container:not(a)").addEventListener('click', shareOptionsPrevDefaultFunc)
-            newAnchor.querySelector(".add-to-bookmark-btn").addEventListener('click', addToBookmarkFunc)
-            newAnchor.querySelector(".follow-author-btn").addEventListener('click', followAuthorFunc)
+            newAnchor.querySelector(".add-to-bookmark-btn").addEventListener('click', function () { addToBookmarkFunc(this, ele.objectID, articleTitle) })
+            newAnchor.querySelector(".follow-author-btn").addEventListener('click', function () { followAuthorFunc(this, ele.objectID, ele.author) })
             newAnchor.querySelector(".article-share-btn").addEventListener('click', shareOptionsOpenerFunc)
             newAnchor.addEventListener('click', articleClickedFunc)
             let randomArticleColor = randomColorGenerator();
             newAnchor.style.setProperty("--article-color", `rgb(${randomArticleColor})`);
             newAnchor.style.setProperty("--article-bg-color", `${randomArticleColor}`);
+
+            for (let i = 0; i < followedAuthors.length; i++) {
+                if (followedAuthors[i].article_id == ele.objectID && followedAuthors[i].author == ele.author) {
+                    newAnchor.querySelector(".follow-author-btn").classList.add("active-follow")
+                    newAnchor.querySelector(".follow-author-btn").querySelector(".option-icon").innerHTML = `<svg width="20" height="20" viewBox="0 0 512 512">
+                        <path
+                            d="m499 218l-51 0 0-52c0-7-6-12-13-12l-25 0c-7 0-13 5-13 12l0 52-51 0c-7 0-13 5-13 12l0 26c0 7 6 13 13 13l51 0 0 51c0 7 6 13 13 13l25 0c7 0 13-6 13-13l0-51 51 0c7 0 13-6 13-13l0-26c0-7-6-12-13-12z m-320 38c57 0 103-46 103-102 0-57-46-103-103-103-56 0-102 46-102 103 0 56 46 102 102 102z m72 26l-13 0c-18 8-38 12-59 12-21 0-40-4-58-12l-13 0c-60 0-108 48-108 107l0 33c0 22 17 39 38 39l282 0c21 0 38-17 38-39l0-33c0-59-48-107-107-107z"
+                            fill="currentColor" />
+                    </svg>`;
+                }
+            }
+            for (let i = 0; i < bookmarkedArticles.length; i++) {
+                if (bookmarkedArticles[i].article_id == ele.objectID && bookmarkedArticles[i].article_title == articleTitle) {
+                    newAnchor.querySelector(".add-to-bookmark-btn").classList.add("active-bookmark")
+                    newAnchor.querySelector(".add-to-bookmark-btn").querySelector(".option-icon").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 88.056 117.408">
+                    <path d="M0,11.007V111.836A5.582,5.582,0,0,0,8.783,116.4L44.028,91.725,79.274,116.4a5.582,5.582,0,0,0,8.783-4.563V11.007A11.01,11.01,0,0,0,77.049,0H11.007A11.01,11.01,0,0,0,0,11.007Z"
+                        fill="currentColor" />
+                </svg>`;
+                }
+            }
 
             ele._tags.forEach(e => {
                 const newButton = document.createElement("button");
@@ -617,43 +650,73 @@ function creatingArticlesFunc(articles, currentPageNum, numberOfPages, articlesA
 function shareOptionsPrevDefaultFunc() {
     event.preventDefault();
 }
-function addToBookmarkFunc() {
+function addToBookmarkFunc(ele, article_id, articleTitle) {
     event.preventDefault();
-    if (this.classList.contains("active-bookmark")) {
-        this.classList.remove("active-bookmark")
-        this.querySelector(".option-icon").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 143.93 191.886">
+    if (ele.classList.contains("active-bookmark")) {
+        ele.classList.remove("active-bookmark")
+        ele.querySelector(".option-icon").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 143.93 191.886">
             <path id="Path_176" data-name="Path 176"
                 d="M125.938,0H17.991A17.991,17.991,0,0,0,0,17.991V179.874a11.993,11.993,0,0,0,18.036,10.36l53.929-31.462L125.9,190.231c7.984,4.337,18.029-1.1,18.029-10.356V17.991A17.993,17.993,0,0,0,125.938,0Zm0,169.417L71.965,137.932,17.991,169.417V20.24A2.18,2.18,0,0,1,19.9,17.991H123.352a2.315,2.315,0,0,1,2.586,2.249Z"
                 fill="currentColor" />
         </svg>`;
+        for (let i = 0; i < bookmarkedArticles.length; i++) {
+            if (bookmarkedArticles[i].article_id == article_id && bookmarkedArticles[i].article_title == articleTitle) {
+                bookmarkedArticles.splice(i, 1)
+            }
+        }
     } else {
-        this.classList.add("active-bookmark")
-        this.querySelector(".option-icon").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 88.056 117.408">
+        if (bookmarkedArticles.length > 49) {
+            actionStatus = "error";
+            actionMessage = "You can bookmark maximum 49 articles.";
+            showActionMessageFunc();
+            return
+        }
+        ele.classList.add("active-bookmark")
+        ele.querySelector(".option-icon").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 88.056 117.408">
             <path d="M0,11.007V111.836A5.582,5.582,0,0,0,8.783,116.4L44.028,91.725,79.274,116.4a5.582,5.582,0,0,0,8.783-4.563V11.007A11.01,11.01,0,0,0,77.049,0H11.007A11.01,11.01,0,0,0,0,11.007Z"
                 fill="currentColor" />
         </svg>`;
+        let bookmarkedArticlesVal = {}
+        bookmarkedArticlesVal.article_id = article_id
+        bookmarkedArticlesVal.article_title = articleTitle
+        bookmarkedArticles.push(bookmarkedArticlesVal)
     }
-
+    localStorage.setItem("bookmarked-articles", JSON.stringify(bookmarkedArticles));
 }
-function followAuthorFunc() {
+function followAuthorFunc(ele, article_id, author) {
     event.preventDefault();
-    console.log(this)
-    if (this.classList.contains("active-follow")) {
-        this.classList.remove("active-follow")
-        this.querySelector(".option-icon").innerHTML = `<svg width="20" height="20" viewBox="0 0 512 512">
+    if (ele.classList.contains("active-follow")) {
+        ele.classList.remove("active-follow")
+        ele.querySelector(".option-icon").innerHTML = `<svg width="20" height="20" viewBox="0 0 512 512">
             <path
                 d="m179 282c64 0 115-52 115-116 0-63-51-115-115-115-63 0-115 52-115 115 0 64 52 116 115 116z m0-192c43 0 77 34 77 76 0 43-34 77-77 77-42 0-77-34-77-77 0-42 35-76 77-76z m72 204c-23 0-34 13-72 13-37 0-48-13-71-13-60 0-108 49-108 108l0 20c0 22 17 39 38 39l282 0c21 0 38-17 38-39l0-20c0-59-48-108-107-108z m69 128l-282 0 0-20c0-38 31-69 70-69 11 0 30 13 71 13 42 0 60-13 72-13 38 0 69 31 69 69z m179-198l-57 0 0-58c0-7-6-12-13-12l-13 0c-7 0-13 5-13 12l0 58-57 0c-7 0-13 6-13 13l0 13c0 7 6 12 13 12l57 0 0 58c0 7 6 13 13 13l13 0c7 0 13-6 13-13l0-58 57 0c7 0 13-5 13-12l0-13c0-7-6-13-13-13z"
                 fill="currentColor" />
         </svg>`;
+        for (let i = 0; i < followedAuthors.length; i++) {
+            if (followedAuthors[i].article_id == article_id && followedAuthors[i].author == author) {
+                followedAuthors.splice(i, 1)
+            }
+        }
     } else {
-        this.classList.add("active-follow")
-        this.querySelector(".option-icon").innerHTML = `<svg width="20" height="20" viewBox="0 0 512 512">
+        if (followedAuthors.length > 9) {
+            actionStatus = "error";
+            actionMessage = "You can follow maximum 10 authors.";
+            showActionMessageFunc();
+            return
+        }
+        ele.classList.add("active-follow")
+        ele.querySelector(".option-icon").innerHTML = `<svg width="20" height="20" viewBox="0 0 512 512">
             <path
                 d="m499 218l-51 0 0-52c0-7-6-12-13-12l-25 0c-7 0-13 5-13 12l0 52-51 0c-7 0-13 5-13 12l0 26c0 7 6 13 13 13l51 0 0 51c0 7 6 13 13 13l25 0c7 0 13-6 13-13l0-51 51 0c7 0 13-6 13-13l0-26c0-7-6-12-13-12z m-320 38c57 0 103-46 103-102 0-57-46-103-103-103-56 0-102 46-102 103 0 56 46 102 102 102z m72 26l-13 0c-18 8-38 12-59 12-21 0-40-4-58-12l-13 0c-60 0-108 48-108 107l0 33c0 22 17 39 38 39l282 0c21 0 38-17 38-39l0-33c0-59-48-107-107-107z"
                 fill="currentColor" />
         </svg>`;
+        let followedAuthorsVal = {}
+        followedAuthorsVal.article_id = article_id
+        followedAuthorsVal.author = author
+        followedAuthorsVal.when_followed_time_in_sec = Math.floor(new Date().getTime() / 1000),
+            followedAuthors.push(followedAuthorsVal)
     }
-
+    localStorage.setItem("followed-authors", JSON.stringify(followedAuthors));
 }
 
 function shareOptionsOpenerFunc() {
