@@ -22,7 +22,9 @@
     max-width: 900px;
     padding-bottom: 20px;
 }
-
+.fetch-api-error-container{
+    margin-top: 20px;
+}
 .quotes-container {
     position: relative;
     background-color: var(--primary-color);
@@ -124,8 +126,8 @@
     min-width: 160px;
     overflow: auto;
     position: absolute;
-    bottom: 9px;
-    left: 19px;
+    bottom: -1px;
+    left: -1px;
     z-index: 1;
     background-color: var(--white-color);
     padding: 7px;
@@ -135,6 +137,9 @@
     animation: transformDropdown var(--transition02) linear;
 }
 
+.quote-share-container{
+    position: relative;
+}
 .quote-share-container.active-share-dropdown .share-options-container {
     display: flex;
 }
@@ -214,7 +219,9 @@
 /* ------------------------------------------------------------ */
 
 .quote-type-parent-container {
-    padding: 20px;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    border-radius: 35px 35px 0 0;
 }
 
 .quote-type-container {
@@ -281,7 +288,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     transition: 0.5s;
     animation: timerBarWidthAnime var(--timer-bar-timer) linear;
 }
