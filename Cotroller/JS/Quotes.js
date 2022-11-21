@@ -250,6 +250,9 @@ function addToBookmarkFunc(ele, type, text, author) {
                 bookmarkedQuotes.splice(i, 1)
             }
         }
+        actionStatus = "error";
+        actionMessage = "Bookmark removed";
+        showActionMessageFunc();
     } else {
         if (bookmarkedQuotes.length > 49) {
             actionStatus = "error";
@@ -267,6 +270,9 @@ function addToBookmarkFunc(ele, type, text, author) {
         bookmarkedQuotesVal.text = text
         bookmarkedQuotesVal.author = author.replace("- ", "")
         bookmarkedQuotes.push(bookmarkedQuotesVal)
+        actionStatus = "success";
+        actionMessage = "Bookmark added";
+        showActionMessageFunc();
     }
     localStorage.setItem("bookmarked-quotes", JSON.stringify(bookmarkedQuotes));
 }
