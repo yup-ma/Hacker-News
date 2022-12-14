@@ -26,7 +26,8 @@ html {
     --secondary-color: #545454;
     --secondary-slight-light-color: #6c6c6c;
     --secondary-light-color: #b6b3b3;
-    --cta-color: #00ffc1;
+    --cta-color: #6cfcd3;
+    /* --cta-color: #00ffc1; */
     --cta-hover-color: #23e8b8;
     --cta-light-color: #a1ffe8;
     --cta-mostlight-color: #e6fff9;
