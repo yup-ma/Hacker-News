@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="left-container">
+            <h1>
+                <span class="color-red">Page</span>
+                <span class="color-green">not</span>
+                <span class="color-red">Found</span>
+            </h1>
+            <p>This page doesn't exist or has been relocated<br>
+                If you think this is a mistake, feel free to <a href="tel:+919993373283">Contact us</a></p>
+            <div class="btn-container">
+                <a class="home-btn" [routerLink]="['/demo-course']">Go to Home Page</a>
+            </div>
+        </div>
+        <div class="right-container">
+            <img src="../../assets/image/error-image.png" alt="">
+        </div>
+    </div>
+    <div class="extra-parent-videos">
+        <div class="extra-videos">
+            <h3>You might also like</h3>
+            <div class="video-parent-container">
+                <a [routerLink]="['/demo-course', 776307261]" class="video-container"><span class="text">Integrate for
+                        auto
+                        lead
+                        capture</span></a>
+                <a [routerLink]="['/demo-course', 776332146]" class="video-container"><span class="text">Lead
+                        qualification
+                        &
+                        nurturing</span></a>
+                <a [routerLink]="['/demo-course', 776357349]" class="video-container"><span class="text">WhatsApp
+                        chatbot</span></a>
+                <a [routerLink]="['/demo-course', 776357791]" class="video-container"><span class="text">Creating
+                        payments</span></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
